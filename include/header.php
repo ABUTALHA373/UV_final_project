@@ -59,7 +59,7 @@
         <div class="container main-menu">
             <div class="row align-items-center justify-content-between d-flex px-3">
                 <div id="logo">
-                    <a href="index.html"><img src="img/logo.svg" alt="" title="" height="40px" /></a>
+                    <a href="index.html"><img src="img/logo.svg" alt="" title="" height="35px" /></a>
                 </div>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
