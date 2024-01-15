@@ -49,7 +49,7 @@
                     </div>
                     <div class="col-lg-6 col-sm-6 col-6 header-top-right">
                         <ul>
-                            <li><a href="#" class="text-color">SignUp</a></li>
+                            <li><a href="#" id="text-color">SignUp</a></li>
                             <li><a href="#">Login</a></li>
                         </ul>
                     </div>
