@@ -1,0 +1,39 @@
+/* f8b600 */
+
+.checked {
+  color: orange;
+}
+.text-pm {
+  color: #f8b600;
+}
+.text-w {
+  color: #fff;
+}
+.bg-pm {
+  background-color: #f8b600;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.c-area h3 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.c-area h4 {
+  padding-left: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.c-area p {
+  text-align: justify;
+}
+.c-area ul {
+  list-style-type: disc;
+  padding-left: 2.5rem;
+  padding-bottom: 0.5rem;
+}
+.img-gallery img {
+  object-fit: cover;
+}

@@ -160,9 +160,8 @@
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
                 <div class="title text-center">
-                    <h1 class="mb-10">We Provide Affordable Prices</h1>
-                    <p>Well educated, intellectual people, especially scientists at all times demonstrate
-                        considerably.</p>
+                    <h1 class="mb-10">We Provide Affordable Tours</h1>
+                    <p>Smart Adventures, Affordable Journeys: Where Intelligence Meets Exploration.</p>
                 </div>
             </div>
         </div>
@@ -270,64 +269,63 @@
 <section class="other-issue-area section-gap">
     <div class="container">
         <div class="row d-flex justify-content-center">
-            <div class="menu-content pb-70 col-lg-9">
+            <div class="menu-content pb-70 col-lg-9 ">
                 <div class="title text-center">
-                    <h1 class="mb-10">Other issues we can help you with</h1>
-                    <p>We all live in an age that belongs to the young at heart. Life that is.</p>
+                    <h1 class="mb-10">Popular Hotels</h1>
+                    <p>Where Luxury Meets Hospitality – Your Unforgettable Escape Awaits!</p>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-3 col-md-6 ">
                 <div class="single-other-issue">
                     <div class="thumb">
-                        <img class="img-fluid" src="img/o1.jpg" alt="">
+                        <img class="img-fluid" src="img/h1.jpeg" alt="">
                     </div>
                     <a href="#">
-                        <h4>Rent a Car</h4>
+                        <h4>Raffles Makkah Palace</h4>
                     </a>
                     <p>
-                        The preservation of human life is the ultimate value, a pillar of ethics and the foundation.
+                        <i class="fa fa-map-marker"></i> Mecca (Makkah), Saudi Arabia
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 ">
+                <div class="single-other-issue">
+                    <div class="thumb ">
+                        <img class="img-fluid" src="img/h2.jpg" alt="">
+                    </div>
+                    <a href="#">
+                        <h4>Ciragan Palace Kempinski Istanbul</h4>
+                    </a>
+                    <p>
+                        <i class="fa fa-map-marker"></i> Istanbul, Turkey
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single-other-issue">
+                    <div class="thumb border">
+                        <img class="img-fluid" src="img/h3.jpg" alt="">
+                    </div>
+                    <a href="#">
+                        <h4>Jumeirah Beach Hotel</h4>
+                    </a>
+                    <p>
+                        <i class="fa fa-map-marker"></i> Dubai, United Arab Emirates
                     </p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="single-other-issue">
                     <div class="thumb">
-                        <img class="img-fluid" src="img/o2.jpg" alt="">
+                        <img class="img-fluid" src="img/h4.jpg" alt="">
                     </div>
                     <a href="#">
-                        <h4>Cruise Booking</h4>
+                        <h4>Yas Hotel Abu Dhabi</h4>
                     </a>
                     <p>
-                        I was always somebody who felt quite sorry for myself, what I had not got compared.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="single-other-issue">
-                    <div class="thumb">
-                        <img class="img-fluid" src="img/o3.jpg" alt="">
-                    </div>
-                    <a href="#">
-                        <h4>To Do List</h4>
-                    </a>
-                    <p>
-                        The following article covers a topic that has recently moved to center stage–at least it
-                        seems.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="single-other-issue">
-                    <div class="thumb">
-                        <img class="img-fluid" src="img/o4.jpg" alt="">
-                    </div>
-                    <a href="#">
-                        <h4>Food Features</h4>
-                    </a>
-                    <p>
-                        There are many kinds of narratives and organizing principles. Science is driven by evidence.
+                        <i class="fa fa-map-marker"></i> Abu Dhabi, United Arab Emirates
                     </p>
                 </div>
             </div>
@@ -344,8 +342,7 @@
             <div class="menu-content pb-70 col-lg-8">
                 <div class="title text-center">
                     <h1 class="mb-10">Testimonial from our Clients</h1>
-                    <p>The French Revolution constituted for the conscience of the dominant aristocratic class a
-                        fall from </p>
+                    <p>Embarking on Dreams, Crafting Memories – Where Every Journey Becomes a Story.</p>
                 </div>
             </div>
         </div>
@@ -477,19 +474,17 @@
         <div class="row align-items-center justify-content-end">
             <div class="col-lg-6 col-md-12 home-about-left">
                 <h1>
-                    Did not find your Package? <br>
-                    Feel free to ask us. <br>
-                    We‘ll make it for you
+                    Bangladesh Unveiled:<br> Explore Beauty, Culture, Wonders
                 </h1>
                 <p>
-                    inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct
-                    standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on
-                    the job is beyond reproach. inappropriate behavior is often laughed.
+                    Immerse yourself in the charm of this enchanting destination with personalized packages designed
+                    just for you. Discover the beauty, culture, and wonders of Bangladesh on a journey crafted to match
+                    your preferences. Let the adventure begin!
                 </p>
-                <a href="#" class="primary-btn text-uppercase">request custom price</a>
+                <a href="#" class="primary-btn text-uppercase">Explore Bangladesh</a>
             </div>
             <div class="col-lg-6 col-md-12 home-about-right no-padding">
-                <img class="img-fluid" src="img/about-img.jpg" alt="">
+                <img class="img-fluid" src="img/explorebd.png" alt="">
             </div>
         </div>
     </div>
