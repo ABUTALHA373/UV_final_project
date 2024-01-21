@@ -8,8 +8,8 @@
 <!-- start banner Area -->
 <section class="banner-area relative">
     <div class="overlay overlay-bg"></div>
-    <div class="container">
-        <div class="row fullscreen align-items-center justify-content-between">
+    <div class="container padding">
+        <div class="row align-items-center justify-content-between">
             <div class="col-lg-6 col-md-6 banner-left">
                 <h6 class="text-white">Away from monotonous life</h6>
                 <h1 class="text-white">Magical Travel</h1>
@@ -95,7 +95,6 @@
     </div>
 </section>
 <!-- End banner Area -->
-
 <!-- Start popular-destination Area -->
 <section class="popular-destination-area section-gap">
     <div class="container">

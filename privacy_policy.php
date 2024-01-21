@@ -34,7 +34,7 @@ include('include/header.php');
 
         <p>We may collect the following types of personal information:</p>
 
-        <ul>
+        <ul class="unordered-list">
             <li>Contact Information (e.g., name, email address, phone number)</li>
             <li>Booking Information (e.g., flight details, hotel reservations)</li>
             <li>Payment Information (e.g., credit card details)</li>
@@ -45,7 +45,7 @@ include('include/header.php');
 
         <p>We may use your personal information for the following purposes:</p>
 
-        <ul>
+        <ul class="unordered-list">
             <li>Provide and maintain our services</li>
             <li>Process and complete bookings</li>
             <li>Communicate with you about your bookings</li>

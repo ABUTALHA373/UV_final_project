@@ -106,3 +106,4 @@
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/mail-script.js"></script>
 <script src="js/main.js"></script>
+<script src="js/index.js"></script>
