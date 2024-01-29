@@ -36,6 +36,7 @@
 <body>
 
     <section class="banner-area ">
+        <div class="overlay overlay-bg"></div>
         <div class=" container login">
             <div class=" d-flex justify-content-center align-items-center vh-100">
                 <div class="col-lg-5 col-md-8 col p-3 bg-light rounded ">

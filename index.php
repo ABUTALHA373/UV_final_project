@@ -1,6 +1,7 @@
 <?php
 
 	include('include/header.php');
+	include('include/config.php');
 ?>
 
 
@@ -96,7 +97,7 @@
 </section>
 <!-- End banner Area -->
 <!-- Start popular-destination Area -->
-<section class="popular-destination-area section-gap">
+<section class="popular-destination-area section-bg-white section-gap">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
@@ -152,11 +153,8 @@
 </section>
 <!-- End popular-destination Area -->
 
-<a href=""></a>
-
-
-<!-- Start price Area -->
-<section class="price-area section-gap">
+<!-- Start package Area -->
+<section class="price-area section-bg-gray section-gap">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
@@ -263,11 +261,11 @@
         </div>
     </div>
 </section>
-<!-- End price Area -->
+<!-- End package Area -->
 
 
-<!-- Start other-issue Area -->
-<section class="other-issue-area section-gap">
+<!-- Start Popular Hotels Area -->
+<section class="other-issue-area section-bg-white section-gap">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-9 ">
@@ -333,11 +331,11 @@
         </div>
     </div>
 </section>
-<!-- End other-issue Area -->
+<!-- End Popular hotels Area -->
 
 
 <!-- Start testimonial Area -->
-<section class="testimonial-area section-gap">
+<section class="testimonial-area section-bg-gray section-gap">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
@@ -469,8 +467,8 @@
 </section>
 <!-- End testimonial Area -->
 
-<!-- Start home-about Area -->
-<section class="home-about-area">
+<!-- Start explore BD Area -->
+<section class="home-about-area section-bg-white">
     <div class="container-fluid">
         <div class="row align-items-center justify-content-end">
             <div class="col-lg-6 col-md-12 home-about-left">
@@ -490,11 +488,11 @@
         </div>
     </div>
 </section>
-<!-- End home-about Area -->
+<!-- End explore BD Area -->
 
 
 <!-- Start blog Area -->
-<section class="recent-blog-area section-gap">
+<section class="recent-blog-area section-bg-gray section-gap">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-60 col-lg-9">
@@ -506,12 +504,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="active-recent-blog-carusel">
-                <div class="single-recent-blog-post item">
+            <div class="active-recent-blog-carusel ">
+                <div class="single-recent-blog-post item bg-white">
                     <div class="thumb">
                         <img class="img-fluid" src="img/b1.jpg" alt="">
                     </div>
-                    <div class="details">
+                    <div class="details px-4 pb-2">
                         <div class="tags">
                             <ul>
                                 <li>
@@ -532,11 +530,11 @@
                         <h6 class="date">31st January,2018</h6>
                     </div>
                 </div>
-                <div class="single-recent-blog-post item">
+                <div class="single-recent-blog-post item bg-white">
                     <div class="thumb">
                         <img class="img-fluid" src="img/b2.jpg" alt="">
                     </div>
-                    <div class="details">
+                    <div class="details px-4 pb-2">
                         <div class="tags">
                             <ul>
                                 <li>
@@ -557,11 +555,11 @@
                         <h6 class="date">31st January,2018</h6>
                     </div>
                 </div>
-                <div class="single-recent-blog-post item">
+                <div class="single-recent-blog-post item bg-white">
                     <div class="thumb">
                         <img class="img-fluid" src="img/b3.jpg" alt="">
                     </div>
-                    <div class="details">
+                    <div class="details px-4 pb-2">
                         <div class="tags">
                             <ul>
                                 <li>
@@ -582,11 +580,11 @@
                         <h6 class="date">31st January,2018</h6>
                     </div>
                 </div>
-                <div class="single-recent-blog-post item">
+                <div class="single-recent-blog-post item bg-white">
                     <div class="thumb">
                         <img class="img-fluid" src="img/b1.jpg" alt="">
                     </div>
-                    <div class="details">
+                    <div class="details px-4 pb-2">
                         <div class="tags">
                             <ul>
                                 <li>
@@ -607,11 +605,11 @@
                         <h6 class="date">31st January,2018</h6>
                     </div>
                 </div>
-                <div class="single-recent-blog-post item">
+                <div class="single-recent-blog-post item bg-white">
                     <div class="thumb">
                         <img class="img-fluid" src="img/b2.jpg" alt="">
                     </div>
-                    <div class="details">
+                    <div class="details px-4 pb-2">
                         <div class="tags">
                             <ul>
                                 <li>
@@ -632,11 +630,11 @@
                         <h6 class="date">31st January,2018</h6>
                     </div>
                 </div>
-                <div class="single-recent-blog-post item">
+                <div class="single-recent-blog-post item bg-white">
                     <div class="thumb">
                         <img class="img-fluid" src="img/b3.jpg" alt="">
                     </div>
-                    <div class="details">
+                    <div class="details px-4 pb-2">
                         <div class="tags">
                             <ul>
                                 <li>

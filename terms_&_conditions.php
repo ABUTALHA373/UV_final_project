@@ -25,7 +25,7 @@ include('include/header.php');
 <!-- Start about-info Area -->
 <section class="c-area section-gap">
     <div class="container">
-        <h2>Terms and Conditions</h2>
+
         <p>Welcome to BOOKITFAST! These Terms and Conditions ("Terms") govern your use of the
             BOOKITFAST website and
             services ("Services") to book tours, flights, and hotels, and make payments for these bookings. By accessing

@@ -1,3 +1,7 @@
+/*color change #f9f9ff >>> #ecfof1
+
+
+
 /******************************************************************
 Theme Name: Travel 
 Description: 
@@ -38,10 +42,10 @@ $primary-font	: 'Poppins', sans-serif;
 
 $primary-color	: #f8b600;
 $title-color	: #222222;
-$text-color		: #777777;
+$text-color		: #666666;
 
 $white			: #fff;
-$offwhite		: #f9f9ff;
+$offwhite		: #ecf0f1  ;
 $black			: #222;
 
 */
@@ -62,38 +66,38 @@ $black			: #222;
 
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
-  color: #777777;
+  color: #666666;
   font-weight: 300;
 }
 
 :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: #777777;
+  color: #666666;
   opacity: 1;
   font-weight: 300;
 }
 
 ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: #777777;
+  color: #666666;
   opacity: 1;
   font-weight: 300;
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #777777;
+  color: #666666;
   font-weight: 300;
 }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: #777777;
+  color: #666666;
   font-weight: 300;
 }
 
 body {
-  color: #777777;
+  color: #666666;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 300;
@@ -163,7 +167,7 @@ a:hover {
 }
 
 .gray-bg {
-  background: #f9f9ff;
+  background: #ecf0f1;
 }
 
 h1,
@@ -842,7 +846,7 @@ th {
 /* =================================== */
 /*---------- Start Elements Page -------------*/
 .whole-wrap {
-  background-color: #f9f9ff;
+  background-color: #ecf0f1;
 }
 
 .generic-banner {
@@ -914,7 +918,7 @@ th {
 
 /*---------- End Elements Page -------------*/
 .sample-text-area {
-  background: #f9f9ff;
+  background: #ecf0f1;
   padding: 100px 0 70px 0;
 }
 
@@ -990,11 +994,11 @@ h6 {
 .typography h4,
 .typography h5,
 .typography h6 {
-  color: #777777;
+  color: #666666;
 }
 
 .button-area {
-  background: #f9f9ff;
+  background: #ecf0f1;
 }
 
 .button-area .border-top-generic {
@@ -1075,23 +1079,23 @@ h6 {
 
 .genric-btn.default {
   color: #222222;
-  background: #f9f9ff;
+  background: #ecf0f1;
   border: 1px solid transparent;
 }
 
 .genric-btn.default:hover {
-  border: 1px solid #f9f9ff;
+  border: 1px solid #ecf0f1;
   background: #fff;
 }
 
 .genric-btn.default-border {
-  border: 1px solid #f9f9ff;
+  border: 1px solid #ecf0f1;
   background: #fff;
 }
 
 .genric-btn.default-border:hover {
   color: #222222;
-  background: #f9f9ff;
+  background: #ecf0f1;
   border: 1px solid transparent;
 }
 
@@ -1217,33 +1221,33 @@ h6 {
 
 .genric-btn.link {
   color: #222222;
-  background: #f9f9ff;
+  background: #ecf0f1;
   text-decoration: underline;
   border: 1px solid transparent;
 }
 
 .genric-btn.link:hover {
   color: #222222;
-  border: 1px solid #f9f9ff;
+  border: 1px solid #ecf0f1;
   background: #fff;
 }
 
 .genric-btn.link-border {
   color: #222222;
-  border: 1px solid #f9f9ff;
+  border: 1px solid #ecf0f1;
   background: #fff;
   text-decoration: underline;
 }
 
 .genric-btn.link-border:hover {
   color: #222222;
-  background: #f9f9ff;
+  background: #ecf0f1;
   border: 1px solid transparent;
 }
 
 .genric-btn.disable {
   color: #222222, 0.3;
-  background: #f9f9ff;
+  background: #ecf0f1;
   border: 1px solid transparent;
   cursor: not-allowed;
 }
@@ -1411,7 +1415,7 @@ h6 {
 
 .ordered-list li span {
   font-weight: 300;
-  color: #777777;
+  color: #666666;
 }
 
 .ordered-list-alpha li {
@@ -1424,7 +1428,7 @@ h6 {
 
 .ordered-list-alpha li span {
   font-weight: 300;
-  color: #777777;
+  color: #666666;
 }
 
 .ordered-list-roman li {
@@ -1437,7 +1441,7 @@ h6 {
 
 .ordered-list-roman li span {
   font-weight: 300;
-  color: #777777;
+  color: #666666;
 }
 
 .single-input {
@@ -2168,10 +2172,12 @@ h6 {
 
 #header.header-scrolled .header-top {
   display: none;
+  transition: all 0.5s;
 }
 
 #header.header-scrolled .main-menu {
   background: transparent;
+  transition: all 0.5s;
 }
 
 /*--------------------------------------------------------------
@@ -2425,7 +2431,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #nav-menu-container {
-  padding-right: 15px;
+  /* padding-right: 15px; */
 }
 
 .primary-btn {
@@ -2763,7 +2769,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .price-area .single-price .price-list li .price-btn {
-  background: #f9f9ff;
+  background: #ecf0f1;
   border: 1px solid #eee;
   color: #222;
   font-size: 14px;
@@ -2816,7 +2822,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 /*-------- end other-issue Area ------------*/
 /*--------- start testimonial area  -------------*/
 .testimonial-area {
-  background-color: #f9f9ff;
+  background-color: #ecf0f1;
 }
 
 .testimonial-area .owl-dots {
@@ -3206,7 +3212,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 /*-------- start hot-deal Style  -------------*/
 /*-------- start destinations-area Style  -------------*/
 .destinations-area {
-  background: #f9f9ff;
+  background: #ecf0f1;
 }
 
 .destinations-area .single-destinations {
@@ -3349,7 +3355,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .blog-page {
-  background: #f9f9ff;
+  background: #ecf0f1;
 }
 
 .blog-header-content h1 {
@@ -3369,7 +3375,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .top-category-widget-area {
-  background-color: #f9f9ff;
+  background-color: #ecf0f1;
 }
 
 .top-category-widget-area .single-cat-widget {
@@ -3428,7 +3434,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .post-content-area {
-  background-color: #f9f9ff;
+  background-color: #ecf0f1;
 }
 
 .post-content-area .single-post {
@@ -3477,7 +3483,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 .post-content-area .single-post .date a,
 .post-content-area .single-post .view a,
 .post-content-area .single-post .comments a {
-  color: #777777;
+  color: #666666;
   margin-right: 10px;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
@@ -3568,7 +3574,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #777777;
+  color: #666666;
   border: none;
 }
 
@@ -3770,7 +3776,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .widget-wrap .post-category-widget .cat-list li a {
-  color: #777777;
+  color: #666666;
 }
 
 .widget-wrap .post-category-widget .cat-list li:hover {
@@ -4082,7 +4088,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .comments-area .comment {
-  color: #777777;
+  color: #666666;
 }
 
 .comments-area .btn-reply {
@@ -4143,7 +4149,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   border-radius: 0px;
   width: 100%;
   font-size: 13px;
-  color: #777777;
+  color: #666666;
 }
 
 .comment-form .form-control:focus {
@@ -4193,7 +4199,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 /*  Contact Page Styles
 /* =================================== */
 .contact-page-area {
-  background: #f9f9ff;
+  background: #ecf0f1;
 }
 
 .contact-page-area .map-wrap {
@@ -4376,16 +4382,17 @@ body.mobile-nav-active #mobile-nav-toggle {
   color: #f8b600;
 }
 
-.instafeed {
+.imgfeed {
   margin: -5px;
+  cursor: pointer;
 }
 
-.instafeed li {
+.imgfeed li {
   overflow: hidden;
   width: 25%;
 }
 
-.instafeed li img {
+.imgfeed li img {
   margin: 5px;
 }
 
@@ -4475,43 +4482,43 @@ body.mobile-nav-active #mobile-nav-toggle {
 .single-footer-widget ::-moz-selection {
   /* Code for Firefox */
   background-color: #f8b600;
-  color: #777777;
+  color: #666666;
 }
 
 .single-footer-widget ::selection {
   background-color: #f8b600;
-  color: #777777;
+  color: #666666;
 }
 
 .single-footer-widget ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
-  color: #777777;
+  color: #666666;
   font-weight: 300;
 }
 
 .single-footer-widget :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: #777777;
+  color: #666666;
   opacity: 1;
   font-weight: 300;
 }
 
 .single-footer-widget ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: #777777;
+  color: #666666;
   opacity: 1;
   font-weight: 300;
 }
 
 .single-footer-widget :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #777777;
+  color: #666666;
   font-weight: 300;
 }
 
 .single-footer-widget ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: #777777;
+  color: #666666;
   font-weight: 300;
 }
 
@@ -4522,7 +4529,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .single-footer-widget p {
-  color: #777777;
+  color: #666666;
 }
 
 .single-footer-widget ul li {
@@ -4530,7 +4537,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .single-footer-widget ul li a {
-  color: #777777;
+  color: #666666;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;

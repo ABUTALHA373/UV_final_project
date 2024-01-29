@@ -1,11 +1,10 @@
 <?php
 
-// Define the root directory constant
-define('ROOT_DIR', __DIR__);
+$host = 'localhost';
+$db_user = 'root';
+$db_password = '';
+$database = 'db_bookitfast';
 
-// Define other constants if needed
-define('BASE_URL', 'http://localhost/');
-include('include/header.php');
-// Add more configuration settings as needed
+$con =new mysqli($host,$db_user,$db_password,$database);
 
 ?>

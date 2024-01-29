@@ -26,7 +26,7 @@ include('include/header.php');
 <section class="c-area section-gap">
     <div class="container">
         <!-- Gallery -->
-        <!-- <div class="section-top-border ">
+        <div class="section-top-border ">
             <h3>Image Gallery</h3>
             <div class="row gallery-item">
                 <div class="col-md-4">
@@ -44,12 +44,12 @@ include('include/header.php');
                         <div class="single-gallery-image" style="background: url(img/elements/g3.jpg);"></div>
                     </a>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <a href="img/elements/g4.jpg" class="img-gal">
                         <div class="single-gallery-image" style="background: url(img/elements/g4.jpg);"></div>
                     </a>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <a href="img/elements/g5.jpg" class="img-gal">
                         <div class="single-gallery-image" style="background: url(img/elements/g5.jpg);"></div>
                     </a>
@@ -74,12 +74,17 @@ include('include/header.php');
                         <div class="single-gallery-image" style="background: url(img/elements/g8.jpg);"></div>
                     </a>
                 </div>
+                <div class="col-md-4">
+                    <a href="img/top-banner.jpg" class="img-gal">
+                        <div class="single-gallery-image" style="background: url(img/top-banner.jpg);"></div>
+                    </a>
+                </div>
             </div>
-        </div> -->
+        </div>
 
 
 
-        <div class="img-gallery">
+        <!-- <div class="img-gallery">
             <div class=" d-flex flex-wrap row justify-content-center">
                 <a href="img/b1.jpg" class="img-gal col-lg-4 col-md-6 col-sm-12">
                     <img src="img/b1.jpg" class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
@@ -97,8 +102,7 @@ include('include/header.php');
                     <img src="img/top-banner.jpg" class=" shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
                 </a>
             </div>
-            <!-- Gallery -->
-        </div>
+        </div> -->
 </section>
 
 

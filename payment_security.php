@@ -25,9 +25,6 @@ include('include/header.php');
 <!-- Start about-info Area -->
 <section class="c-area section-gap">
     <div class="container">
-
-        <h2>Payment Security</h2>
-
         <p>At BOOKITFAST, we take the security of your payment information seriously. Here are the measures we implement
             to ensure a secure payment environment:</p>
 

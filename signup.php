@@ -35,51 +35,57 @@
 
 <body>
 
-    <section class="banner-area ">
+    <section class="banner-area sing-area">
+        <div class="overlay overlay-bg"></div>
         <div class=" container login">
             <div class=" d-flex justify-content-center align-items-center vh-100">
                 <div class="col-lg-5 col-md-8 col p-3 bg-light rounded ">
-                    <!-- <div class="text-center pb-4 pt-2 ">
-                        <a href="index.php"><img src="img/icon.svg" alt="" title="" height="50px" /></a>
-                    </div> -->
                     <h2 class="text-center p-2 bb">Sign Up</h2>
                     <div class="border p-2">
-                        <!-- <h3 class="text-center p-2 ">Login</h3> -->
                         <form action="#">
-                            <div class="mt-10">
-                                <label">Full Name:</label>
-                                    <input type="text" name="name" placeholder="Name" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Name'" required class="single-input border">
+                            <div class="mt-10 row m-0">
+                                <div class="col-6 m-0 p-0 pr-1">
+                                    <label">First Name:</label>
+                                        <input type="text" name="name" placeholder="John"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'John'" required
+                                            class="single-input border">
+                                </div>
+                                <div class="col-6 m-0 p-0 pl-1">
+                                    <label">Last Name:</label>
+                                        <input type="text" name="name" placeholder="Doe" onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Doe'" required class="single-input border">
+                                </div>
                             </div>
                             <div class="mt-10">
                                 <label">Email:</label>
-                                    <input type="email" name="email" placeholder="Email" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Email'" required class="single-input border">
+                                    <input type="email" name="email" placeholder="example@mail.com"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'example@mail.com'"
+                                        required class="single-input border">
                             </div>
                             <div class="mt-10">
                                 <label">Password:</label>
-                                    <input type="password" name="password" placeholder="Password"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required
-                                        class="single-input border">
+                                    <input type="password" name="password" placeholder="Your Password"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Password'"
+                                        required class="single-input border">
                             </div>
                             <div class="mt-10">
                                 <label">Confirm Password:</label>
-                                    <input type="password" name="con_password" placeholder="Confirm Password"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'"
-                                        required class="single-input border">
+                                    <input type="password" name="con_password" placeholder="Confirm Your Password"
+                                        onfocus="this.placeholder = ''"
+                                        onblur="this.placeholder = 'Confirm Your Password'" required
+                                        class="single-input border">
                             </div>
 
                             <div class="mt-10">
                                 <button href="#" class="genric-btn primary circle w-100 fs-16">Sign Up</button>
                             </div>
                             <div class="mt-10 clink text-center">
-                                <p>Already have an account? <a href="Login.php" class="">Login</a></p>
+                                <p>Already have an account? <a href="Login.php" class=""><b>Login</b></a></p>
                             </div>
                             <div class="mt-10 clink text-center">
                                 <div class="text-center pb-4 pt-2 ">
-                                    <a href="index.php"><img src="img/icon.svg" alt="" title="" height="50px" /></a>
+                                    <a href="index.php"><img src="img/icon.svg" alt="Logo" title="" height="50px" /></a>
                                 </div>
-                                <!-- <p><a href="index.php" class="">Home <i class="fa-solid fa-angles-right"></i></a></p> -->
                             </div>
                         </form>
                     </div>

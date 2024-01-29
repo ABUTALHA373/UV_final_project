@@ -40,7 +40,7 @@
 </head>
 
 <body>
-    <header id="header2">
+    <header id="header" class="header2">
         <div class="header-top">
             <div class="container">
                 <div class="row align-items-center">
@@ -57,33 +57,32 @@
                         <ul>
                             <li><a href="./signup.php">SignUp</a>
                             </li>
-                            <li><a href="./login.php">Login</a>
+                            <li style="margin-right: 0;"><a href="./login.php">Login</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="main-menu">
-            <div class="container ">
-                <div class="row align-items-center justify-content-between d-flex px-3">
-                    <div id="">
-                        <a href="index.php"><img src="img/logo.svg" alt="" title="" height="35px" /></a>
-                    </div>
-                    <nav id="nav-menu-container">
-                        <ul class="nav-menu">
-                            <li><a href="flights.php">Flight</a></li>
-                            <li><a href="hotels.php">Hotel</a></li>
-                            <li><a href="tours.html">Tour</a></li>
-                            <li><a href="blog-home.php">Blog</a></li>
-                            <li><a href="services.php">Services</a>
-                                <!-- <ul>
+        <div class="container main-menu">
+            <div class="row align-items-center justify-content-between d-flex px-3">
+
+                <a href="index.php"><img src="img/logo.svg" alt="" title="" height="35px" /></a>
+
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li><a href="flights.php">Flight</a></li>
+                        <li><a href="hotels.php">Hotel</a></li>
+                        <li><a href="tours.html">Tour</a></li>
+                        <li><a href="blog-home.php">Blog</a></li>
+                        <li><a href="services.php">Services</a>
+                            <!-- <ul>
                                 <li><a href="#">Item One</a></li>
                                 <li><a href="#">Item Two</a></li>
                             </ul> -->
-                            </li>
-                            <li><a href="insurance.html">Gallary</a></li>
-                            <!-- <li class="menu-has-children"><a href="">Blog</a>
+                        </li>
+                        <li><a href="insurance.html">Gallary</a></li>
+                        <!-- <li class="menu-has-children"><a href="">Blog</a>
                             <ul>
                                 <li><a href="blog-home.html">Blog Home</a></li>
                                 <li><a href="blog-single.html">Blog Single</a></li>
@@ -101,9 +100,11 @@
                             </ul>
                         </li>
                         <li><a href="contact.html">Contact</a></li> -->
-                        </ul>
-                    </nav><!-- #nav-menu-container -->
-                </div>
+                    </ul>
+                </nav><!-- #nav-menu-container -->
             </div>
         </div>
     </header><!-- #header -->
+    <div class="nheader-height">
+
+    </div>

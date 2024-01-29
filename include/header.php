@@ -33,6 +33,7 @@
 </head>
 
 <body>
+
     <header id="header">
         <div class="header-top">
             <div class="container">
@@ -62,7 +63,7 @@
 
                 <a href="index.php"><img src="img/logo.svg" alt="" title="" height="35px" /></a>
 
-                <nav id="nav-menu-container">
+                <div id="nav-menu-container">
                     <ul class="nav-menu">
                         <li><a href="flights.php">Flight</a></li>
                         <li><a href="hotels.php">Hotel</a></li>
@@ -94,9 +95,7 @@
                         </li>
                         <li><a href="contact.html">Contact</a></li> -->
                     </ul>
-                </nav><!-- #nav-menu-container -->
+                </div><!-- #nav-menu-container -->
             </div>
         </div>
     </header><!-- #header -->
-
-    <!-- login modal -->

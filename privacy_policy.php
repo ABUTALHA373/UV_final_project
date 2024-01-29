@@ -25,8 +25,6 @@ include('include/header.php');
 <!-- Start about-info Area -->
 <section class="c-area section-gap">
     <div class="container">
-        <h2>Privacy Policy</h2>
-
         <p>This Privacy Policy describes how BOOKITFAST ("we," "us," or "our") collects, uses, and discloses your
             personal information when you visit our website or use our services.</p>
 
