@@ -1,4 +1,5 @@
 <?php
+
 require __DIR__ . '/../config/db_con.php';
 ?>
 
@@ -57,10 +58,15 @@ require __DIR__ . '/../config/db_con.php';
                     </div>
                     <div class="col-lg-6 col-sm-6 col-6 header-top-right">
                         <ul>
-                            <li><a href="<?php echo BASE_URL; ?>signup.php">SignUp</a>
-                            </li>
-                            <li style="margin-right: 0;"><a href="<?php echo BASE_URL; ?>login.php">Login</a>
-                            </li>
+                            <?php 
+                            if(isset($_SESSION['user_email']) && isset($_SESSION['user_first_name']) && isset($_SESSION['user_last_name'])){
+                                echo '<li><a href="'.BASE_URL.'profile.php">Profile</a></li>
+                            <li style="margin-right: 0;"><a href="'.BASE_URL.'profile.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>';
+                            }else{
+                            echo '<li><a href="'.BASE_URL.'SignUp</a></li>
+                            <li style="margin-right: 0;"><a href="<?php echo BASE_URL; ?>login.php">Login</a></li>';
+                            }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -68,9 +74,8 @@ require __DIR__ . '/../config/db_con.php';
         </div>
         <div class="container main-menu">
             <div class="row align-items-center justify-content-between d-flex px-3">
-
-                <a href="index.php"><img src="img/logo.svg" alt="" title="" height="35px" /></a>
-
+                <a href="<?php echo BASE_URL; ?>index.php"><img src="<?php echo BASE_URL; ?>img/logo.svg" alt=""
+                        title="" height="35px" /></a>
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
                         <li><a href="<?php echo BASE_URL; ?>flights.php">Flight</a></li>

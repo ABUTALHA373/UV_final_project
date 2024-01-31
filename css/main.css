@@ -97,7 +97,7 @@ $black			: #222;
 }
 
 body {
-  color: #666666;
+  /* color: #666666; */
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 300;
@@ -2118,7 +2118,7 @@ h6 {
 
 @media (max-width: 414px) {
   .header-top ul li {
-    margin-right: 0px;
+    margin-right: 7px;
   }
 }
 
@@ -4529,7 +4529,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .single-footer-widget p {
-  color: #666666;
+  color: #999999;
 }
 
 .single-footer-widget ul li {
@@ -4537,7 +4537,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .single-footer-widget ul li a {
-  color: #666666;
+  color: #999999;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -4554,7 +4554,6 @@ body.mobile-nav-active #mobile-nav-toggle {
   border-top: 1px solid #333;
 }
 
-.footer-text a,
-.footer-text i {
+.footer-text {
   color: #f8b600;
 }

@@ -1,25 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
-session_start();
+require '../include/nheader.php';
 
 ?>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmation Email Sent</title>
-    <!-- Add your CSS styles if needed -->
-</head>
-
-<body>
-    <div>
-        <h1>Confirmation Email Sent</h1>
-        <p>A confirmation email has been sent to your email address. Please check your inbox and follow the instructions
-            to confirm your email.</p>
-        <p><?php echo $_SESSION['msg'] ?></p>
-        <!-- Add any additional content or styling as needed -->
+<section class="account-info-area section-bg-gray ">
+    <div class="container p-0">
+        <h2 class="py-4 px-4 mb-2 bg-white border text-center">Email Verification</h2>
+        <div class="py-4 px-4 mb-2 bg-white border vh-100">
+            <div class=" text-center">
+                <p class="text-center">Verification email send
+                    to:<br><strong class="bg-pm text-w"><?php echo $_SESSION['user_email'] ?></strong></p>
+            </div>
+        </div>
     </div>
+</section>
+<!-- End about-info Area -->
+
+
+<?php
+require '../include/footer.php';
+?>
+
 </body>
 
 </html>

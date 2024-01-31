@@ -14,5 +14,6 @@ if ($con->connect_error) {
     header("Location: error.php?type=$errorType&message=$errorMessage");
     exit;
 }
+session_start()
 
 ?>

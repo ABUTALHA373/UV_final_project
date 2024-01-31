@@ -21,18 +21,18 @@
                     <div class="row">
                         <div class="col">
                             <ul>
-                                <li><a href="index.php">Home</a></li>
-                                <li><a href="services.php">Services</a></li>
-                                <li><a href="about.php">About Us</a></li>
-                                <li><a href="contact.php">Contact</a></li>
-                                <li><a href="blog-home.php">Blog</a></li>
+                                <li><a href="<?php echo BASE_URL; ?>index.php">Home</a></li>
+                                <li><a href="<?php echo BASE_URL; ?>services.php">Services</a></li>
+                                <li><a href="<?php echo BASE_URL; ?>about.php">About Us</a></li>
+                                <li><a href="<?php echo BASE_URL; ?>contact.php">Contact</a></li>
+                                <li><a href="<?php echo BASE_URL; ?>blog-home.php">Blog</a></li>
                             </ul>
                         </div>
                         <div class="col">
                             <ul>
-                                <li><a href="terms_&_conditions.php">Terms & Conditions</a></li>
-                                <li><a href="privacy_policy.php">Privacy Policy</a></li>
-                                <li><a href="payment_security.php">Payment Security</a></li>
+                                <li><a href="<?php echo BASE_URL; ?>terms_&_conditions.php">Terms & Conditions</a></li>
+                                <li><a href="<?php echo BASE_URL; ?>privacy_policy.php">Privacy Policy</a></li>
+                                <li><a href="<?php echo BASE_URL; ?>payment_security.php">Payment Security</a></li>
                             </ul>
                         </div>
                     </div>
@@ -51,14 +51,14 @@
                 <div class="single-footer-widget mail-chimp">
                     <h6 class="mb-20">Gallery</h6>
                     <ul class="imgfeed d-flex flex-wrap" id="imgfeed">
-                        <li><img src="img/i1.jpg" alt=""></li>
-                        <li><img src="img/i2.jpg" alt=""></li>
-                        <li><img src="img/i3.jpg" alt=""></li>
-                        <li><img src="img/i4.jpg" alt=""></li>
-                        <li><img src="img/i5.jpg" alt=""></li>
-                        <li><img src="img/i6.jpg" alt=""></li>
-                        <li><img src="img/i7.jpg" alt=""></li>
-                        <li><img src="img/i8.jpg" alt=""></li>
+                        <li><img src="<?php echo BASE_URL; ?>img/i1.jpg" alt=""></li>
+                        <li><img src="<?php echo BASE_URL; ?>img/i2.jpg" alt=""></li>
+                        <li><img src="<?php echo BASE_URL; ?>img/i3.jpg" alt=""></li>
+                        <li><img src="<?php echo BASE_URL; ?>img/i4.jpg" alt=""></li>
+                        <li><img src="<?php echo BASE_URL; ?>img/i5.jpg" alt=""></li>
+                        <li><img src="<?php echo BASE_URL; ?>img/i6.jpg" alt=""></li>
+                        <li><img src="<?php echo BASE_URL; ?>img/i7.jpg" alt=""></li>
+                        <li><img src="<?php echo BASE_URL; ?>img/i8.jpg" alt=""></li>
                     </ul>
                 </div>
             </div>

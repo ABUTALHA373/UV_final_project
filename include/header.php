@@ -54,10 +54,17 @@ require __DIR__ . '/../config/db_con.php';
                     </div>
                     <div class="col-lg-6 col-sm-6 col-6 header-top-right">
                         <ul>
-                            <li><a href="<?php echo BASE_URL; ?>signup.php">SignUp</a>
+                            <?php 
+                            if(isset($_SESSION['user_email']) && isset($_SESSION['user_first_name']) && isset($_SESSION['user_last_name'])){
+                                echo '<li style="margin-right: 0;"><a href="<?php echo BASE_URL; ?>profile.php">Profile</a>
+                            </li>';
+                            }else{
+                            echo '<li><a href="<?php echo BASE_URL; ?>signup.php">SignUp</a>
                             </li>
                             <li style="margin-right: 0;"><a href="<?php echo BASE_URL; ?>login.php">Login</a>
-                            </li>
+                            </li>';
+                            }
+                            ?>
                         </ul>
                     </div>
                 </div>

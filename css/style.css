@@ -16,7 +16,7 @@
 } */
 
 body {
-  background-color: #ffffff !important;
+  background-color: #e5e7eb !important;
 }
 .section-bg-white {
   background-color: #ffffff !important;
@@ -86,11 +86,11 @@ body {
 .img-gallery img {
   object-fit: cover;
 }
-body {
-  background-color: #f9f9f9;
-}
+
 .padding {
-  padding: 150px 0 50px 0;
+  /* padding: 150px 0 50px 0; */
+  padding-top: 150px;
+  padding-bottom: 50px;
 }
 .vh-100 {
   height: 100vh;
