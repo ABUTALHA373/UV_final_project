@@ -56,13 +56,11 @@ require __DIR__ . '/../config/db_con.php';
                         <ul>
                             <?php 
                             if(isset($_SESSION['user_email']) && isset($_SESSION['user_first_name']) && isset($_SESSION['user_last_name'])){
-                                echo '<li style="margin-right: 0;"><a href="<?php echo BASE_URL; ?>profile.php">Profile</a>
-                            </li>';
+                                echo '<li><a href="'.BASE_URL.'profile.php">Profile</a></li>
+                            <li style="margin-right: 0;"><a href="'.BASE_URL.'profile.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>';
                             }else{
-                            echo '<li><a href="<?php echo BASE_URL; ?>signup.php">SignUp</a>
-                            </li>
-                            <li style="margin-right: 0;"><a href="<?php echo BASE_URL; ?>login.php">Login</a>
-                            </li>';
+                            echo '<li><a href="'.BASE_URL.'SignUp.php">SignUp</a></li>
+                            <li style="margin-right: 0;"><a href="'.BASE_URL.'login.php">Login</a></li>';
                             }
                             ?>
                         </ul>
