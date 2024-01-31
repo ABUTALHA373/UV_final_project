@@ -34,52 +34,138 @@ $(document).ready(function () {
 // }
 
 //footer to gallery
-document.getElementById("imgfeed").addEventListener("click", imgfeedFunction);
 
-function imgfeedFunction() {
-  window.location.href='gallery.php';
-}
+$('#imgfeed').click(function(){
+    window.location.href='gallery.php';
+})
 
 
-///login page 
-    $(document).ready(function () {
-        // Validate First Name and Last Name
-        $('input[name="name"]').on('blur', function () {
-            var firstName = $('input[name="name"]').eq(0).val();
-            var lastName = $('input[name="name"]').eq(1).val();
 
-            if (firstName === lastName || /^[0-9]+$/.test(firstName) || /^[0-9]+$/.test(lastName)) {
-                alert('First Name and Last Name cannot be the same and cannot contain any numbers.');
-            }
-        });
+///signup page start 
+$(document).ready(function() {
+    $('#name_error').css('font-size', '12px');
+    // Validate First Name and Last Name on keyup
+    $('#first_name, #last_name').on('keyup', function() {
+        var firstName = $('#first_name').val();
+        var lastName = $('#last_name').val();
 
-        // Validate Email using jQuery AJAX
-        $('input[name="email"]').on('blur', function () {
-            var email = $(this).val();
-
-            // Perform AJAX request to check if email exists on the server
-            $.ajax({
-                url: 'check_email.php',
-                type: 'POST',
-                data: {email: email},
-                success: function (response) {
-                    if (response === 'exists') {
-                        alert('Email already exists. Please use a different email address.');
-                    }
+        if (firstName == '' && lastName == '') {
+            $('#name_error').text('');
+            $('#first_name, #last_name').removeClass('border-danger');
+        } else {
+            if (firstName != null || lastName != null) {
+                if (firstName === lastName) {
+                    $('#name_error').text('Cannot be same!');
+                    $('#first_name, #last_name').addClass('border-danger');
+                } else if (/\d/.test(firstName) || /\d/.test(lastName)) {
+                    $('#name_error').text('Cannot contain any number!');
+                    $('#first_name, #last_name').addClass('border-danger');
+                } else {
+                    $('#name_error').text('');
+                    $('#first_name, #last_name').removeClass('border-danger');
                 }
-            });
-        });
+            }
+        }
+    });
 
-        // Validate Password
-        $('input[name="password"]').on('blur', function () {
-            var password = $(this).val();
+    // Validate Email using jQuery AJAX on keyup
+    $('input[name="email"]').on('keyup', function() {
+        var email = $(this).val();
 
-            // Password should be at least 8 characters, contain an uppercase letter, a lowercase letter, and a special character
-            if (password.length < 8 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[^A-Za-z0-9]/.test(password)) {
-                alert('Password should be at least 8 characters, contain an uppercase letter, a lowercase letter, and a special character.');
+        // Perform AJAX request to check if email exists on the server
+        $.ajax({
+            url: './postphp/check_email.php',
+            type: 'POST',
+            data: {
+                email: email
+            },
+            success: function(response) {
+                if (response === 'exists') {
+                    $('#email_error').text(
+                        'Email already exists. Please use a different email address.');
+                    $('#email').addClass('border-danger');
+                } else {
+                    $('#email_error').text('');
+                    $('#email').removeClass('border-danger');
+                }
             }
         });
-
-        // Add more validation for other form fields if needed
     });
+
+    // Validate Password on keyup
+    $('input[name="password"]').on('keyup', function() {
+        var password = $(this).val();
+
+        // Password should be at least 8 characters, contain an uppercase letter, a lowercase letter, and a special character
+        if (password != '') {
+            if (password.length < 8 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !
+                /[^A-Za-z0-9]/
+                .test(password)) {
+                $('#pass_error').text(
+                    'Must contain a uppercase, lowercase, number and a special character.Minimum 8 characters.'
+                );
+                $('#password').addClass('border-danger');
+            } else {
+                $('#pass_error').text('');
+                $('#password').removeClass('border-danger');
+            }
+        } else {
+            $('#pass_error').text('');
+            $('#password').removeClass('border-danger');
+        }
+    });
+
+    $('input[name="password"],input[name="con_password"]').on('keyup', function() {
+        var password = $('input[name="password"]').val();
+        var con_password = $(this).val();
+
+        // Password should be at least 8 characters, contain an uppercase letter, a lowercase letter, and a special character
+        if (password != con_password) {
+            $('#conpass_error').text(
+                'Must be equal with Password field.'
+            );
+            $('#con_password').addClass('border-danger');
+        } else {
+            $('#conpass_error').text('');
+            $('#con_password').removeClass('border-danger');
+        }
+    });
+
+    $('form').submit(function(event) {
+        if ($('#name_error').text() !== '' || $('#email_error').text() !== '' || $('#pass_error')
+            .text() !== '' || $('#conpass_error').text() !== '') {
+            event.preventDefault(); // Prevent form submission
+            // Optionally, you can display a message or handle the error in some way
+
+
+        }
+    });
+
+    //password view
+    // Toggle password visibility
+    $('#password-toggle').click(function() {
+        togglePasswordVisibility('password', 'eye-icon');
+    });
+
+    // Toggle confirm password visibility
+    $('#con-password-toggle').click(function() {
+        togglePasswordVisibility('con_password', 'con-eye-icon');
+    });
+
+    function togglePasswordVisibility(inputId, iconId) {
+        var passwordInput = $('#' + inputId);
+        var eyeIcon = $('#' + iconId);
+
+        var type = passwordInput.attr('type');
+        if (type === 'password') {
+            passwordInput.attr('type', 'text');
+            eyeIcon.removeClass('fa-eye').addClass('fa-eye-slash');
+        } else {
+            passwordInput.attr('type', 'password');
+            eyeIcon.removeClass('fa-eye-slash').addClass('fa-eye');
+        }
+    }
+});
+///signup page end 
+
 

@@ -70,17 +70,23 @@
                             </div>
                             <div class="mt-10">
                                 <label>Password:</label>
-                                <input type="password" id="password" name="password" placeholder="Your Password"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Password'" required
-                                    class="single-input single-input-primary border">
+                                <div class="relative">
+                                    <input type="password" id="password" name="password" placeholder="Your Password"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Password'"
+                                        required class="single-input single-input-primary border">
+                                    <i class="fa fa-eye eye-right" id="password-toggle" aria-hidden="true"></i>
+                                </div>
                                 <small class=" text-danger error-info" id="pass_error"></small>
                             </div>
                             <div class="mt-10">
                                 <label>Confirm Password:</label>
-                                <input type="password" id="con_password" name="con_password"
-                                    placeholder="Confirm Your Password" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = 'Confirm Your Password'" required
-                                    class="single-input single-input-primary border">
+                                <div class="relative">
+                                    <input type="password" id="con_password" name="con_password"
+                                        placeholder="Confirm Your Password" onfocus="this.placeholder = ''"
+                                        onblur="this.placeholder = 'Confirm Your Password'" required
+                                        class="single-input single-input-primary border">
+                                    <i class="fa fa-eye eye-right" id="con-password-toggle" aria-hidden="true"></i>
+                                </div>
                                 <small class=" text-danger error-info" id="conpass_error"></small>
                             </div>
 
@@ -122,132 +128,6 @@
 <script src="js/main.js"></script>
 <script src="js/index.js"></script>
 
-<script>
-$(document).ready(function() {
-    $('#name_error').css('font-size', '12px');
-    // Validate First Name and Last Name on keyup
-    $('#first_name, #last_name').on('keyup', function() {
-        var firstName = $('#first_name').val();
-        var lastName = $('#last_name').val();
-
-        if (firstName == '' && lastName == '') {
-            $('#name_error').text('');
-            $('#first_name, #last_name').removeClass('border-danger');
-        } else {
-            if (firstName != null || lastName != null) {
-                if (firstName === lastName) {
-                    $('#name_error').text('Cannot be same!');
-                    $('#first_name, #last_name').addClass('border-danger');
-                } else if (/\d/.test(firstName) || /\d/.test(lastName)) {
-                    $('#name_error').text('Cannot contain any number!');
-                    $('#first_name, #last_name').addClass('border-danger');
-                } else {
-                    $('#name_error').text('');
-                    $('#first_name, #last_name').removeClass('border-danger');
-                }
-            }
-        }
-    });
-
-    // Validate Email using jQuery AJAX on keyup
-    $('input[name="email"]').on('keyup', function() {
-        var email = $(this).val();
-
-        // Perform AJAX request to check if email exists on the server
-        $.ajax({
-            url: './postphp/check_email.php',
-            type: 'POST',
-            data: {
-                email: email
-            },
-            success: function(response) {
-                if (response === 'exists') {
-                    $('#email_error').text(
-                        'Email already exists. Please use a different email address.');
-                    $('#email').addClass('border-danger');
-                } else {
-                    $('#email_error').text('');
-                    $('#email').removeClass('border-danger');
-                }
-            }
-        });
-    });
-
-    // Validate Password on keyup
-    $('input[name="password"]').on('keyup', function() {
-        var password = $(this).val();
-
-        // Password should be at least 8 characters, contain an uppercase letter, a lowercase letter, and a special character
-        if (password != '') {
-            if (password.length < 8 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !
-                /[^A-Za-z0-9]/
-                .test(password)) {
-                $('#pass_error').text(
-                    'Must contain a uppercase, lowercase, number and a special character.Minimum 8 characters.'
-                );
-                $('#password').addClass('border-danger');
-            } else {
-                $('#pass_error').text('');
-                $('#password').removeClass('border-danger');
-            }
-        } else {
-            $('#pass_error').text('');
-            $('#password').removeClass('border-danger');
-        }
-    });
-
-    $('input[name="password"],input[name="con_password"]').on('keyup', function() {
-        var password = $('input[name="password"]').val();
-        var con_password = $(this).val();
-
-        // Password should be at least 8 characters, contain an uppercase letter, a lowercase letter, and a special character
-        if (password != con_password) {
-            $('#conpass_error').text(
-                'Must be equal with Password field.'
-            );
-            $('#con_password').addClass('border-danger');
-        } else {
-            $('#conpass_error').text('');
-            $('#con_password').removeClass('border-danger');
-        }
-    });
-
-    $('form').submit(function(event) {
-        if ($('#name_error').text() !== '' || $('#email_error').text() !== '' || $('#pass_error')
-            .text() !== '' || $('#conpass_error').text() !== '') {
-            event.preventDefault(); // Prevent form submission
-            // Optionally, you can display a message or handle the error in some way
-
-
-        }
-    });
-
-    //password view
-    // Toggle password visibility
-    $('#password-toggle').click(function() {
-        togglePasswordVisibility('password', 'eye-icon');
-    });
-
-    // Toggle confirm password visibility
-    $('#con-password-toggle').click(function() {
-        togglePasswordVisibility('con_password', 'con-eye-icon');
-    });
-
-    function togglePasswordVisibility(inputId, iconId) {
-        var passwordInput = $('#' + inputId);
-        var eyeIcon = $('#' + iconId);
-
-        var type = passwordInput.attr('type');
-        if (type === 'password') {
-            passwordInput.attr('type', 'text');
-            eyeIcon.removeClass('fa-eye').addClass('fa-eye-slash');
-        } else {
-            passwordInput.attr('type', 'password');
-            eyeIcon.removeClass('fa-eye-slash').addClass('fa-eye');
-        }
-    }
-});
-</script>
 
 
 
