@@ -48,22 +48,22 @@
                         <!-- <h3 class="text-center p-2 ">Login</h3> -->
                         <form action="#">
                             <div class="mt-10">
-                                <label">Email:</label>
-                                    <input type="email" name="first_name" placeholder="Email"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" required
-                                        class="single-input border">
+                                <label>Email:</label>
+                                <input type="email" name="first_name" placeholder="Email"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" required
+                                    class="single-input border">
                             </div>
                             <div class="mt-10">
-                                <label">Password:</label>
-                                    <input type="password" name="password" placeholder="Password"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required
-                                        class="single-input border">
+                                <label>Password:</label>
+                                <input type="password" name="password" placeholder="Password"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required
+                                    class="single-input border">
                             </div>
                             <div class="mt-15 row clink">
                                 <div class="col"><label class="cyberpunk-checkbox-label">
                                         <input type="checkbox" class="cyberpunk-checkbox">
                                         Remember me</label></div>
-                                <div class="col text-right"><a href="" class="">Forgot Password?</a></div>
+                                <div class="col text-right"><a href="" class=""><b>Forgot Password?</b></a></div>
                             </div>
                             <!-- <div class="mt-15">
                                 <label">Password:</label>
@@ -75,7 +75,7 @@
                                 <button href="#" class="genric-btn primary circle w-100 fs-16">Login</button>
                             </div>
                             <div class="mt-10 clink text-center">
-                                <p>Dont have any account? <a href="signup.php" class="">Sing Up</a></p>
+                                <p>Dont have any account? <a href="signup.php" class=""><b>Sing Up</b></a></p>
                             </div>
                             <div class="mt-10 clink text-center">
                                 <div class="text-center pb-4 pt-2 ">

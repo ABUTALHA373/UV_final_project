@@ -1,3 +1,7 @@
+<?php
+require __DIR__ . '/../config/db_con.php';
+?>
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -24,18 +28,16 @@
 
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/normalize.min.css"> -->
-    <link rel="stylesheet" href="css/sidebar_main.css">
-    <!--CSS============================================= -->
-    <link rel="stylesheet" href="css/linearicons.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/nice-select.css">
-    <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/linearicons.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/magnific-popup.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="css/nice-select.css"> -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/animate.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/owl.carousel.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/main.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/style.css">
 
 </head>
 
@@ -55,9 +57,9 @@
                     </div>
                     <div class="col-lg-6 col-sm-6 col-6 header-top-right">
                         <ul>
-                            <li><a href="./signup.php">SignUp</a>
+                            <li><a href="<?php echo BASE_URL; ?>signup.php">SignUp</a>
                             </li>
-                            <li style="margin-right: 0;"><a href="./login.php">Login</a>
+                            <li style="margin-right: 0;"><a href="<?php echo BASE_URL; ?>login.php">Login</a>
                             </li>
                         </ul>
                     </div>
@@ -71,17 +73,17 @@
 
                 <nav id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li><a href="flights.php">Flight</a></li>
-                        <li><a href="hotels.php">Hotel</a></li>
-                        <li><a href="tours.html">Tour</a></li>
-                        <li><a href="blog-home.php">Blog</a></li>
-                        <li><a href="services.php">Services</a>
+                        <li><a href="<?php echo BASE_URL; ?>flights.php">Flight</a></li>
+                        <li><a href="<?php echo BASE_URL; ?>hotels.php">Hotel</a></li>
+                        <li><a href="<?php echo BASE_URL; ?>tours.html">Tour</a></li>
+                        <li><a href="<?php echo BASE_URL; ?>home.php">Blog</a></li>
+                        <li><a href="<?php echo BASE_URL; ?>services.php">Services</a>
                             <!-- <ul>
                                 <li><a href="#">Item One</a></li>
                                 <li><a href="#">Item Two</a></li>
                             </ul> -->
                         </li>
-                        <li><a href="insurance.html">Gallary</a></li>
+                        <li><a href="<?php echo BASE_URL; ?>gallery.php">Gallary</a></li>
                         <!-- <li class="menu-has-children"><a href="">Blog</a>
                             <ul>
                                 <li><a href="blog-home.html">Blog Home</a></li>

@@ -1,3 +1,7 @@
+<?php
+require __DIR__ . '/../config/db_con.php';
+?>
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -19,26 +23,27 @@
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
     <!--CSS============================================= -->
-    <link rel="stylesheet" href="css/linearicons.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/nice-select.css">
-    <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/linearicons.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/bootstrap.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/magnific-popup.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="css/nice-select.css"> -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/animate.min.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/owl.carousel.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/main.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/style.css">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
 
 <body>
-
     <header id="header">
         <div class="header-top">
             <div class="container">
                 <div class="row align-items-center">
-
                     <div class="col-lg-6 col-sm-6 col-6 header-top-left ">
                         <div class="header-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -49,9 +54,9 @@
                     </div>
                     <div class="col-lg-6 col-sm-6 col-6 header-top-right">
                         <ul>
-                            <li><a href="./signup.php">SignUp</a>
+                            <li><a href="<?php echo BASE_URL; ?>signup.php">SignUp</a>
                             </li>
-                            <li><a href="./login.php">Login</a>
+                            <li style="margin-right: 0;"><a href="<?php echo BASE_URL; ?>login.php">Login</a>
                             </li>
                         </ul>
                     </div>
@@ -60,22 +65,21 @@
         </div>
         <div class="container main-menu">
             <div class="row align-items-center justify-content-between d-flex px-3">
-
-                <a href="index.php"><img src="img/logo.svg" alt="" title="" height="35px" /></a>
-
+                <a href="<?php echo BASE_URL; ?>index.php"><img src="<?php echo BASE_URL; ?>img/logo.svg" alt=""
+                        title="" height="35px" /></a>
                 <div id="nav-menu-container">
                     <ul class="nav-menu">
-                        <li><a href="flights.php">Flight</a></li>
-                        <li><a href="hotels.php">Hotel</a></li>
-                        <li><a href="tours.html">Tour</a></li>
-                        <li><a href="blog-home.php">Blog</a></li>
-                        <li><a href="services.php">Services</a>
+                        <li><a href="<?php echo BASE_URL; ?>flights.php">Flight</a></li>
+                        <li><a href="<?php echo BASE_URL; ?>hotels.php">Hotel</a></li>
+                        <li><a href="<?php echo BASE_URL; ?>tours.html">Tour</a></li>
+                        <li><a href="<?php echo BASE_URL; ?>blog/home.php">Blog</a></li>
+                        <li><a href="<?php echo BASE_URL; ?>services.php">Services</a>
                             <!-- <ul>
                                 <li><a href="#">Item One</a></li>
                                 <li><a href="#">Item Two</a></li>
                             </ul> -->
                         </li>
-                        <li><a href="insurance.html">Gallary</a></li>
+                        <li><a href="<?php echo BASE_URL; ?>gallery.php">Gallary</a></li>
                         <!-- <li class="menu-has-children"><a href="">Blog</a>
                             <ul>
                                 <li><a href="blog-home.html">Blog Home</a></li>

@@ -1,5 +1,5 @@
 <?php
-include('include/nheader.php')
+require './include/nheader.php';
 ?>
 <div class="section-gap">
     <div class="container">
@@ -127,7 +127,7 @@ include('include/nheader.php')
 
 
 <?php
-include('include/footer.php')
+require './include/footer.php';
 ?>
 
 </body>

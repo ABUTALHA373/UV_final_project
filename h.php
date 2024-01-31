@@ -1,18 +1,23 @@
 <?php
-
-include('include/nheader.php');
+require './include/nheader.php';
 ?>
 
 <section class="account-info-area section-bg-gray pt-2">
     <div class="container p-0">
-        <h2 class="py-4 px-4 mb-2 bg-white border text-center">Hotels</h2>
+        <!-- <h2 class="py-4 px-4 mb-2 bg-white border text-center">Hotels</h2> -->
+
+        <select class="js-example-basic-single" id="select2" name="state">
+            <option value="AL">Alabama</option>
+            ...
+            <option value="WY">Wyoming</option>
+        </select>
         <div class="py-4 px-4 mb-2 bg-white border">
             <form class="m-0 p-0" action="search_hotels.php" method="GET">
                 <div class="row">
                     <div class="col-sm-0 col-lg-10 d-flex p-0 justify-content-lg-around">
                         <div class="mt-10 m-2 border w-25">
                             <div class="default-select " id="default-select">
-                                <select class="w-100">
+                                <select class="w-100 js-example-basic-single">
                                     <option selected disabled>Place</option>
                                     <option value="1">Spanish</option>
                                     <option value="1">Arabic</option>
@@ -202,7 +207,7 @@ include('include/nheader.php');
 
 
 <?php
-include('include/footer.php');
+require './include/footer.php';
 ?>
 <script>
 // JavaScript code to remove the "show" class when screen size is less than lg
@@ -222,6 +227,12 @@ checkScreenSize();
 
 // Check on window resize
 window.addEventListener('resize', checkScreenSize);
+
+
+// In your Javascript (external .js resource or <script> tag)
+$(document).ready(function() {
+    $('#select2').select2();
+});
 </script>
 </body>
 

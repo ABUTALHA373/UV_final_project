@@ -1,6 +1,5 @@
 <?php
-
-include('include/nheader.php');
+require './include/nheader.php';
 ?>
 
 
@@ -369,7 +368,7 @@ include('include/nheader.php');
 
 
 <?php
-include('include/footer.php');
+require './include/footer.php';
 ?>
 
 </body>

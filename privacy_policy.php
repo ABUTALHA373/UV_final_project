@@ -1,6 +1,5 @@
 <?php
-
-include('include/header.php');
+require './include/header.php';
 ?>
 
 
@@ -81,7 +80,7 @@ include('include/header.php');
 
 
 <?php
-include('include/footer.php');
+require './include/footer.php';
 ?>
 
 </body>

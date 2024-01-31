@@ -1,6 +1,5 @@
 <?php
-
-include('include/header.php');
+require './include/header.php';
 ?>
 <!-- start banner Area -->
 <section class="relative about-banner">
@@ -90,7 +89,7 @@ include('include/header.php');
 </section>
 <!-- End contact-page Area -->
 <?php
-include('include/footer.php');
+require './include/footer.php';
 ?>
 </body>
 

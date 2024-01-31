@@ -5,15 +5,15 @@
 ::-webkit-scrollbar {
   display: none;
 }
-::placeholder {
+/* ::placeholder {
   color: #b0b0b0;
-  opacity: 1; /* Firefox */
+  opacity: 1; 
 }
 
 ::-ms-input-placeholder {
-  /* Edge 12-18 */
+
   color: #b0b0b0;
-}
+} */
 
 body {
   background-color: #ffffff !important;
@@ -155,6 +155,9 @@ body {
   text-decoration: none;
   color: #f8b600;
 }
+.login label {
+  font-weight: 500 !important;
+}
 .login .clink a:hover {
   text-decoration: underline;
 }
@@ -199,7 +202,14 @@ body {
   border: none;
   outline: none;
 }
-
+.border-danger {
+  outline: none !important;
+  border: 1px solid #dc3545 !important;
+}
+.error-info {
+  font-size: 80%; /* You can adjust the initial font size */
+  transition: font-size 0.3s ease;
+}
 /* footer to top button */
 
 /*side bar///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -342,6 +352,7 @@ a.article:hover {
   min-height: 100vh;
   transition: all 0.3s;
 }
+
 
 
 @media (max-width: 768px) {

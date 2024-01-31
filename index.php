@@ -1,7 +1,6 @@
 <?php
-
-	include('include/header.php');
-	include('include/config.php');
+	require './include/header.php'
+	
 ?>
 
 
@@ -664,8 +663,7 @@
 
 <!-- start footer Area -->
 <?php
-
-include('include/footer.php');
+require './include/footer.php';
 ?>
 </body>
 

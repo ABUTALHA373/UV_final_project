@@ -1,6 +1,5 @@
 <?php
-
-include('include/nheader.php');
+require './include/nheader.php';
 ?>
 
 <section class="account-info-area section-bg-gray pt-2">
@@ -220,7 +219,7 @@ include('include/nheader.php');
 
 
 <?php
-include('include/footer.php');
+require './include/footer.php';
 ?>
 
 </body>
