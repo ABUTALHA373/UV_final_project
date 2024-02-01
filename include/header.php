@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/../config/db_con.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -57,9 +58,9 @@ require __DIR__ . '/../config/db_con.php';
                             <?php 
                             if($isLoggedIn){
                                 echo '<li><a href="'.BASE_URL.'profile.php">Profile</a></li>
-                            <li style="margin-right: 0;"><a href="'.BASE_URL.'profile.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>';
+                            <li style="margin-right: 0;"><a href="'.BASE_URL.'logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>';
                             }else{
-                            echo '<li><a href="'.BASE_URL.'SignUp.php">SignUp</a></li>
+                            echo '<li><a href="'.BASE_URL.'signup.php">SignUp</a></li>
                             <li style="margin-right: 0;"><a href="'.BASE_URL.'login.php">Login</a></li>';
                             }
                             ?>

@@ -1,3 +1,34 @@
+<?php 
+require './config/db_con.php';
+if (isset($_COOKIE['remember_me'])) {
+    // Decode the cookie data
+    $cookie_data = json_decode(base64_decode($_COOKIE['remember_me']), true);
+
+    // Retrieve user data from the database based on the cookie information
+    $stmt = $con->prepare("SELECT * FROM users WHERE email = ? AND user_id = ? AND remember_token = ?");
+    $stmt->bind_param("sis", $cookie_data['user_email'], $cookie_data['user_id'], $cookie_data['user_remember_token']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        // User found, set up a login session
+        $row = $result->fetch_assoc();
+        session_start();
+        $_SESSION['user_email'] = $row['email'];
+        $_SESSION['user_first_name'] = $row['first_name'];
+        $_SESSION['user_last_name'] = $row['last_name'];
+        $_SESSION['user_id'] = $row['user_id'];
+        $_SESSION['user_is_verified'] = $row['is_verified'];
+
+        // Update the cookie expiration time for the next 7 days
+        setcookie('remember_me', $_COOKIE['remember_me'], time() + (7 * 24 * 60 * 60), '/');
+
+        // Redirect to the profile or dashboard page
+        header("Location: ./profile.php");
+        exit;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -46,22 +77,29 @@
                     <h2 class="text-center p-2 bb">Login</h2>
                     <div class="border p-2">
                         <!-- <h3 class="text-center p-2 ">Login</h3> -->
-                        <form action="#">
+                        <form action="postphp/loginpost.php" method="post">
                             <div class="mt-10">
                                 <label>Email:</label>
-                                <input type="email" name="first_name" placeholder="Email"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" required
-                                    class="single-input border">
+                                <div>
+                                    <input type="email" id="l_email" name="email" placeholder="example@mail.com"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'example@mail.com'"
+                                        required class="single-input single-input-primary border">
+                                    <small class=" text-danger error-info" id="l_email_error"></small>
+                                </div>
                             </div>
                             <div class="mt-10">
                                 <label>Password:</label>
-                                <input type="password" name="password" placeholder="Password"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required
-                                    class="single-input border">
+                                <div class="relative">
+                                    <input type="password" id="l_password" name="password" placeholder="Your Password"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Password'"
+                                        required class="single-input single-input-primary border">
+                                    <i class="fa fa-eye eye-right" id="l_password-toggle" aria-hidden="true"></i>
+                                </div>
+                                <small class=" text-danger error-info" id="l_pass_error"></small>
                             </div>
                             <div class="mt-15 row clink">
                                 <div class="col"><label class="cyberpunk-checkbox-label">
-                                        <input type="checkbox" class="cyberpunk-checkbox">
+                                        <input type="checkbox" class="cyberpunk-checkbox" name="remember_me">
                                         Remember me</label></div>
                                 <div class="col text-right"><a href="" class=""><b>Forgot Password?</b></a></div>
                             </div>
@@ -104,11 +142,29 @@
 <script src="js/superfish.min.js"></script>
 <script src="js/jquery.ajaxchimp.min.js"></script>
 <script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/jquery.nice-select.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/mail-script.js"></script>
 <script src="js/main.js"></script>
 <script src="js/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<?php
+if (isset($_GET['error'])) {
+    $message = urldecode($_GET['error']);
+    if ($message=='error_password') {
+        
+        echo '<script>$("#l_pass_error").text("Password is not Valid!.");
+                    $("#l_password").addClass("border-danger");</script>';
+    }else if ($message=='user_not_found') {
+        
+        echo '<script>Swal.fire({
+            title: "Not Found!",
+            text: "Email not registered!",
+            icon: "error"
+          });</script>';
+    }
+}
+
+?>
 </body>
 
 </html>

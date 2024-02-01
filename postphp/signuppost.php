@@ -20,27 +20,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Generate a unique token for "stay logged in" functionality
     $stayLoggedInToken = bin2hex(random_bytes(32));
 
-    $stmt = $con->prepare("INSERT INTO users (email, password, first_name, last_name, verification_token, remember_token) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssss", $email, $password, $first_name, $last_name, $verification_token, $stayLoggedInToken);
+    // Insert user data into the "users" table
+    $insert_query = "INSERT INTO users (email, password, first_name, last_name, verification_token, remember_token) VALUES (?, ?, ?, ?, ?, ?)";
+    $insert_stmt = $con->prepare($insert_query);
+    $insert_stmt->bind_param("ssssss", $email, $password, $first_name, $last_name, $verification_token, $stayLoggedInToken);
 
-    // if ($con->query($query) === TRUE) {
-    if ($stmt->execute()) {
+    if ($insert_stmt->execute()) {
 
         $_SESSION['user_email'] = $email;
         $_SESSION['user_first_name'] = $first_name;
         $_SESSION['user_last_name'] = $last_name;
 
+        // Select user data to set session variables
         $select_query = "SELECT user_id, is_verified FROM users WHERE email=? AND first_name=? AND last_name=?";
-        $stmt = $con->prepare($select_query);
-        $stmt->bind_param("sss", $email, $first_name, $last_name);
+        $select_stmt = $con->prepare($select_query);
+        $select_stmt->bind_param("sss", $email, $first_name, $last_name);
 
-        if ($stmt->execute()) {
-            $stmt->bind_result($user_id, $is_verified);
-            if ($stmt->fetch()) {
-
+        if ($select_stmt->execute()) {
+            $select_stmt->bind_result($user_id, $is_verified);
+            if ($select_stmt->fetch()) {
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['user_is_verified'] = $is_verified;
-        
             } else {
                 $errorType = 'Database Error';
                 $errorMessage = 'User with the provided details not found.';
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit;
             }
 
-            $stmt->close();
+            $select_stmt->close();
         } else {
             // Handle the query execution error
             $errorType = 'Database Error';
@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
+        // Sending email
         $mail = new PHPMailer(true);
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
@@ -76,12 +77,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $htmlContent = str_replace('{{verification_token}}', $verification_token, $htmlContent);
         $htmlContent = str_replace('{{Username}}', $name, $htmlContent);
 
-        // $mail->Body = 'Click the following link to confirm your email: <a href="localhost/fp/profile/confirm.php?code=' . $verification_token . '">Confirm</a>';
         $mail->Body    = $htmlContent;
         try {
             $mail->send();
+
             // Set a cookie with the stay logged in token
-            setcookie('stay_logged_in_token', $stayLoggedInToken, time() + (30 * 24 * 3600), '/'); 
+            $cookie_data = base64_encode(json_encode([
+                'user_email' => $email,
+                'user_id' => $user_id,
+                'user_remember_token' => $stayLoggedInToken,
+            ]));
+            setcookie('remember_me', $cookie_data, time() + (7 * 24 * 60 * 60), '/');
 
             header("Location: ../profile/confirm_email.php");
             exit;
@@ -91,7 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: ../error.php?type=$errorType&message=$errorMessage");
             exit;
         }
-
     } else {
         $errorType = 'Database Error';
         $errorMessage = $con->error;

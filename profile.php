@@ -11,7 +11,7 @@ require './include/nheader.php';
 
 <section class="account-info-area section-bg-gray pt-2">
     <div class="container p-0">
-        <h2 class="py-4 px-4 mb-2 bg-white border text-center">Account Settings</h2>
+        <!-- <h2 class="py-4 px-4 mb-2 bg-white border text-center">Account Settings</h2> -->
         <div class="row m-0">
             <div class="col-md-5 col-lg-3 mb-4 p-0">
                 <div class="border p-4 bg-white h-100">
@@ -63,26 +63,57 @@ require './include/nheader.php';
                 </div>
             </div>
             <div class="col-md-7 col-lg-9 mb-4 p-0 ">
-                <div class="p-4 border bg-white h-100 ml-lg-2 ml-md-2">
+                <div class=" border bg-white h-100 ml-lg-2 ml-md-2">
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="my-profile" role="tabpanel"
                             aria-labelledby="my-profile-list">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa, sapiente ex dolor
-                                ratione
-                                quisquam rerum id in perferendis distinctio error tempora ad nostrum pariatur sit dicta
-                                commodi
-                                nihil voluptatem? Totam minus dolorum porro maiores, est distinctio iste et quia vitae
-                                laboriosam, repellat maxime, voluptatem deserunt praesentium unde qui doloremque ducimus
-                                natus
-                                facilis corrupti aperiam expedita quibusdam reiciendis! Temporibus asperiores eos dolor
-                                fugit
-                                beatae illum, debitis eaque alias, quae necessitatibus inventore, enim similique
-                                molestias.
-                                Pariatur quia consequuntur aliquid cumque architecto, culpa mollitia soluta, aperiam
-                                esse
-                                tempore, in eos consequatur tempora beatae? Quo, eveniet suscipit doloremque consequatur
-                                aperiam
-                                ducimus aliquid neque? Id!</p>
+                            <div class="card-header">
+                                <h4 class="text-center">Header</h4>
+                            </div>
+                            <div class="p-3">
+                                <div class=" mt-10 row ">
+                                    <div class="col-6-0 m-0 p-0 pr-md-2 pr-lg-2 col-sm">
+                                        <label class="mb-0">First Name:</label>
+                                        <input type="text" id="first_name" name="first_name" placeholder="John"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'John'" required
+                                            class="single-input single-input-primary border">
+                                    </div>
+                                    <div class="col-6-0 m-0 p-0 pl-md-2 pl-lg-2 col-sm">
+                                        <label class="mb-0">Last Name:</label>
+                                        <input type="text" id="last_name" name="last_name" placeholder="Doe"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Doe'" required
+                                            class="single-input single-input-primary border">
+                                    </div>
+                                </div>
+                                <div class="mt-10 row">
+                                    <div class="col-6-0 m-0 p-0 pr-md-2 pr-lg-2 col-sm">
+                                        <label class="mb-0">First Name:</label>
+                                        <input type="text" id="first_name" name="first_name" placeholder="John"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'John'" required
+                                            class="single-input single-input-primary border">
+                                    </div>
+                                    <div class="col-6-0 m-0 p-0 pl-md-2 pl-lg-2 col-sm">
+                                        <label class="mb-0">Last Name:</label>
+                                        <input type="text" id="last_name" name="last_name" placeholder="Doe"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Doe'" required
+                                            class="single-input single-input-primary border">
+                                    </div>
+                                </div>
+                                <div class="mt-10 row ">
+                                    <div class="col-6-0 m-0 p-0 pr-md-2 pr-lg-2 col-sm">
+                                        <label class="mb-0">First Name:</label>
+                                        <input type="text" id="first_name" name="first_name" placeholder="John"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'John'" required
+                                            class="single-input single-input-primary border">
+                                    </div>
+                                    <div class="col-6-0 m-0 p-0 pl-md-2 pl-lg-2 col-sm">
+                                        <label class="mb-0">Last Name:</label>
+                                        <input type="text" id="last_name" name="last_name" placeholder="Doe"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Doe'" required
+                                            class="single-input single-input-primary border">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="my-booking" role="tabpanel" aria-labelledby="my-booking-list">
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quisquam est dicta,

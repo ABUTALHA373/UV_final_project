@@ -21,8 +21,6 @@ require '../include/nheader.php';
     </div>
 </section>
 <!-- End about-info Area -->
-
-
 <?php
 require '../include/footer.php';
 ?>

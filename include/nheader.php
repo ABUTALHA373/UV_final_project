@@ -25,7 +25,6 @@ require __DIR__ . '/../config/db_con.php';
     <!--CSS============================================= -->
     <!-- <link rel="stylesheet" type="text/css" href="js/syntax-highlighter/styles/shCore.css" media="all">
     <link rel="stylesheet" type="text/css" href="js/syntax-highlighter/styles/shThemeDefault.css" media="all">
-
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/normalize.min.css"> -->
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/linearicons.css">
@@ -46,7 +45,6 @@ require __DIR__ . '/../config/db_con.php';
         <div class="header-top">
             <div class="container">
                 <div class="row align-items-center">
-
                     <div class="col-lg-6 col-sm-6 col-6 header-top-left ">
                         <div class="header-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -60,9 +58,9 @@ require __DIR__ . '/../config/db_con.php';
                             <?php 
                             if($isLoggedIn){
                                 echo '<li><a href="'.BASE_URL.'profile.php">Profile</a></li>
-                            <li style="margin-right: 0;"><a href="'.BASE_URL.'profile.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>';
+                            <li style="margin-right: 0;"><a href="'.BASE_URL.'logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>';
                             }else{
-                            echo '<li><a href="'.BASE_URL.'SignUp.php">SignUp</a></li>
+                            echo '<li><a href="'.BASE_URL.'signup.php">SignUp</a></li>
                             <li style="margin-right: 0;"><a href="'.BASE_URL.'login.php">Login</a></li>';
                             }
                             ?>
@@ -112,5 +110,4 @@ require __DIR__ . '/../config/db_con.php';
         </div>
     </header><!-- #header -->
     <div class="nheader-height">
-
     </div>

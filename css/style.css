@@ -155,7 +155,8 @@ body {
   text-decoration: none;
   color: #f8b600;
 }
-.login label {
+.login label,
+.account-info-area label {
   font-weight: 500 !important;
 }
 .login .clink a:hover {
@@ -207,8 +208,7 @@ body {
   border: 1px solid #dc3545 !important;
 }
 .error-info {
-  font-size: 80%; /* You can adjust the initial font size */
-  transition: font-size 0.3s ease;
+  height: 10px;
 }
 
 .eye-right {

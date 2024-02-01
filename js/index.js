@@ -137,7 +137,6 @@ $(document).ready(function() {
             event.preventDefault(); // Prevent form submission
             // Optionally, you can display a message or handle the error in some way
 
-
         }
     });
 
@@ -167,5 +166,57 @@ $(document).ready(function() {
     }
 });
 ///signup page end 
+///login page start 
+$(document).ready(function() {
+    // Validate Email using jQuery AJAX on keyup
+    $('input[name="email"]').on('keyup', function() {
+        var email = $(this).val();
+
+        // Perform AJAX request to check if email exists on the server
+        $.ajax({
+            url: './postphp/check_email.php',
+            type: 'POST',
+            data: {
+                email: email
+            },
+            success: function(response) {
+                if (response === 'exists') {
+                    $('#l_email_error').text(
+                        '');
+                    $('#l_email').removeClass('border-danger');
+                } else {
+                    $('#l_email_error').text('Email not registered!');
+                    $('#l_email').addClass('border-danger');
+                }
+            }
+        });
+    });
+
+    $('form').submit(function(event) {
+        if ($('#l_email_error').text() !== '') {
+            event.preventDefault(); // Prevent form submission
+        }
+    });
+
+    //password view
+    // Toggle password visibility
+    $('#l_password-toggle').click(function() {
+        togglePasswordVisibility('l_password', 'eye-icon');
+    });
+    function togglePasswordVisibility(inputId, iconId) {
+        var passwordInput = $('#' + inputId);
+        var eyeIcon = $('#' + iconId);
+
+        var type = passwordInput.attr('type');
+        if (type === 'password') {
+            passwordInput.attr('type', 'text');
+            eyeIcon.removeClass('fa-eye').addClass('fa-eye-slash');
+        } else {
+            passwordInput.attr('type', 'password');
+            eyeIcon.removeClass('fa-eye-slash').addClass('fa-eye');
+        }
+    }
+});
+///login page end 
 
 
