@@ -1,3 +1,12 @@
+<?php
+session_start();
+$isLoggedIn = isset($_SESSION['user_id'] ) && isset($_SESSION['user_email']) && isset($_SESSION['user_first_name']) && isset($_SESSION['user_last_name']);
+$isVerified = isset($_SESSION['user_is_verified']);
+if($isLoggedIn){
+    header('Location:./profile.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 

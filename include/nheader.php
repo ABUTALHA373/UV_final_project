@@ -1,5 +1,4 @@
 <?php
-
 require __DIR__ . '/../config/db_con.php';
 ?>
 
@@ -59,7 +58,7 @@ require __DIR__ . '/../config/db_con.php';
                     <div class="col-lg-6 col-sm-6 col-6 header-top-right">
                         <ul>
                             <?php 
-                            if(isset($_SESSION['user_email']) && isset($_SESSION['user_first_name']) && isset($_SESSION['user_last_name'])){
+                            if($isLoggedIn){
                                 echo '<li><a href="'.BASE_URL.'profile.php">Profile</a></li>
                             <li style="margin-right: 0;"><a href="'.BASE_URL.'profile.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>';
                             }else{
@@ -88,7 +87,7 @@ require __DIR__ . '/../config/db_con.php';
                                 <li><a href="#">Item Two</a></li>
                             </ul> -->
                         </li>
-                        <li><a href="<?php echo BASE_URL; ?>gallery.php">Gallary</a></li>
+                        <li><a href="<?php echo BASE_URL;?>gallery.php">Gallary</a></li>
                         <!-- <li class="menu-has-children"><a href="">Blog</a>
                             <ul>
                                 <li><a href="blog-home.html">Blog Home</a></li>

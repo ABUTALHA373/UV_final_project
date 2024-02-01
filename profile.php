@@ -1,5 +1,12 @@
 <?php
+session_start();
+$isLoggedIn = isset($_SESSION['user_id'] ) && isset($_SESSION['user_email']) && isset($_SESSION['user_first_name']) && isset($_SESSION['user_last_name']);
+$isVerified = isset($_SESSION['user_is_verified']);
+if(!$isLoggedIn){
+    header('Location:./login.php');
+}
 require './include/nheader.php';
+
 ?>
 
 <section class="account-info-area section-bg-gray pt-2">
@@ -47,8 +54,8 @@ require './include/nheader.php';
                             <i class="fa fa-user-times col-1" aria-hidden="true"></i>
                             <div class="col-auto text-left">Delete Your Account</div>
                         </a>
-                        <a class="list-group-item list-group-item-action d-flex " id="list-home-list" data-toggle="list"
-                            href="#list-home" role="tab" aria-controls="home">
+                        <a href="<?php echo BASE_URL; ?>logout.php"
+                            class="list-group-item list-group-item-action d-flex ">
                             <i class="fa fa-sign-out col-1" aria-hidden="true"></i>
                             <div class="col-auto text-left">Logout</div>
                         </a>
@@ -220,6 +227,39 @@ require './include/nheader.php';
 
 <?php
 require './include/footer.php';
+if (isset($_GET['message'])) {
+    $message = urldecode($_GET['message']);
+    if ($message=='verified') {
+        
+        echo '<script>Swal.fire({
+            title: "Success!",
+            text: "Your email is verified now!",
+            icon: "success"
+          });</script>';
+    }else if ($message=='already_verified') {
+        
+        echo '<script>Swal.fire({
+            title: "Already Verified!",
+            text: "Your email has already been verified!",
+            confirmButtonColor: "#f8b600",
+            icon: "info"
+          });</script>';
+    }else if ($message=='invalid') {
+        
+        echo '<script>Swal.fire({
+            title: "Invalid!",
+            text: "Email verification invalid!",
+            icon: "error"
+          });</script>';
+    }else if ($message=='token_error') {
+        
+        echo '<script>Swal.fire({
+            title: "Token error!",
+            text: "Something is wrong with the token!",
+            icon: "error"
+          });</script>';
+    }
+}
 ?>
 
 </body>

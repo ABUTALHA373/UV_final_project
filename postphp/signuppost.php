@@ -20,13 +20,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Generate a unique token for "stay logged in" functionality
     $stayLoggedInToken = bin2hex(random_bytes(32));
 
-    $query = "INSERT INTO users (email, password, first_name, last_name, verification_token, remember_token) VALUES ('$email', '$password', '$first_name', '$last_name', '$verification_token', '$stayLoggedInToken')";
+    $stmt = $con->prepare("INSERT INTO users (email, password, first_name, last_name, verification_token, remember_token) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssss", $email, $password, $first_name, $last_name, $verification_token, $stayLoggedInToken);
 
-    if ($con->query($query) === TRUE) {
+    // if ($con->query($query) === TRUE) {
+    if ($stmt->execute()) {
 
         $_SESSION['user_email'] = $email;
         $_SESSION['user_first_name'] = $first_name;
         $_SESSION['user_last_name'] = $last_name;
+
+        $select_query = "SELECT user_id, is_verified FROM users WHERE email=? AND first_name=? AND last_name=?";
+        $stmt = $con->prepare($select_query);
+        $stmt->bind_param("sss", $email, $first_name, $last_name);
+
+        if ($stmt->execute()) {
+            $stmt->bind_result($user_id, $is_verified);
+            if ($stmt->fetch()) {
+
+                $_SESSION['user_id'] = $user_id;
+                $_SESSION['user_is_verified'] = $is_verified;
+        
+            } else {
+                $errorType = 'Database Error';
+                $errorMessage = 'User with the provided details not found.';
+                header("Location: ../error.php?type=$errorType&message=$errorMessage");
+                exit;
+            }
+
+            $stmt->close();
+        } else {
+            // Handle the query execution error
+            $errorType = 'Database Error';
+            $errorMessage = $con->error;
+            header("Location: ../error.php?type=$errorType&message=$errorMessage");
+            exit;
+        }
 
         $mail = new PHPMailer(true);
         $mail->isSMTP();

@@ -14,6 +14,11 @@ if ($con->connect_error) {
     header("Location: error.php?type=$errorType&message=$errorMessage");
     exit;
 }
-session_start()
+// session_start();
+// $isLoggedIn = isset($_SESSION['user_id'] ) && isset($_SESSION['user_email']) && isset($_SESSION['user_first_name']) && isset($_SESSION['user_last_name']);
+// $isVerified = isset($_SESSION['user_is_verified']);
+// if(!$isLoggedIn){
+//     header('Location:./login.php');
+// }
 
 ?>

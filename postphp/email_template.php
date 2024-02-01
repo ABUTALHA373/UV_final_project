@@ -86,7 +86,8 @@
             <h1>Hey {{Username}},</h1>
             <p>You're almost there! Click the button below to verify your email address and start using our services.
             </p>
-            <a href="http://localhost/fp/profile/confirm.php?code={{verification_token}}" class="btn">Verify Email</a>
+            <a href="http://localhost/fp/verification/confirm.php?code={{verification_token}}" class="btn">Verify
+                Email</a>
         </div>
         <div class="footer">
             <p>&copy; 2024 <a style="color: #f8b600;" href="http://bookitfast.free.nf">Bookitfast</a> - All rights
