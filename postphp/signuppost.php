@@ -19,11 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $verification_token = uniqid();
     // Generate a unique token for "stay logged in" functionality
     $stayLoggedInToken = bin2hex(random_bytes(32));
+    $status ='active';
 
     // Insert user data into the "users" table
     $insert_query = "INSERT INTO users (email, password, first_name, last_name, verification_token, remember_token, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $insert_stmt = $con->prepare($insert_query);
-    $insert_stmt->bind_param("ssssss", $email, $password, $first_name, $last_name, $verification_token, $stayLoggedInToken, 'active');
+    $insert_stmt->bind_param("sssssss", $email, $password, $first_name, $last_name, $verification_token, $stayLoggedInToken,$status );
 
     if ($insert_stmt->execute()) {
 

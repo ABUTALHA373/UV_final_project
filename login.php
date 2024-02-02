@@ -3,10 +3,11 @@ require './config/db_con.php';
 if (isset($_COOKIE['remember_me'])) {
     // Decode the cookie data
     $cookie_data = json_decode(base64_decode($_COOKIE['remember_me']), true);
+    $status = 'active';
 
     // Retrieve user data from the database based on the cookie information
-    $stmt = $con->prepare("SELECT * FROM users WHERE email = ? AND user_id = ? AND remember_token = ?");
-    $stmt->bind_param("sis", $cookie_data['user_email'], $cookie_data['user_id'], $cookie_data['user_remember_token']);
+    $stmt = $con->prepare("SELECT * FROM users WHERE email = ? AND user_id = ? AND remember_token = ? AND status = ? ");
+    $stmt->bind_param("siss", $cookie_data['user_email'], $cookie_data['user_id'], $cookie_data['user_remember_token'],$status);
     $stmt->execute();
     $result = $stmt->get_result();
 
