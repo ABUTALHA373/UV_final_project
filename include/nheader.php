@@ -37,6 +37,7 @@ require __DIR__ . '/../config/db_con.php';
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/owl.carousel.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/main.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
 
@@ -58,7 +59,7 @@ require __DIR__ . '/../config/db_con.php';
                             <?php 
                             if($isLoggedIn){
                                 echo '<li><a href="'.BASE_URL.'profile.php">Profile</a></li>
-                            <li style="margin-right: 0;"><a href="'.BASE_URL.'logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>';
+                            <li style="margin-right: 0;"><a href="'.BASE_URL.'profile/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>';
                             }else{
                             echo '<li><a href="'.BASE_URL.'signup.php">SignUp</a></li>
                             <li style="margin-right: 0;"><a href="'.BASE_URL.'login.php">Login</a></li>';

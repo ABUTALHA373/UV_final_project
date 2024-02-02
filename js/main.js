@@ -15,7 +15,14 @@ $(document).ready(function() {
     // ------- Datepicker  js --------//  
 
       $( function() {
-        $( ".date-picker" ).datepicker();
+        $( ".date-picker" ).datepicker({
+            dateFormat: 'yy-mm-dd', 
+            // showButtonPanel: true,  
+            changeMonth: true,      
+            changeYear: true ,
+            yearRange: '1910:c'
+        });
+        
       } );
 
 

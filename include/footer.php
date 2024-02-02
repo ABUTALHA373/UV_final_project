@@ -100,7 +100,6 @@
 <script src="<?php echo BASE_URL; ?>js/jquery.magnific-popup.min.js"></script>
 
 <script src="<?php echo BASE_URL; ?>js/owl.carousel.min.js"></script>
-<script src="<?php echo BASE_URL; ?>js/mail-script.js"></script>
 <script src="<?php echo BASE_URL; ?>js/main.js"></script>
 <script src="<?php echo BASE_URL; ?>js/index.js"></script>
 
@@ -108,3 +107,4 @@
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>

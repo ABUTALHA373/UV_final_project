@@ -83,7 +83,7 @@ if($isLoggedIn){
                                     <input type="password" id="password" name="password" placeholder="Your Password"
                                         onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Password'"
                                         required class="single-input single-input-primary border">
-                                    <i class="fa fa-eye eye-right" id="password-toggle" aria-hidden="true"></i>
+                                    <i class="fa fa-eye eye-right" id="s_cp_password-toggle" aria-hidden="true"></i>
                                 </div>
                                 <small class=" text-danger error-info" id="pass_error"></small>
                             </div>
@@ -94,7 +94,7 @@ if($isLoggedIn){
                                         placeholder="Confirm Your Password" onfocus="this.placeholder = ''"
                                         onblur="this.placeholder = 'Confirm Your Password'" required
                                         class="single-input single-input-primary border">
-                                    <i class="fa fa-eye eye-right" id="con-password-toggle" aria-hidden="true"></i>
+                                    <i class="fa fa-eye eye-right" id="s_cnp_password-toggle" aria-hidden="true"></i>
                                 </div>
                                 <small class=" text-danger error-info" id="conpass_error"></small>
                             </div>

@@ -161,6 +161,20 @@ if (isset($_GET['error'])) {
             text: "Email not registered!",
             icon: "error"
           });</script>';
+    }else if ($message=='user_blocked') {
+        
+        echo '<script>Swal.fire({
+            title: "Blocked!",
+            text: "User account has been blocked! Please contact us.",
+            icon: "error"
+          });</script>';
+    }else if ($message=='account_deleted') {
+        
+        echo '<script>Swal.fire({
+            title: "Account Deleted!",
+            text: "Account was deleted by User!",
+            icon: "error"
+          });</script>';
     }
 }
 

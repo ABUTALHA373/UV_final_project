@@ -9,12 +9,12 @@ require './include/nheader.php';
 
 ?>
 
-<section class="account-info-area section-bg-gray pt-2">
+<section class="account-info-area section-bg-gray section-gap-sm">
     <div class="container p-0">
         <!-- <h2 class="py-4 px-4 mb-2 bg-white border text-center">Account Settings</h2> -->
-        <div class="row m-0">
-            <div class="col-md-5 col-lg-3 mb-4 p-0">
-                <div class="border p-4 bg-white h-100">
+        <div class="row gap-3">
+            <div class="col-md-4 col-lg-3 border bg-white p-0 m-0">
+                <div class="">
                     <div class="list-group corner-border" id="list-tab" role="tablist">
                         <a class="list-group-item list-group-item-action d-flex active" id="my-profile-list"
                             data-toggle="list" href="#my-profile" role="tab" aria-controls="home">
@@ -43,18 +43,17 @@ require './include/nheader.php';
                             <i class="fa fa-location-arrow col-1" aria-hidden="true"></i>
                             <div class="col-auto text-left">Newsletter</div>
                         </a>
-                        <a class="list-group-item list-group-item-action d-flex " id="list-home-list" data-toggle="list"
-                            href="#list-home" role="tab" aria-controls="home">
+                        <a class="list-group-item list-group-item-action d-flex " id="change-password-list"
+                            data-toggle="list" href="#list-change-password" role="tab" aria-controls="home">
                             <i class="fa fa-lock col-1" aria-hidden="true"></i>
                             <div class="col-auto text-left">Change Password</div>
                         </a>
-
-                        <a class="list-group-item list-group-item-action d-flex " id="list-home-list" data-toggle="list"
-                            href="#list-home" role="tab" aria-controls="home">
+                        <a class="list-group-item list-group-item-action d-flex " href="javascript:void(0);"
+                            id="deleteaccount" role="tab" aria-controls="home">
                             <i class="fa fa-user-times col-1" aria-hidden="true"></i>
                             <div class="col-auto text-left">Delete Your Account</div>
                         </a>
-                        <a href="<?php echo BASE_URL; ?>logout.php"
+                        <a href="<?php echo BASE_URL; ?>profile/logout.php"
                             class="list-group-item list-group-item-action d-flex ">
                             <i class="fa fa-sign-out col-1" aria-hidden="true"></i>
                             <div class="col-auto text-left">Logout</div>
@@ -62,59 +61,132 @@ require './include/nheader.php';
                     </div>
                 </div>
             </div>
-            <div class="col-md-7 col-lg-9 mb-4 p-0 ">
-                <div class=" border bg-white h-100 ml-lg-2 ml-md-2">
+            <div class="col border bg-white p-0 m-0">
+                <div class="">
                     <div class="tab-content" id="nav-tabContent">
+                        <!-- my profie -->
                         <div class="tab-pane fade show active" id="my-profile" role="tabpanel"
                             aria-labelledby="my-profile-list">
                             <div class="card-header">
-                                <h4 class="text-center">Header</h4>
+                                <h4 class="text-center">My Profile</h4>
                             </div>
                             <div class="p-3">
-                                <div class=" mt-10 row ">
-                                    <div class="col-6-0 m-0 p-0 pr-md-2 pr-lg-2 col-sm">
-                                        <label class="mb-0">First Name:</label>
-                                        <input type="text" id="first_name" name="first_name" placeholder="John"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'John'" required
-                                            class="single-input single-input-primary border">
+                                <form action="" method="post" id="updateForm">
+                                    <div class="row gap-3">
+                                        <div class="col-lg-6 col-sm m-0 p-0 col-sm">
+                                            <label class="mb-0 req">First Name:</label>
+                                            <input type="text" id="first_name" name="first_name" placeholder="John"
+                                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'John'"
+                                                required class="single-input single-input-primary border">
+                                        </div>
+                                        <div class="col m-0 p-0 col-sm">
+                                            <label class="mb-0 req">Last Name:</label>
+                                            <input type="text" id="last_name" name="last_name" placeholder="Doe"
+                                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Doe'"
+                                                required class="single-input single-input-primary border">
+                                        </div>
                                     </div>
-                                    <div class="col-6-0 m-0 p-0 pl-md-2 pl-lg-2 col-sm">
-                                        <label class="mb-0">Last Name:</label>
-                                        <input type="text" id="last_name" name="last_name" placeholder="Doe"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Doe'" required
-                                            class="single-input single-input-primary border">
+                                    <div class="mt-3 row gap-3">
+                                        <div class="col-lg-6 col-sm m-0 p-0 col-sm">
+                                            <label class="mb-0 req">Email:</label>
+                                            <input type="email" id="email" name="email" placeholder="example@mail.com"
+                                                onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = 'example@mail.com'" required readonly
+                                                class="single-input border bg-gray">
+                                        </div>
+                                        <div class="col m-0 p-0 col-sm">
+                                            <label class="mb-0 req">Phone Number:</label>
+                                            <input type="tel" id="phone_number" name="phone_number"
+                                                placeholder="Enter phone number" onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = 'Enter phone number'" required
+                                                class="single-input single-input-primary border">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mt-10 row">
-                                    <div class="col-6-0 m-0 p-0 pr-md-2 pr-lg-2 col-sm">
-                                        <label class="mb-0">First Name:</label>
-                                        <input type="text" id="first_name" name="first_name" placeholder="John"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'John'" required
-                                            class="single-input single-input-primary border">
+                                    <div class="mt-3 row gap-3">
+                                        <div class="col-lg-6 col-sm m-0 p-0 col-sm">
+                                            <label class="mb-0 req">Date of Birth:<small>(yyyy-mm-dd)</small></label>
+                                            <input type="text" id="dob" name="dob" placeholder="Enter Your DOB"
+                                                onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = 'Enter Your DOB'" autoComplete="off" required
+                                                class="single-input single-input-primary border date-picker">
+                                        </div>
+                                        <div class="col m-0 p-0 col-sm">
+                                            <label class="mb-0 req">National ID (NID):</label>
+                                            <input type="text" id="nid" name="nid" placeholder="Enter NID"
+                                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter NID'"
+                                                required class="single-input single-input-primary border">
+                                        </div>
                                     </div>
-                                    <div class="col-6-0 m-0 p-0 pl-md-2 pl-lg-2 col-sm">
-                                        <label class="mb-0">Last Name:</label>
-                                        <input type="text" id="last_name" name="last_name" placeholder="Doe"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Doe'" required
-                                            class="single-input single-input-primary border">
+                                    <div class="mt-3 row gap-3">
+                                        <div class="col-lg-6 col-sm m-0 p-0 col-sm">
+                                            <label class="mb-0 req">Gender:</label>
+                                            <div>
+                                                <select id="gender" name="gender" required class=>
+                                                    <option value="" disabled selected>Select Gender</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col m-0 p-0 col-sm">
+                                            <label class="mb-0 req">Marital Status:</label>
+                                            <div><select id="marital_status" name="marital_status" required class="">
+                                                    <option value="" disabled selected>Select Marital Status</option>
+                                                    <option value="single">Single</option>
+                                                    <option value="married">Married</option>
+                                                    <option value="divorced">Divorced</option>
+                                                    <option value="widowed">Widowed</option>
+                                                </select></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mt-10 row ">
-                                    <div class="col-6-0 m-0 p-0 pr-md-2 pr-lg-2 col-sm">
-                                        <label class="mb-0">First Name:</label>
-                                        <input type="text" id="first_name" name="first_name" placeholder="John"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'John'" required
-                                            class="single-input single-input-primary border">
+                                    <div class="mt-3 row gap-3">
+                                        <div class="col-lg-6 col-sm m-0 p-0 col-sm">
+                                            <label class="mb-0 req">Passport:</label>
+                                            <input type="text" id="passport" name="passport"
+                                                placeholder="Enter Passport Number" onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = 'Enter Passport Number'" required
+                                                class="single-input single-input-primary border">
+                                        </div>
+                                        <div class="col m-0 p-0 col-sm">
+                                            <label class="mb-0 req">Country:</label>
+                                            <div><select id="country" name="country" required class="">
+                                                    <option value="" disabled selected>Select Your Country</option>
+                                                </select></div>
+                                        </div>
                                     </div>
-                                    <div class="col-6-0 m-0 p-0 pl-md-2 pl-lg-2 col-sm">
-                                        <label class="mb-0">Last Name:</label>
-                                        <input type="text" id="last_name" name="last_name" placeholder="Doe"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Doe'" required
-                                            class="single-input single-input-primary border">
+                                    <div class="mt-3 row gap-3">
+                                        <div class="col-lg-6 col-sm m-0 p-0 col-sm">
+                                            <label class="mb-0 req">Religion:</label>
+                                            <input type="text" id="religion" name="religion"
+                                                placeholder="Enter Religion" onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = 'Enter Religion'" required
+                                                class="single-input single-input-primary border">
+                                        </div>
+                                        <div class="col m-0 p-0 col-sm">
+                                            <label class="mb-0">Email verification:</label>
+                                            <div>
+                                                <?php
+                                                if($_SESSION['user_is_verified']==1){
+                                                    echo '<span class="badge badge-success">Verified</span>';
+                                                }else{
+                                                    echo '<span class="badge badge-danger">Not verified</span>';
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="mt-3 row gap-3">
+                                        <div class="col-lg-6 col-sm m-0 p-0 col-sm">
+                                            <button id="updatebutton" class="genric-btn primary">Update</button>
+                                        </div>
+                                        <div class="col m-0 p-0 col-sm">
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
+                        <!-- booking -->
                         <div class="tab-pane fade" id="my-booking" role="tabpanel" aria-labelledby="my-booking-list">
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quisquam est dicta,
                             sapiente vitae consequatur officiis harum, nobis quam iure debitis cum corporis quasi facere
@@ -139,6 +211,7 @@ require './include/nheader.php';
                             distinctio
                             unde deleniti. Non cum eius rem. Quas, maxime ipsum?
                         </div>
+                        <!-- uploads -->
                         <div class="tab-pane fade" id="my-uploads" role="tabpanel" aria-labelledby="my-uploads-list">
                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit doloribus id neque aut
                             sint?
@@ -183,6 +256,7 @@ require './include/nheader.php';
                             earum
                             similique provident.
                         </div>
+                        <!-- saved -->
                         <div class="tab-pane fade" id="saved" role="tabpanel" aria-labelledby="saved-list">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis illum laborum praesentium
                             sit
@@ -247,15 +321,193 @@ require './include/nheader.php';
                             officia, eum velit iure nesciunt, quisquam illum enim. Cum vero repellendus laborum voluptas
                             quibusdam, error ex! Obcaecati repellat magni libero amet.
                         </div>
+                        <!-- newsletter -->
+                        <!-- <div class="tab-pane fade" id="my-profile" role="tabpanel" aria-labelledby="my-profile-list">
+                            <div class="card-header">
+                                <h4 class="text-center">My Profile</h4>
+                            </div>
+                            <div class="p-3">
+                                <form action="" method="post" id="updateForm">
+                                    <div class="row gap-3">
+                                        <div class="col-lg-6 col-sm m-0 p-0 col-sm">
+                                            <label class="mb-0">First Name:</label>
+                                            <input type="text" id="first_name" name="first_name" placeholder="John"
+                                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'John'"
+                                                required class="single-input single-input-primary border">
+                                        </div>
+                                        <div class="col m-0 p-0 col-sm">
+                                            <label class="mb-0">Last Name:</label>
+                                            <input type="text" id="last_name" name="last_name" placeholder="Doe"
+                                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Doe'"
+                                                required class="single-input single-input-primary border">
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 row gap-3">
+                                        <div class="col-lg-6 col-sm m-0 p-0 col-sm">
+                                            <label class="mb-0">Email:</label>
+                                            <input type="email" id="email" name="email" placeholder="example@mail.com"
+                                                onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = 'example@mail.com'" required readonly
+                                                class="single-input border bg-gray">
+                                        </div>
+                                        <div class="col m-0 p-0 col-sm">
+                                            <label class="mb-0">Phone Number:</label>
+                                            <input type="tel" id="phone_number" name="phone_number"
+                                                placeholder="Enter phone number" onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = 'Enter phone number'" required
+                                                class="single-input single-input-primary border">
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 row gap-3">
+                                        <div class="col-lg-6 col-sm m-0 p-0 col-sm">
+                                            <label class="mb-0">Date of Birth:<small>(yyyy-mm-dd)</small></label>
+                                            <input type="text" id="dob" name="dob" placeholder="Enter Your DOB"
+                                                onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = 'Enter Your DOB'" autoComplete="off" required
+                                                class="single-input single-input-primary border date-picker">
+                                        </div>
+                                        <div class="col m-0 p-0 col-sm">
+                                            <label class="mb-0">National ID (NID):</label>
+                                            <input type="text" id="nid" name="nid" placeholder="Enter NID"
+                                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter NID'"
+                                                required class="single-input single-input-primary border">
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 row gap-3">
+                                        <div class="col-lg-6 col-sm m-0 p-0 col-sm">
+                                            <label class="mb-0">Gender:</label>
+                                            <div>
+                                                <select id="gender" name="gender" required class=>
+                                                    <option value="" disabled selected>Select Gender</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col m-0 p-0 col-sm">
+                                            <label class="mb-0">Marital Status:</label>
+                                            <div><select id="marital_status" name="marital_status" required class="">
+                                                    <option value="" disabled selected>Select Marital Status</option>
+                                                    <option value="single">Single</option>
+                                                    <option value="married">Married</option>
+                                                    <option value="divorced">Divorced</option>
+                                                    <option value="widowed">Widowed</option>
+                                                </select></div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 row gap-3">
+                                        <div class="col-lg-6 col-sm m-0 p-0 col-sm">
+                                            <label class="mb-0">Passport:</label>
+                                            <input type="text" id="passport" name="passport"
+                                                placeholder="Enter Passport Number" onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = 'Enter Passport Number'" required
+                                                class="single-input single-input-primary border">
+                                        </div>
+                                        <div class="col m-0 p-0 col-sm">
+                                            <label class="mb-0">Country:</label>
+                                            <div><select id="country" name="country" required class="">
+                                                    <option value="" disabled selected>Select Your Country</option>
+                                                </select></div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 row gap-3">
+                                        <div class="col-lg-6 col-sm m-0 p-0 col-sm">
+                                            <label class="mb-0">Religion:</label>
+                                            <input type="text" id="religion" name="religion"
+                                                placeholder="Enter Religion" onfocus="this.placeholder = ''"
+                                                onblur="this.placeholder = 'Enter Religion'" required
+                                                class="single-input single-input-primary border">
+                                        </div>
+                                        <div class="col m-0 p-0 col-sm">
+                                            <label class="mb-0">Email verification:</label>
+                                            <div>
+                                                <?php
+                                                if($_SESSION['user_is_verified']==1){
+                                                    echo '<span class="badge badge-success">Verified</span>';
+                                                }else{
+                                                    echo '<span class="badge badge-danger">Not verified</span>';
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 row gap-3">
+                                        <div class="col-lg-6 col-sm m-0 p-0 col-sm">
+                                            <button id="updatebutton" class="genric-btn primary">Update</button>
+                                        </div>
+                                        <div class="col m-0 p-0 col-sm">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div> -->
+                        <!-- change password -->
+                        <div class="tab-pane fade" id="list-change-password" role="tabpanel"
+                            aria-labelledby="change-password-list">
+                            <div class="card-header">
+                                <h4 class="text-center">Change password</h4>
+                            </div>
+                            <div class="p-3">
+                                <form action="" method="post" id="change_pass">
+                                    <div class="px-lg-5">
+                                        <div class="">
+                                            <label class="mb-0">Current password:</label>
+                                            <div class="relative">
+                                                <input type="password" id="current_password" name="current_password"
+                                                    placeholder="Your Password" onfocus="this.placeholder = ''"
+                                                    onblur="this.placeholder = 'Your Password'" required
+                                                    class="single-input single-input-primary border">
+                                                <i class="fa fa-eye eye-right" id="cp_password-toggle"
+                                                    aria-hidden="true"></i>
+                                            </div>
+                                            <small class=" text-danger error-info" id="pass_error"></small>
+                                        </div>
+                                        <div class="mt-3">
+                                            <label class="mb-0">New password:</label>
+                                            <div class="relative">
+                                                <input type="password" id="new_password" name="new_password"
+                                                    placeholder="Your Password" onfocus="this.placeholder = ''"
+                                                    onblur="this.placeholder = 'Your Password'" required
+                                                    class="single-input single-input-primary border">
+                                                <i class="fa fa-eye eye-right" id="np_password-toggle"
+                                                    aria-hidden="true"></i>
+                                            </div>
+                                            <small class=" text-danger error-info" id="np_error"></small>
+                                        </div>
+                                        <div class="mt-3">
+                                            <label class="mb-0">Confirm new password:</label>
+                                            <div class="relative">
+                                                <input type="password" id="con_new_password" name="con_new_password"
+                                                    placeholder="Your Password" onfocus="this.placeholder = ''"
+                                                    onblur="this.placeholder = 'Your Password'" required
+                                                    class="single-input single-input-primary border">
+                                                <i class="fa fa-eye eye-right" id="cnp_password-toggle"
+                                                    aria-hidden="true"></i>
+                                            </div>
+                                            <small class=" text-danger error-info" id="cnp_error"></small>
+                                        </div>
+                                        <div class="mt-3">
+                                            <div class="col-lg-6 col-sm m-0 p-0 col-sm">
+                                                <button id="updatepassword" class="genric-btn primary">Update</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- End about-info Area -->
 
-
+<script>
+// Define the conditions
+$email = "<?php echo $_SESSION['user_email'] ?>";
+$user_id = "<?php echo $_SESSION['user_id'] ?>";
+</script>
 <?php
 require './include/footer.php';
 if (isset($_GET['message'])) {

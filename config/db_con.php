@@ -1,4 +1,11 @@
 <?php
+
+// define('BASE_URL', '/');
+// $host = 'sql300.infinityfree.com';
+// $db_user = 'if0_35799802';
+// $db_password = 'Pj24dX76BuWgXyW';
+// $database = 'if0_35799802_db_bookitfast';
+
 define('BASE_URL', '/fp/');
 $host = 'localhost';
 $db_user = 'root';

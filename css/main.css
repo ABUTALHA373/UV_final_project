@@ -2421,6 +2421,9 @@ body.mobile-nav-active #mobile-nav-toggle {
 .section-gap {
   padding: 120px 0;
 }
+.section-gap-sm {
+  padding: 60px 0;
+}
 
 .alert-msg {
   color: #008000;
