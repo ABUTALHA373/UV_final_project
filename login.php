@@ -66,71 +66,74 @@ if (isset($_COOKIE['remember_me'])) {
 </head>
 
 <body>
-
-    <section class="banner-area ">
-        <div class="overlay overlay-bg"></div>
-        <div class=" container login">
-            <div class=" d-flex justify-content-center align-items-center vh-100">
-                <div class="col-lg-5 col-md-8 col p-3 bg-light rounded ">
-                    <!-- <div class="text-center pb-4 pt-2 ">
+    <div id="page_login">
+        <section class="banner-area ">
+            <div class="overlay overlay-bg"></div>
+            <div class=" container login">
+                <div class=" d-flex justify-content-center align-items-center vh-100">
+                    <div class="col-lg-5 col-md-8 col p-3 bg-light rounded ">
+                        <!-- <div class="text-center pb-4 pt-2 ">
                         <a href="index.php"><img src="img/icon.svg" alt="" title="" height="50px" /></a>
                     </div> -->
-                    <h2 class="text-center p-2 bb">Login</h2>
-                    <div class="border p-2">
-                        <!-- <h3 class="text-center p-2 ">Login</h3> -->
-                        <form action="postphp/loginpost.php" method="post">
-                            <div class="mt-10">
-                                <label>Email:</label>
-                                <div>
-                                    <input type="email" id="l_email" name="email" placeholder="example@mail.com"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'example@mail.com'"
-                                        required class="single-input single-input-primary border">
-                                    <small class=" text-danger error-info" id="l_email_error"></small>
+                        <h2 class="text-center p-2 bb">Login</h2>
+                        <div class="border p-2">
+                            <!-- <h3 class="text-center p-2 ">Login</h3> -->
+                            <form action="postphp/loginpost.php" method="post">
+                                <div class="mt-10">
+                                    <label>Email:</label>
+                                    <div>
+                                        <input type="email" id="l_email" name="email" placeholder="example@mail.com"
+                                            onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'example@mail.com'" required
+                                            class="single-input single-input-primary border">
+                                        <small class=" text-danger error-info" id="l_email_error"></small>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mt-10">
-                                <label>Password:</label>
-                                <div class="relative">
-                                    <input type="password" id="l_password" name="password" placeholder="Your Password"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Password'"
-                                        required class="single-input single-input-primary border">
-                                    <i class="fa fa-eye eye-right" id="l_password-toggle" aria-hidden="true"></i>
+                                <div class="mt-10">
+                                    <label>Password:</label>
+                                    <div class="relative">
+                                        <input type="password" id="l_password" name="password"
+                                            placeholder="Your Password" onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Your Password'" required
+                                            class="single-input single-input-primary border">
+                                        <i class="fa fa-eye eye-right" id="l_password-toggle" aria-hidden="true"></i>
+                                    </div>
+                                    <small class=" text-danger error-info" id="l_pass_error"></small>
                                 </div>
-                                <small class=" text-danger error-info" id="l_pass_error"></small>
-                            </div>
-                            <div class="mt-15 row clink">
-                                <div class="col"><label class="cyberpunk-checkbox-label">
-                                        <input type="checkbox" class="cyberpunk-checkbox" name="remember_me">
-                                        Remember me</label></div>
-                                <div class="col text-right"><a href="" class=""><b>Forgot Password?</b></a></div>
-                            </div>
-                            <!-- <div class="mt-15">
+                                <div class="mt-15 row clink">
+                                    <div class="col"><label class="cyberpunk-checkbox-label">
+                                            <input type="checkbox" class="cyberpunk-checkbox" name="remember_me">
+                                            Remember me</label></div>
+                                    <div class="col text-right"><a href="reset_password.php" class=""><b>Forgot
+                                                Password?</b></a></div>
+                                </div>
+                                <!-- <div class="mt-15">
                                 <label">Password:</label>
                                     <input type="password" name="password" placeholder="Password"
                                         onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required
                                         class="single-input border">
                             </div> -->
-                            <div class="mt-10">
-                                <button href="#" class="genric-btn primary circle w-100 fs-16">Login</button>
-                            </div>
-                            <div class="mt-10 clink text-center">
-                                <p>Dont have any account? <a href="signup.php" class=""><b>Sing Up</b></a></p>
-                            </div>
-                            <div class="mt-10 clink text-center">
-                                <div class="text-center pb-4 pt-2 ">
-                                    <a href="index.php"><img src="img/icon.svg" alt="" title="" height="50px" /></a>
+                                <div class="mt-10">
+                                    <button href="#" class="genric-btn primary circle w-100 fs-16">Login</button>
                                 </div>
-                                <!-- <p><a href="index.php" class="">Home <i class="fa-solid fa-angles-right"></i></a></p> -->
-                            </div>
-                        </form>
+                                <div class="mt-10 clink text-center">
+                                    <p>Dont have any account? <a href="signup.php" class=""><b>Sing Up</b></a></p>
+                                </div>
+                                <div class="mt-10 clink text-center">
+                                    <div class="text-center pb-4 pt-2 ">
+                                        <a href="index.php"><img src="img/icon.svg" alt="" title="" height="50px" /></a>
+                                    </div>
+                                    <!-- <p><a href="index.php" class="">Home <i class="fa-solid fa-angles-right"></i></a></p> -->
+                                </div>
+                            </form>
+                        </div>
+
+
                     </div>
-
-
                 </div>
             </div>
-        </div>
-    </section>
-
+        </section>
+    </div>
 </body>
 
 <script src="js/vendor/jquery-2.2.4.min.js"></script>
@@ -175,6 +178,13 @@ if (isset($_GET['error'])) {
             title: "Account Deleted!",
             text: "Account was deleted by User!",
             icon: "error"
+          });</script>';
+    }else if ($message=='set_pass_success') {
+        
+        echo '<script>Swal.fire({
+            title: "Updated!",
+            text: "Password updated successfully!",
+            icon: "success"
           });</script>';
     }
 }

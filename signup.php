@@ -43,82 +43,83 @@ if($isLoggedIn){
 </head>
 
 <body>
+    <div id="page_signup">
+        <section class="banner-area sing-area">
+            <div class="overlay overlay-bg"></div>
+            <div class=" container login">
+                <div class=" d-flex justify-content-center align-items-center vh-100">
+                    <div class="col-lg-5 col-md-8 col p-3 bg-light rounded ">
+                        <h2 class="text-center p-2 bb">Sign Up</h2>
+                        <div class="border p-2">
+                            <form action="postphp/signuppost.php" method="POST">
+                                <div class="mt-10 row m-0">
+                                    <div class="col-6 m-0 p-0 pr-1">
+                                        <label>First Name:</label>
+                                        <input type="text" id="first_name" name="first_name" placeholder="John"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'John'" required
+                                            class="single-input single-input-primary border">
+                                    </div>
+                                    <div class="col-6 m-0 p-0 pl-1">
+                                        <label>Last Name:</label>
+                                        <input type="text" id="last_name" name="last_name" placeholder="Doe"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Doe'" required
+                                            class="single-input single-input-primary border">
+                                    </div>
+                                    <small class="text-danger error-info" id="name_error"></small>
+                                </div>
+                                <div class="mt-10">
+                                    <label>Email:</label>
+                                    <div>
+                                        <input type="email" id="email" name="email" placeholder="example@mail.com"
+                                            onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'example@mail.com'" required
+                                            class="single-input single-input-primary border">
+                                        <small class=" text-danger error-info" id="email_error"></small>
+                                    </div>
 
-    <section class="banner-area sing-area">
-        <div class="overlay overlay-bg"></div>
-        <div class=" container login">
-            <div class=" d-flex justify-content-center align-items-center vh-100">
-                <div class="col-lg-5 col-md-8 col p-3 bg-light rounded ">
-                    <h2 class="text-center p-2 bb">Sign Up</h2>
-                    <div class="border p-2">
-                        <form action="postphp/signuppost.php" method="POST">
-                            <div class="mt-10 row m-0">
-                                <div class="col-6 m-0 p-0 pr-1">
-                                    <label>First Name:</label>
-                                    <input type="text" id="first_name" name="first_name" placeholder="John"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'John'" required
-                                        class="single-input single-input-primary border">
                                 </div>
-                                <div class="col-6 m-0 p-0 pl-1">
-                                    <label>Last Name:</label>
-                                    <input type="text" id="last_name" name="last_name" placeholder="Doe"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Doe'" required
-                                        class="single-input single-input-primary border">
+                                <div class="mt-10">
+                                    <label>Password:</label>
+                                    <div class="relative">
+                                        <input type="password" id="password" name="password" placeholder="Your Password"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Password'"
+                                            required class="single-input single-input-primary border">
+                                        <i class="fa fa-eye eye-right" id="s_cp_password-toggle" aria-hidden="true"></i>
+                                    </div>
+                                    <small class=" text-danger error-info" id="pass_error"></small>
                                 </div>
-                                <small class="text-danger error-info" id="name_error"></small>
-                            </div>
-                            <div class="mt-10">
-                                <label>Email:</label>
-                                <div>
-                                    <input type="email" id="email" name="email" placeholder="example@mail.com"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'example@mail.com'"
-                                        required class="single-input single-input-primary border">
-                                    <small class=" text-danger error-info" id="email_error"></small>
+                                <div class="mt-10">
+                                    <label>Confirm Password:</label>
+                                    <div class="relative">
+                                        <input type="password" id="con_password" name="con_password"
+                                            placeholder="Confirm Your Password" onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Confirm Your Password'" required
+                                            class="single-input single-input-primary border">
+                                        <i class="fa fa-eye eye-right" id="s_cnp_password-toggle"
+                                            aria-hidden="true"></i>
+                                    </div>
+                                    <small class=" text-danger error-info" id="conpass_error"></small>
                                 </div>
 
-                            </div>
-                            <div class="mt-10">
-                                <label>Password:</label>
-                                <div class="relative">
-                                    <input type="password" id="password" name="password" placeholder="Your Password"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Password'"
-                                        required class="single-input single-input-primary border">
-                                    <i class="fa fa-eye eye-right" id="s_cp_password-toggle" aria-hidden="true"></i>
+                                <div class="mt-10">
+                                    <button href="#" class="genric-btn primary circle w-100 fs-16">Sign Up</button>
                                 </div>
-                                <small class=" text-danger error-info" id="pass_error"></small>
-                            </div>
-                            <div class="mt-10">
-                                <label>Confirm Password:</label>
-                                <div class="relative">
-                                    <input type="password" id="con_password" name="con_password"
-                                        placeholder="Confirm Your Password" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Confirm Your Password'" required
-                                        class="single-input single-input-primary border">
-                                    <i class="fa fa-eye eye-right" id="s_cnp_password-toggle" aria-hidden="true"></i>
+                                <div class="mt-10 clink text-center">
+                                    <p>Already have an account? <a href="login.php" class=""><b>Login</b></a></p>
                                 </div>
-                                <small class=" text-danger error-info" id="conpass_error"></small>
-                            </div>
-
-                            <div class="mt-10">
-                                <button href="#" class="genric-btn primary circle w-100 fs-16">Sign Up</button>
-                            </div>
-                            <div class="mt-10 clink text-center">
-                                <p>Already have an account? <a href="Login.php" class=""><b>Login</b></a></p>
-                            </div>
-                            <div class="mt-10 clink text-center">
-                                <div class="text-center pb-4 pt-2 ">
-                                    <a href="index.php"><img src="img/icon.svg" alt="Logo" title="" height="50px" /></a>
+                                <div class="mt-10 clink text-center">
+                                    <div class="text-center pb-4 pt-2 ">
+                                        <a href="index.php"><img src="img/icon.svg" alt="Logo" title=""
+                                                height="50px" /></a>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-
-
+        </section>
+    </div>
 </body>
 
 <script src="js/vendor/jquery-2.2.4.min.js"></script>

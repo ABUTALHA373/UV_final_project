@@ -16,10 +16,10 @@ function fetchDataFromDatabase($email,$user_id) {
     return $data;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['email'])  && isset($_GET['user_id'])) {
-
-    $email = $con->real_escape_string($_GET['email']);
-    $user_id = $con->real_escape_string($_GET['user_id']);
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    session_start();
+    $email = $_SESSION['user_email'];
+    $user_id = $_SESSION['user_id'];
 
     $result = fetchDataFromDatabase($email,$user_id);
 

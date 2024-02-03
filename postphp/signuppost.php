@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->isHTML(true);
         $mail->Subject = 'Confirm Your Email';
 
-        $htmlContent = file_get_contents('email_template.php');
+        $htmlContent = file_get_contents('email_verification_template.php');
         $htmlContent = str_replace('{{verification_token}}', $verification_token, $htmlContent);
         $htmlContent = str_replace('{{Username}}', $name, $htmlContent);
 
