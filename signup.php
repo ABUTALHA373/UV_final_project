@@ -44,11 +44,16 @@ if($isLoggedIn){
 
 <body>
     <div id="page_signup">
-        <section class="banner-area sing-area">
+        <section class="">
+            <div class="bg-gray"></div>
+            <div class=" container login">
+                <div class=" d-flex justify-content-center align-items-center vh-100">
+                    <div class="col-lg-5 col-md-8 col p-3 bg-light rounded shadow-soft">
+                        <!-- <section class="banner-area sing-area">
             <div class="overlay overlay-bg"></div>
             <div class=" container login">
                 <div class=" d-flex justify-content-center align-items-center vh-100">
-                    <div class="col-lg-5 col-md-8 col p-3 bg-light rounded ">
+                    <div class="col-lg-5 col-md-8 col p-3 bg-light rounded shadow-soft"> -->
                         <h2 class="text-center p-2 bb">Sign Up</h2>
                         <div class="border p-2">
                             <form action="postphp/signuppost.php" method="POST">

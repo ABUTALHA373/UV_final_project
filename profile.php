@@ -184,11 +184,19 @@ require './include/nheader.php';
                                         </div>
                                         <div class="mt-3 row gap-3">
                                             <div class="col-lg-6 col-sm m-0 p-0 col-sm">
-                                                <button id="refreshbutton" class="genric-btn info mr-5">Refresh</button>
-                                                <button id="updatebutton" class="genric-btn primary">Update</button>
+                                                <div class="row gap-3">
+                                                    <div class="col p-0">
+                                                        <button id="refreshbutton"
+                                                            class="genric-btn info mr-5 w-100">Refresh</button>
+                                                    </div>
+                                                    <div class="col p-0">
+                                                        <button id="updatebutton"
+                                                            class="genric-btn primary w-100">Update</button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col m-0 p-0 col-sm">
-                                            </div>
+                                            <!-- <div class="col m-0 p-0 col-sm">
+                                            </div> -->
                                         </div>
                                     </form>
                                 </div>

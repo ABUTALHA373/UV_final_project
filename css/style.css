@@ -2,8 +2,17 @@
 
 /* bg gray: ecf0f1    changed*/
 
+body::-webkit-scrollbar {
+  /* display: none; */
+}
 ::-webkit-scrollbar {
-  display: none;
+  width: 7px;
+  height: 7px;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ffd23e; /* Replace with your desired color (gray-300) */
 }
 /* ::placeholder {
   color: #b0b0b0;
@@ -243,6 +252,8 @@ body {
   color: #333;
   line-height: 40px;
   padding-right: 33px;
+  padding-left: 20px;
+  font-weight: 400;
 }
 
 .select2.select2-container .select2-selection .select2-selection__arrow {
@@ -359,6 +370,7 @@ body {
   .select2-results__option--highlighted[aria-selected] {
   background-color: #f8b600;
 }
+
 .ui-datepicker-month {
   width: 100% !important;
   border: 1px solid #888 !important;
@@ -370,6 +382,21 @@ body {
 .req::after {
   content: "*";
   color: red;
+}
+
+/* Soft shadow */
+.shadow-soft {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Medium shadow */
+.shadow-medium {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Strong shadow */
+.shadow-strong {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.18);
 }
 /*
 /

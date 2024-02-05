@@ -3,7 +3,7 @@ require '../config/db_con.php';
 
 function fetchDataFromDatabase($email,$user_id) {
     global $con;
-    $sql = "SELECT email, phone_number, first_name, last_name, nid, dob, gender, marital_status, passport, country, religion FROM users WHERE email=? AND user_id=?";
+    $sql = "SELECT email, phone_number, first_name, last_name, nid, dob, gender, marital_status, passport,status,is_verified, country, religion FROM users WHERE email=? AND user_id=?";
     // Use prepared statement to prevent SQL injection
     $stmt = $con->prepare($sql);
     $stmt->bind_param('ss',$email,$user_id);

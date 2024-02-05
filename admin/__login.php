@@ -1,5 +1,6 @@
 <?php 
-require './config/db_con.php';
+require '../config/db_con.php';
+require '../include/inc_css.php';
 if (isset($_COOKIE['remember_me'])) {
     // Decode the cookie data
     $cookie_data = json_decode(base64_decode($_COOKIE['remember_me']), true);
@@ -78,48 +79,40 @@ if (isset($_COOKIE['remember_me'])) {
                 <div class=" d-flex justify-content-center align-items-center vh-100">
                     <div class="col-lg-5 col-md-8 col p-3 bg-light rounded "> -->
 
-                        <h2 class="text-center p-2 bb">Login</h2>
+                        <h2 class="text-center p-2 bb">Admin Login</h2>
                         <div class="border p-2">
                             <form action="postphp/loginpost.php" method="post">
-                                <div class="mt-10">
-                                    <label>Email:</label>
+                                <div class="">
+                                    <label>User id:</label>
                                     <div>
-                                        <input type="email" id="l_email" name="email" placeholder="example@mail.com"
-                                            onfocus="this.placeholder = ''"
-                                            onblur="this.placeholder = 'example@mail.com'" required
+                                        <input type="number" id="al_user_id" name="al_user_id"
+                                            placeholder="Your admin user id" onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Your admin user id'" required
                                             class="single-input single-input-primary border">
-                                        <small class=" text-danger error-info" id="l_email_error"></small>
+                                        <!-- <small class=" text-danger error-info" id=""></small> -->
                                     </div>
                                 </div>
-                                <div class="mt-10">
+                                <div class="mt-3">
                                     <label>Password:</label>
                                     <div class="relative">
-                                        <input type="password" id="l_password" name="password"
+                                        <input type="password" id="al_password" name="al_password"
                                             placeholder="Your Password" onfocus="this.placeholder = ''"
                                             onblur="this.placeholder = 'Your Password'" required
                                             class="single-input single-input-primary border">
                                         <i class="fa fa-eye eye-right" id="l_password-toggle" aria-hidden="true"></i>
                                     </div>
-                                    <small class=" text-danger error-info" id="l_pass_error"></small>
+                                    <!-- <small class=" text-danger error-info" id=""></small> -->
                                 </div>
-                                <div class="mt-15 row clink">
-                                    <div class="col"><label class="cyberpunk-checkbox-label">
-                                            <input type="checkbox" class="cyberpunk-checkbox" name="remember_me">
-                                            Remember me</label></div>
-                                    <div class="col text-right"><a href="reset_password.php" class=""><b>Forgot
-                                                Password?</b></a></div>
+                                <div class="mt-3">
+                                    <button class="genric-btn primary circle w-100 fs-16">Login</button>
                                 </div>
-                                <div class="mt-10">
-                                    <button href="#" class="genric-btn primary circle w-100 fs-16">Login</button>
-                                </div>
-                                <div class="mt-10 clink text-center">
-                                    <p>Dont have any account? <a href="signup.php" class=""><b>Sing Up</b></a></p>
-                                </div>
-                                <div class="mt-10 clink text-center">
+                                <!-- <div class="mt-10 clink text-center">
                                     <div class="text-center pb-4 pt-2 ">
-                                        <a href="index.php"><img src="img/icon.svg" alt="" title="" height="50px" /></a>
+                                        <a href="<?php echo BASE_URL ?>index.php"><img
+                                                src="<?php echo BASE_URL ?>img/icon.svg" alt="" title=""
+                                                height="50px" /></a>
                                     </div>
-                                </div>
+                                </div> -->
                             </form>
                         </div>
                     </div>
@@ -129,22 +122,9 @@ if (isset($_COOKIE['remember_me'])) {
     </div>
 </body>
 
-<script src="js/vendor/jquery-2.2.4.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/vendor/bootstrap.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/easing.min.js"></script>
-<script src="js/hoverIntent.js"></script>
-<script src="js/superfish.min.js"></script>
-<script src="js/jquery.ajaxchimp.min.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/mail-script.js"></script>
-<script src="js/main.js"></script>
-<script src="js/index.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <?php
+require '../include/inc_scripts.php';
+
 if (isset($_GET['error'])) {
     $message = urldecode($_GET['error']);
     if ($message=='error_password') {

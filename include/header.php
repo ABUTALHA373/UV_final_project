@@ -7,20 +7,13 @@ require __DIR__ . '/../config/db_con.php';
 <html lang="zxx" class="no-js">
 
 <head>
-    <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="img/fav.png">
-    <!-- Author Meta -->
-    <meta name="author" content="colorlib">
-    <!-- Meta Description -->
+    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>img/icon.svg">
+    <meta name="author" content="Bookitfast">
     <meta name="description" content="">
-    <!-- Meta Keyword -->
     <meta name="keywords" content="">
-    <!-- meta character set -->
     <meta charset="UTF-8">
-    <!-- Site Title -->
-    <title>Travel</title>
+    <title><?php if(isset($title)){echo $title;} ?>|| Bookitfast</title>
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
     <!--CSS============================================= -->
@@ -34,8 +27,6 @@ require __DIR__ . '/../config/db_con.php';
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/owl.carousel.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/main.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/style.css">
-
-
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>

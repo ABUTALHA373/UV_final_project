@@ -470,8 +470,12 @@ const countryOptions = [
 //profile page
 $(document).ready(function () {
   if ($("#page_profile").length > 0) {
-    $("#gender").select2();
-    $("#marital_status").select2();
+    $("#gender").select2({
+      minimumResultsForSearch: Infinity
+    });
+    $("#marital_status").select2({
+      minimumResultsForSearch: Infinity
+    });
     $("#country").select2({
       data: countryOptions,
     });
