@@ -238,55 +238,39 @@ require './include/nheader.php';
                             <!-- uploads -->
                             <div class="tab-pane fade" id="my-uploads" role="tabpanel"
                                 aria-labelledby="my-uploads-list">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit doloribus id neque aut
-                                sint?
-                                Obcaecati et animi odio ipsa voluptates harum incidunt, ea dolore hic quia aliquam
-                                quibusdam
-                                saepe sint, rem nostrum maxime aperiam iste. Mollitia repellat, atque sunt id libero
-                                suscipit
-                                nostrum excepturi laboriosam consequuntur explicabo eum incidunt ullam. Debitis eius
-                                voluptatibus molestiae nihil totam necessitatibus perspiciatis omnis, amet rerum earum.
-                                Assumenda corporis ducimus veritatis doloremque repudiandae natus, ipsum commodi
-                                molestias!
-                                Non
-                                voluptas natus dolore quo reprehenderit cum at eligendi magnam ad, repellendus neque
-                                deserunt
-                                doloribus ipsa pariatur consequuntur, obcaecati culpa praesentium unde maxime nostrum
-                                corporis
-                                quis quisquam! Magni molestias veritatis minima repudiandae odio recusandae officiis
-                                obcaecati
-                                libero nihil iusto exercitationem voluptatibus eveniet, incidunt commodi. Minus ipsam
-                                provident
-                                illum voluptatum fuga odio quae eius aliquam necessitatibus sapiente repellendus,
-                                incidunt
-                                maxime? Distinctio sit, cum ipsa, soluta dicta, tempore cupiditate hic aspernatur
-                                quisquam
-                                veritatis quidem qui. Perspiciatis hic inventore sapiente laudantium repudiandae
-                                repellendus,
-                                natus beatae! Asperiores incidunt voluptate eaque repellat natus, facilis neque libero?
-                                Minima,
-                                earum architecto commodi iusto assumenda libero cupiditate consequuntur similique
-                                maiores,
-                                exercitationem, molestias totam. Est incidunt quis similique suscipit aliquam quam saepe
-                                cum
-                                architecto. Et deserunt quidem molestiae fugit corporis! Esse cupiditate alias libero
-                                est
-                                dolore
-                                autem incidunt soluta deserunt dolores eaque? Distinctio esse totam ab ducimus deleniti
-                                saepe
-                                delectus voluptates iste dolorem, recusandae suscipit aliquam incidunt eius aliquid quis
-                                vitae
-                                reiciendis! Vitae eaque sapiente inventore repellendus dolorem illum a quam, voluptas
-                                dignissimos officia consequatur tenetur enim labore vel nisi corrupti? Saepe cupiditate
-                                similique quam culpa cumque amet eos illum omnis. Iusto optio asperiores ipsum suscipit
-                                sequi et
-                                perferendis reprehenderit natus eveniet nihil maiores cupiditate quibusdam quae hic
-                                laudantium
-                                repellendus dolor qui autem porro cum atque, nemo recusandae sit aspernatur. Corrupti
-                                expedita
-                                totam dolorum, aut sapiente est temporibus pariatur voluptas veritatis mollitia in eum,
-                                earum
-                                similique provident.
+                                <div class="card-header">
+                                    <h4 class="text-center">Uploads</h4>
+                                </div>
+                                <div class="p-3">
+                                    <form action="" method="post" id="gallery_upload">
+                                        <div class="row justify-content-between">
+                                            <div class="col-3 p-0 m-0">
+                                                <!-- <label class="mb-0">Image:</label> -->
+                                                <div class=" file">
+                                                    <input type="file" name="gallery_image" id="gallery_image"
+                                                        class="single-input single-input-primary border"
+                                                        accept="image/*" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-5 p-0 m-0">
+                                                <!-- <label class="mb-0">Caption:</label> -->
+                                                <div class="">
+                                                    <input type="text" id="gallery_caption" name="gallery_caption"
+                                                        placeholder="write small caption"
+                                                        onfocus="this.placeholder = ''"
+                                                        onblur="this.placeholder = 'Write small caption'" required
+                                                        class="single-input single-input-primary border">
+                                                </div>
+                                            </div>
+                                            <div class="col-3 p-0 m-0">
+                                                <div class="">
+                                                    <button id="submitgallery"
+                                                        class="genric-btn primary w-100">Upload</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                             <!-- saved -->
                             <div class="tab-pane fade" id="saved" role="tabpanel" aria-labelledby="saved-list">

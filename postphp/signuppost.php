@@ -1,4 +1,5 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -13,18 +14,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $first_name = $con->real_escape_string($_POST['first_name']);
     $last_name = $con->real_escape_string($_POST['last_name']);
-    $name = $first_name ." ". $last_name;
+    $name = $first_name . " " . $last_name;
 
     // Generate a unique confirmation code
     $verification_token = uniqid();
     // Generate a unique token for "stay logged in" functionality
     $stayLoggedInToken = bin2hex(random_bytes(32));
-    $status ='active';
+    $status = 'active';
 
     // Insert user data into the "users" table
     $insert_query = "INSERT INTO users (email, password, first_name, last_name, verification_token, remember_token, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $insert_stmt = $con->prepare($insert_query);
-    $insert_stmt->bind_param("sssssss", $email, $password, $first_name, $last_name, $verification_token, $stayLoggedInToken,$status );
+    $insert_stmt->bind_param("sssssss", $email, $password, $first_name, $last_name, $verification_token, $stayLoggedInToken, $status);
 
     if ($insert_stmt->execute()) {
 
@@ -67,9 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->Password = 'adnftozakekfsbpf';
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
-    
+
         $mail->setFrom('info.bookitfast@gmail.com');
-    
+
         $mail->addAddress($_POST['email']);
         $mail->isHTML(true);
         $mail->Subject = 'Confirm Your Email';

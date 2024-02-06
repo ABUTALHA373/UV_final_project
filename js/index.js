@@ -65,10 +65,10 @@ $(document).ready(function () {
       if (password != "") {
         if (
           password.length < 8 ||
-        !/[A-Z]/.test(password) ||
-        !/[a-z]/.test(password) ||
-        !/\d/.test(password) ||  
-        !/[!@#$%^&*(),.?":{}|_<>]/.test(password)
+          !/[A-Z]/.test(password) ||
+          !/[a-z]/.test(password) ||
+          !/\d/.test(password) ||
+          !/[!@#$%^&*(),.?":{}|_<>]/.test(password)
         ) {
           $("#pass_error").text(
             "Must contain a uppercase, lowercase, number and a special character.Minimum 8 characters."
@@ -471,10 +471,10 @@ const countryOptions = [
 $(document).ready(function () {
   if ($("#page_profile").length > 0) {
     $("#gender").select2({
-      minimumResultsForSearch: Infinity
+      minimumResultsForSearch: Infinity,
     });
     $("#marital_status").select2({
-      minimumResultsForSearch: Infinity
+      minimumResultsForSearch: Infinity,
     });
     $("#country").select2({
       data: countryOptions,
@@ -736,6 +736,50 @@ $(document).ready(function () {
         }
       });
     });
+
+    //upload gallery images from user
+    $("#submitgallery").click(function (event) {
+      event.preventDefault();
+      if (
+        $("#gallery_image").val().trim() === "" ||
+        $("#gallery_caption").val().trim() === "") {
+        Swal.fire({
+          title: "Empty!",
+          text: "All fields are required!",
+          icon: "warning",
+        });
+      } else {
+        var formData = new FormData($('#gallery_upload')[0]);
+
+        $.ajax({
+          url: './api/uploadgallery.php',
+          method: 'POST',
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function (response) {
+            $("#gallery_image").val("");
+            $("#gallery_caption").val("");
+            // console.log(response);
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your images have been saved',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          },
+          error: function (error) {
+            // console.log(error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+            });
+          }
+        });
+      }
+    });
   }
 });
 //profile page end
@@ -773,17 +817,19 @@ $(document).ready(function () {
 //confirm reset pass
 $(document).ready(function () {
   if ($("#page_confirm_reset_pass").length > 0) {
-    $('#reset_pass').on("keyup", function () {
+    $("#reset_pass").on("keyup", function () {
       var password = $(this).val();
       if (password != "") {
         if (
           password.length < 8 ||
-        !/[A-Z]/.test(password) ||
-        !/[a-z]/.test(password) ||
-        !/\d/.test(password) ||  
-        !/[!@#$%^&*(),.?":{}|_<>]/.test(password)
+          !/[A-Z]/.test(password) ||
+          !/[a-z]/.test(password) ||
+          !/\d/.test(password) ||
+          !/[!@#$%^&*(),.?":{}|_<>]/.test(password)
         ) {
-          $("#rp_pass_error").text("Must contain a uppercase, lowercase, number and a special character.Minimum 8 characters.");
+          $("#rp_pass_error").text(
+            "Must contain a uppercase, lowercase, number and a special character.Minimum 8 characters."
+          );
           $("#reset_pass").addClass("border-danger");
         } else {
           $("#rp_pass_error").text("");
@@ -795,7 +841,7 @@ $(document).ready(function () {
       }
     });
 
-    $('input[name="reset_pass"]').on("keyup", function () {});
+    $('input[name="reset_pass"]').on("keyup", function () { });
 
     $('input[name="confirm_reset_pass"]').on("keyup", function () {
       erro();
@@ -850,4 +896,54 @@ $(document).ready(function () {
       }
     }
   }
+});
+
+$(document).ready(function () {
+  var page = 1;
+
+  function loadImages() {
+    $.ajax({
+      url: "postphp/gallerypost.php",
+      type: "GET",
+      data: { page: page },
+      dataType: "json",
+      success: function (data) {
+        // Handle the received data and update the HTML
+        // Assume there is a div with id "imageContainer" to display images
+        $("#imageContainer").empty();
+        data.forEach(function (image) {
+          $("#imageContainer").append(
+            '<div class="image-item">' +
+            '<img src="' +
+            image.image_url +
+            '" alt="Image">' +
+            "<p>" +
+            image.caption +
+            "</p>" +
+            "</div>"
+          );
+        });
+      },
+      error: function () {
+        console.error("Error fetching images");
+      },
+    });
+  }
+
+  // Load images on page load
+  loadImages();
+
+  // Handle next page button click
+  $("#nextPageButton").on("click", function () {
+    page++;
+    loadImages();
+  });
+
+  // Handle previous page button click
+  $("#prevPageButton").on("click", function () {
+    if (page > 1) {
+      page--;
+      loadImages();
+    }
+  });
 });

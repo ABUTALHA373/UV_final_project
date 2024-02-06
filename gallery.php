@@ -5,8 +5,6 @@ $isVerified = isset($_SESSION['user_is_verified']);
 require './include/header.php';
 ?>
 
-
-<!-- start banner Area -->
 <section class="about-banner relative">
     <div class="overlay overlay-bg"></div>
     <div class="container">
@@ -22,14 +20,28 @@ require './include/header.php';
         </div>
     </div>
 </section>
-<!-- End banner Area -->
+<section class="c-area section-gap-sm">
+    <div class="container">
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            <label for="image">Choose Image:</label>
+            <input type="file" name="image" id="image" accept="image/*" required>
+            <br>
+            <label for="caption">Image Caption:</label>
+            <input type="text" name="caption" id="caption" required>
+            <br>
+            <label for="caption">User ID:</label>
+            <input type="number" name="user_id" id="user_id" required>
+            <br>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+</section>
 
-<!-- Start about-info Area -->
-<section class="c-area section-gap">
+
+<section class="c-area section-gap-sm">
     <div class="container">
         <!-- Gallery -->
         <div class="section-top-border ">
-            <h3>Image Gallery</h3>
             <div class="row gallery-item">
                 <div class="col-md-4">
                     <a href="img/elements/g1.jpg" class="img-gal">
@@ -83,28 +95,11 @@ require './include/header.php';
                 </div>
             </div>
         </div>
-
-
-
-        <!-- <div class="img-gallery">
-            <div class=" d-flex flex-wrap row justify-content-center">
-                <a href="img/b1.jpg" class="img-gal col-lg-4 col-md-6 col-sm-12">
-                    <img src="img/b1.jpg" class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
-                </a>
-                <a href="img/b1.jpg" class="img-gal col-lg-4 col-md-6 col-sm-12">
-                    <img src="img/h1.jpg" class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
-                </a>
-                <a href="img/b1.jpg" class="img-gal col-lg-4 col-md-6 col-sm-12">
-                    <img src="img/b1.jpg" class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
-                </a>
-                <a href="img/b1.jpg" class="img-gal col-lg-4 col-md-6 col-sm-12">
-                    <img src="img/b1.jpg" class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
-                </a>
-                <a href="img/top-banner.jpg" class="img-gal col-lg-4 col-md-6 col-sm-12">
-                    <img src="img/top-banner.jpg" class=" shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
-                </a>
-            </div>
-        </div> -->
+</section>
+<section>
+    <div id="imageContainer"></div>
+    <button id="prevPageButton">Previous Page</button>
+    <button id="nextPageButton">Next Page</button>
 </section>
 
 
