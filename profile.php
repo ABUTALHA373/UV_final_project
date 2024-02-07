@@ -241,7 +241,7 @@ require './include/nheader.php';
                                 <div class="card-header">
                                     <h4 class="text-center">Uploads</h4>
                                 </div>
-                                <div class="p-3">
+                                <div class="p-3 border-bottom">
                                     <form action="" method="post" id="gallery_upload">
                                         <div class="row justify-content-between">
                                             <div class="col-3 p-0 m-0">
@@ -271,6 +271,23 @@ require './include/nheader.php';
                                         </div>
                                     </form>
                                 </div>
+                                <!-- for load gallery image by user -->
+                                <input type="text" name="" id="getuserid" hidden
+                                    value=<?php echo $_SESSION['user_id'] ?>>
+                                <div class="px-3 pb-3 border-bottom">
+
+                                    <div class="row gallery-item" id="gallery-items">
+                                        <!-- will be loaded from ajax -->
+                                    </div>
+                                </div>
+                                <div class="p-4 d-flex justify-content-center">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+
+                                        </ul>
+                                    </nav>
+                                </div>
+
                             </div>
                             <!-- saved -->
                             <div class="tab-pane fade" id="saved" role="tabpanel" aria-labelledby="saved-list">

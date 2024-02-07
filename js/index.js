@@ -768,6 +768,7 @@ $(document).ready(function () {
               showConfirmButton: false,
               timer: 1500
             });
+            fetchData();
           },
           error: function (error) {
             // console.log(error);
@@ -780,8 +781,158 @@ $(document).ready(function () {
         });
       }
     });
+    // Function to fetch data using AJAX
+    // function fetchData(table, column, value) {
+    //   $.ajax({
+    //     url: 'api/getallincondition.php',  // Replace with the correct PHP file path
+    //     method: 'GET',
+    //     data: {
+    //       table: table,
+    //       column: column,
+    //       value: value
+    //     },
+    //     success: function (response) {
+    //       // Handle success response
+    //       response = JSON.parse(response)
+    //       console.log(response);
+    //       var imageElement = '';
+    //       $.each(response, function (index, value) {
+    //         var imageUrl = value.image_url;
+    //         imageElement += '<div class="col-md-4"><a href="' + imageUrl + '" class="img-gal"><div class="single-gallery-image" style="background: url(' + imageUrl + ');"></div></a></div>';
+    //       })
+    //       $('#gallery-items').empty();
+    //       $('#gallery-items').append(imageElement);
+    //       initMagnificPopup();
+    //     },
+    //     error: function (error) {
+    //       // Handle error response
+    //       console.log(error);
+    //     }
+    //   });
+    // }
+
+    fetchData();
+    function fetchData(page) {
+      $.ajax({
+        url: 'api/getmyupload.php',
+        method: 'GET',
+        data: {
+          table: 'gallery',
+          column: 'user_id',
+          columnvalue: $('#getuserid').val(),
+          page: page
+        },
+        success: function (response) {
+          response = JSON.parse(response);
+
+          var data = response.data;
+          var paging = response.paging;
+
+          $('#gallery-items').empty().append(data);
+          $('.pagination').empty().append(paging);
+          initMagnificPopup();
+
+
+
+        },
+        error: function (error) {
+          console.log(error);
+        }
+      });
+
+    }
+    $(document).on('click', '.pagination_link', function () {
+      var page = $(this).attr("id");
+      fetchData(page);
+    });
+
+    // Call the function with your specific parameters
+    var table = 'gallery';
+    var column = 'user_id';
+    var value = $('#getuserid').val();  // Replace with the actual user_id
+
+    fetchData(table, column, value);
+    function initMagnificPopup() {
+      $('.img-gal').magnificPopup({
+        type: 'image',
+        gallery: {
+          enabled: true
+        }
+      });
+
+      $('.play-btn').magnificPopup({
+        type: 'iframe',
+        mainClass: 'mfp-fade',
+        removalDelay: 160,
+        preloader: false,
+        fixedContentPos: false
+      });
+    }
+
+  }
+
+});
+$(document).ready(function () {
+  if ($("#page_gallery").length > 0) {
+    fetchData();
+    function fetchData(page) {
+      $.ajax({
+        url: 'api/getgallery.php',
+        method: 'GET',
+        data: {
+          table: 'gallery',
+          column: 'user_id',
+          page: page
+        },
+        success: function (response) {
+          response = JSON.parse(response);
+
+          var data = response.data;
+          var paging = response.paging;
+
+          $('#gallery-items').empty().append(data);
+          $('.pagination').empty().append(paging);
+          initMagnificPopup();
+
+
+
+        },
+        error: function (error) {
+          console.log(error);
+        }
+      });
+
+    }
+    $(document).on('click', '.pagination_link', function () {
+      var page = $(this).attr("id");
+      fetchData(page);
+    });
+
+    // Call the function with your specific parameters
+    var table = 'gallery';
+    var column = 'user_id';
+    var value = $('#getuserid').val();  // Replace with the actual user_id
+
+    fetchData(table, column, value);
+    function initMagnificPopup() {
+      $('.img-gal').magnificPopup({
+        type: 'image',
+        gallery: {
+          enabled: true
+        }
+      });
+
+      $('.play-btn').magnificPopup({
+        type: 'iframe',
+        mainClass: 'mfp-fade',
+        removalDelay: 160,
+        preloader: false,
+        fixedContentPos: false
+      });
+    }
   }
 });
+
 //profile page end
 //reset pass
 $(document).ready(function () {
@@ -898,52 +1049,52 @@ $(document).ready(function () {
   }
 });
 
-$(document).ready(function () {
-  var page = 1;
+// $(document).ready(function () {
+//   var page = 1;
 
-  function loadImages() {
-    $.ajax({
-      url: "postphp/gallerypost.php",
-      type: "GET",
-      data: { page: page },
-      dataType: "json",
-      success: function (data) {
-        // Handle the received data and update the HTML
-        // Assume there is a div with id "imageContainer" to display images
-        $("#imageContainer").empty();
-        data.forEach(function (image) {
-          $("#imageContainer").append(
-            '<div class="image-item">' +
-            '<img src="' +
-            image.image_url +
-            '" alt="Image">' +
-            "<p>" +
-            image.caption +
-            "</p>" +
-            "</div>"
-          );
-        });
-      },
-      error: function () {
-        console.error("Error fetching images");
-      },
-    });
-  }
+//   function loadImages() {
+//     $.ajax({
+//       url: "postphp/gallerypost.php",
+//       type: "GET",
+//       data: { page: page },
+//       dataType: "json",
+//       success: function (data) {
+//         // Handle the received data and update the HTML
+//         // Assume there is a div with id "imageContainer" to display images
+//         $("#imageContainer").empty();
+//         data.forEach(function (image) {
+//           $("#imageContainer").append(
+//             '<div class="image-item">' +
+//             '<img src="' +
+//             image.image_url +
+//             '" alt="Image">' +
+//             "<p>" +
+//             image.caption +
+//             "</p>" +
+//             "</div>"
+//           );
+//         });
+//       },
+//       error: function () {
+//         console.error("Error fetching images");
+//       },
+//     });
+//   }
 
-  // Load images on page load
-  loadImages();
+//   // Load images on page load
+//   loadImages();
 
-  // Handle next page button click
-  $("#nextPageButton").on("click", function () {
-    page++;
-    loadImages();
-  });
+//   // Handle next page button click
+//   $("#nextPageButton").on("click", function () {
+//     page++;
+//     loadImages();
+//   });
 
-  // Handle previous page button click
-  $("#prevPageButton").on("click", function () {
-    if (page > 1) {
-      page--;
-      loadImages();
-    }
-  });
-});
+//   // Handle previous page button click
+//   $("#prevPageButton").on("click", function () {
+//     if (page > 1) {
+//       page--;
+//       loadImages();
+//     }
+//   });
+// });

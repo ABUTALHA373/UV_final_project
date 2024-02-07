@@ -13,6 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // need change for online host
     $uploadDirectory = $_SERVER['DOCUMENT_ROOT'] . '/fp/images/gallery/';
+    $norootDirectory = 'images/gallery/';
+
+    $dbSaveDirectory = $norootDirectory . $galleryImageName;
 
     $uploadedImagePath = $uploadDirectory . $galleryImageName;
     move_uploaded_file($galleryImageTmpName, $uploadedImagePath);
@@ -21,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $insertQuery = "INSERT INTO gallery (user_id, image_url, caption) VALUES (?, ?, ?)";
     $insertStmt = $con->prepare($insertQuery);
-    $insertStmt->bind_param('iss', $user_id, $uploadedImagePath, $galleryCaption);
+    $insertStmt->bind_param('iss', $user_id, $dbSaveDirectory, $galleryCaption);
 
     if ($insertStmt->execute()) {
         echo json_encode(['success' => true]);

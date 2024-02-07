@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     "use strict";
 
 
@@ -14,16 +14,16 @@ $(document).ready(function() {
 
     // ------- Datepicker  js --------//  
 
-      $( function() {
-        $( ".date-picker" ).datepicker({
-            dateFormat: 'yy-mm-dd', 
+    $(function () {
+        $(".date-picker").datepicker({
+            dateFormat: 'yy-mm-dd',
             // showButtonPanel: true,  
-            changeMonth: true,      
-            changeYear: true ,
+            changeMonth: true,
+            changeYear: true,
             yearRange: '1910:c'
         });
-        
-      } );
+
+    });
 
 
     //------- Niceselect  js --------//  
@@ -36,7 +36,7 @@ $(document).ready(function() {
     };
     if (document.getElementById("service-select")) {
         $('select').niceSelect();
-    };    
+    };
 
     //------- Lightbox  js --------//  
 
@@ -69,60 +69,60 @@ $(document).ready(function() {
     //------- Owl Carusel  js --------//  
 
     $('.active-hot-deal-carusel').owlCarousel({
-        items:1,
-        loop:true,
-        autoplay:true,
-        autoplayHoverPause: true,        
-        smartSpeed:500,          
-        margin:30,
+        items: 1,
+        loop: true,
+        autoplay: true,
+        autoplayHoverPause: true,
+        smartSpeed: 500,
+        margin: 30,
         dots: true
     });
 
-     $('.active-testimonial').owlCarousel({
-            items: 2,
-            loop: true,
-            margin: 30,
-            autoplayHoverPause: true,
-            smartSpeed:500,              
-            dots: true,
-            autoplay: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                480: {
-                    items: 1,
-                },
-                992: {
-                    items: 2,
-                }
+    $('.active-testimonial').owlCarousel({
+        items: 2,
+        loop: true,
+        margin: 30,
+        autoplayHoverPause: true,
+        smartSpeed: 500,
+        dots: true,
+        autoplay: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 1,
+            },
+            992: {
+                items: 2,
             }
-        });
+        }
+    });
 
 
-        $('.active-recent-blog-carusel').owlCarousel({
-            items: 3,
-            loop: true,
-            margin: 30,
-            dots: true,
-            autoplayHoverPause: true, 
-            smartSpeed:500,               
-            autoplay: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                480: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                961: {
-                    items: 3,
-                }
+    $('.active-recent-blog-carusel').owlCarousel({
+        items: 3,
+        loop: true,
+        margin: 30,
+        dots: true,
+        autoplayHoverPause: true,
+        smartSpeed: 500,
+        autoplay: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            480: {
+                items: 1,
+            },
+            768: {
+                items: 2,
+            },
+            961: {
+                items: 3,
             }
-        }); 
+        }
+    });
 
     //------- Mobile Nav  js --------//  
 
@@ -139,19 +139,19 @@ $(document).ready(function() {
         $('body .main-menu').append('<div id="mobile-body-overly"></div>');
         $('#mobile-nav').find('.menu-has-children').prepend('<i class="lnr lnr-chevron-down"></i>');
 
-        $(document).on('click', '.menu-has-children i', function(e) {
+        $(document).on('click', '.menu-has-children i', function (e) {
             $(this).next().toggleClass('menu-item-active');
             $(this).nextAll('ul').eq(0).slideToggle();
             $(this).toggleClass("lnr-chevron-up lnr-chevron-down");
         });
 
-        $(document).on('click', '#mobile-nav-toggle', function(e) {
+        $(document).on('click', '#mobile-nav-toggle', function (e) {
             $('body').toggleClass('mobile-nav-active');
             $('#mobile-nav-toggle i').toggleClass('lnr-cross lnr-menu');
             $('#mobile-body-overly').toggle();
         });
 
-            $(document).on('click', function(e) {
+        $(document).on('click', function (e) {
             var container = $("#mobile-nav, #mobile-nav-toggle");
             if (!container.is(e.target) && container.has(e.target).length === 0) {
                 if ($('body').hasClass('mobile-nav-active')) {
@@ -167,7 +167,7 @@ $(document).ready(function() {
 
     //------- Smooth Scroll  js --------//  
 
-    $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function() {
+    $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function () {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
             var target = $(this.hash);
             if (target.length) {
@@ -200,13 +200,13 @@ $(document).ready(function() {
         }
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         $('html, body').hide();
 
         if (window.location.hash) {
 
-            setTimeout(function() {
+            setTimeout(function () {
 
                 $('html, body').scrollTop(0).show();
 
@@ -227,7 +227,7 @@ $(document).ready(function() {
     });
 
 
-    jQuery(document).ready(function($) {
+    jQuery(document).ready(function ($) {
         // Get current path and find target link
         var path = window.location.pathname.split("/").pop();
 
@@ -241,7 +241,7 @@ $(document).ready(function() {
         target.addClass('menu-active');
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         if ($('.menu-has-children ul>li a').hasClass('menu-active')) {
             $('.menu-active').closest("ul").parentsUntil("a").addClass('parent-active');
         }
@@ -252,7 +252,7 @@ $(document).ready(function() {
 
     //------- Header Scroll Class  js --------//  
 
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         if ($(this).scrollTop() > 100) {
             $('#header').addClass('header-scrolled');
         } else {
@@ -398,7 +398,7 @@ $(document).ready(function() {
 
     //------- Mailchimp js --------//  
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#mc_embed_signup').find('form').ajaxChimp();
     });
 

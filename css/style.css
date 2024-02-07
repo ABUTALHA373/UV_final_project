@@ -417,6 +417,26 @@ input[type="file"]::file-selector-button {
 input[type="file"]::file-selector-button:hover {
   background: #dda201;
 }
+.pagination .page-item {
+  border-radius: 0 !important;
+  border: none;
+  background-color: #f8b600;
+  color: white;
+}
+.pagination .page-item span {
+  border-radius: 0 !important;
+  color: white;
+  border-right: 1px solid white;
+}
+.pagination .page-item span:hover {
+  background-color: white;
+  border: 1px solid #f8b600;
+  color: #f8b600;
+  transition: 0.4s;
+}
+.pagination .page-item span :nth-child(:last-child) {
+  border-left: 1px solid white;
+}
 
 /*
 /
