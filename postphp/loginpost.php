@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_last_name'] = $row['last_name'];
                 $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['user_is_verified'] = $row['is_verified'];
+                $_SESSION['user_status'] = $row['status'];
     
                 // Check if "Remember Me" is checked
                 if (isset($_POST['remember_me']) && $_POST['remember_me'] == 'on') {

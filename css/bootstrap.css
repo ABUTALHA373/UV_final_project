@@ -212,14 +212,15 @@ sup {
 }
 
 a {
-  color: #007bff;
+  color: #f8b600;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
+  font-weight: 500;
 }
 
 a:hover {
-  color: #0056b3;
+  color: #dca100;
   text-decoration: underline;
 }
 
@@ -4243,7 +4244,11 @@ tbody.collapse.show {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
+  transition: transform 0.3s;
+  /* border-radius: 0.25rem; */
+}
+.card:hover {
+  transform: translateY(-2px);
 }
 
 .card > hr {
@@ -4593,8 +4598,8 @@ tbody.collapse.show {
 .badge {
   display: inline-block;
   padding: 0.25em 0.4em;
-  font-size: 75%;
-  font-weight: 700;
+  font-size: 80%;
+  font-weight: 500;
   line-height: 1;
   text-align: center;
   white-space: nowrap;
@@ -8329,6 +8334,9 @@ button.bg-dark:focus {
   font-weight: 400 !important;
 }
 
+.fw-semibold {
+  font-weight: 500 !important;
+}
 .font-weight-bold {
   font-weight: 700 !important;
 }

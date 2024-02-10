@@ -102,6 +102,7 @@
 <script src="<?php echo BASE_URL; ?>js/owl.carousel.min.js"></script>
 <script src="<?php echo BASE_URL; ?>js/main.js"></script>
 <script src="<?php echo BASE_URL; ?>js/index.js"></script>
+<script src="<?php echo BASE_URL; ?>js/hotels.js"></script>
 
 
 

@@ -1508,6 +1508,10 @@ h6 {
   outline: none !important;
   border: 1px solid #f8b600 !important;
 }
+.single-input-primary:hover {
+  outline: none !important;
+  border: 1px solid #f8b600 !important;
+}
 
 .single-input-accent {
   display: block;
@@ -4260,6 +4264,14 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .contact-page-area .form-area .genric-btn:hover {
+  border: 1px solid #f8b600;
+  color: #f8b600 !important;
+}
+a.genric-btn {
+  border: 1px solid #f8b600;
+  color: #ffffff !important;
+}
+a.genric-btn:hover {
   border: 1px solid #f8b600;
   color: #f8b600 !important;
 }

@@ -1,4 +1,5 @@
 <?php 
+require './config/status_check.php';
 require './config/db_con.php';
 if (isset($_COOKIE['remember_me'])) {
     // Decode the cookie data
@@ -20,6 +21,7 @@ if (isset($_COOKIE['remember_me'])) {
         $_SESSION['user_last_name'] = $row['last_name'];
         $_SESSION['user_id'] = $row['user_id'];
         $_SESSION['user_is_verified'] = $row['is_verified'];
+        $_SESSION['user_status'] = $row['status'];
 
         // Update the cookie expiration time for the next 7 days
         setcookie('remember_me', $_COOKIE['remember_me'], time() + (7 * 24 * 60 * 60), '/');

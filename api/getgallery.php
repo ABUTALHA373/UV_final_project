@@ -17,7 +17,6 @@ if (isset($_GET['table']) && isset($_GET['column'])) {
     $stmt = $con->prepare("SELECT * FROM $table ORDER BY image_id DESC LIMIT ?, ?");
     $stmt->bind_param('ii', $offset, $pageSize);
     $stmt->execute();
-    
     $result = $stmt->get_result();
     while ($row = $result->fetch_assoc()) {
         $imageElement .= '<div class="col-md-4"><a href="' . $row["image_url"] . '" class="img-gal"><div class="single-gallery-image" style="background: url(' . $row["image_url"] . ');"></div></a></div>';

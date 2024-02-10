@@ -14,13 +14,16 @@ body::-webkit-scrollbar {
 ::-webkit-scrollbar-thumb {
   background-color: #ffd23e; /* Replace with your desired color (gray-300) */
 }
+#sticky {
+  /* position: --webkit-sticky; */
+  position: sticky;
+  top: 5.2rem;
+}
 /* ::placeholder {
   color: #b0b0b0;
   opacity: 1; 
 }
-
 ::-ms-input-placeholder {
-
   color: #b0b0b0;
 } */
 
@@ -39,6 +42,15 @@ body {
 .bg-gray {
   background-color: #e5e7eb !important;
 }
+.text-primary {
+  color: #f8b600 !important;
+}
+.bg-primary {
+  background-color: #f8b600 !important;
+}
+.text-gray {
+  color: #787878 !important;
+}
 #mobile-nav-toggle {
   padding-right: 15px;
 }
@@ -49,7 +61,7 @@ body {
 .nheader-height {
   height: 109.75px !important;
 }
-.account-info-area i {
+.page_profile .account-info-area i {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -116,6 +128,9 @@ body {
 }
 .bb {
   border-bottom: 2px solid #f8b600;
+}
+.bp {
+  border: 1px solid #f8b600;
 }
 .section-padding {
   padding: 80px;
@@ -242,10 +257,16 @@ body {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
-  height: 40px;
+  height: 41.6px;
   /* margin-bottom: 15px; */
   outline: none !important;
   transition: all 0.15s ease-in-out;
+}
+.select2.select2-container .select2-selection:hover {
+  border: 1px solid #f8b600;
+}
+.select2.select2-container .select2-selection:focus {
+  border: 1px solid #f8b600;
 }
 
 .select2.select2-container .select2-selection .select2-selection__rendered {
@@ -262,8 +283,8 @@ body {
   -webkit-border-radius: 0 3px 3px 0;
   -moz-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
-  height: 38px;
-  width: 38px;
+  height: 40px;
+  width: 40px;
 }
 
 .select2.select2-container.select2-container--open
@@ -437,7 +458,35 @@ input[type="file"]::file-selector-button:hover {
 .pagination .page-item span :nth-child(:last-child) {
   border-left: 1px solid white;
 }
+.card .link a:hover {
+  background-color: #ebebeb;
+}
+.start_price {
+  font-size: 13px;
+}
 
+.start_price:after {
+  content: "";
+  border-bottom: 1px solid #f33a3a;
+  -webkit-transform: skewY(-8deg);
+  transform: skewY(-8deg);
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+
+.cancel_relative {
+  position: relative;
+}
+.cancel {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  cursor: pointer;
+  border-radius: 50%;
+  color: red;
+}
 /*
 /
 /
@@ -520,4 +569,40 @@ input[type="file"]::file-selector-button:hover {
 .column-gap-5 {
   -moz-column-gap: 3rem !important;
   column-gap: 3rem !important;
+}
+
+/* card for hotel and flight */
+
+#CarouselTest,
+.carousel-inner,
+.carousel-item {
+  height: 100%;
+}
+.card_images,
+.card_img_room {
+  height: 13rem;
+}
+.card_img_hotel {
+  height: 16rem;
+}
+.card_images img,
+.card_img_room img,
+.card_img_hotel img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+@media (min-width: 769px) {
+  .card_images,
+  .card_img_room {
+    height: 13rem;
+  }
+  .card_img_hotel {
+    height: 20rem;
+  }
+}
+
+@media (min-width: 700px) {
+}
+@media (min-width: 1140px) {
 }

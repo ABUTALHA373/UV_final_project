@@ -15,7 +15,7 @@ $(document).ready(function () {
     // ------- Datepicker  js --------//  
 
     $(function () {
-        $(".date-picker").datepicker({
+        $('[name="dob"]').datepicker({
             dateFormat: 'yy-mm-dd',
             // showButtonPanel: true,  
             changeMonth: true,
@@ -23,6 +23,23 @@ $(document).ready(function () {
             yearRange: '1910:c'
         });
 
+    });
+    $('[name="Check-in-date"]').datepicker({
+        minDate: 0, // Set minDate to 0 to disable previous dates
+        dateFormat: "yy-mm-dd", // Set the desired date format
+        onSelect: function (selectedDate) {
+            // Set the minimum date for check-out-date as the selected check-in-date
+            $('[name="Check-out-date"]').datepicker("option", "minDate", selectedDate);
+        }
+    });
+
+    $('[name="Check-out-date"]').datepicker({
+        minDate: 0, // Set minDate to 0 to disable previous dates
+        dateFormat: "yy-mm-dd", // Set the desired date format
+        onSelect: function (selectedDate) {
+            // Set the maximum date for check-in-date as the selected check-out-date
+            $('[name="Check-in-date"]').datepicker("option", "maxDate", selectedDate);
+        }
     });
 
 

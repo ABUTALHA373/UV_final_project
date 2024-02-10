@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($select_stmt->fetch()) {
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['user_is_verified'] = $is_verified;
+                $_SESSION['user_status'] = $row['status'];
             } else {
                 $errorType = 'Database Error';
                 $errorMessage = 'User with the provided details not found.';

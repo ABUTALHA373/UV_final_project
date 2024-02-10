@@ -1,560 +1,164 @@
-	<!DOCTYPE html>
-	<html lang="zxx" class="no-js">
-	<head>
-		<!-- Mobile Specific Meta -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<!-- Favicon-->
-		<link rel="shortcut icon" href="img/fav.png">
-		<!-- Author Meta -->
-		<meta name="author" content="colorlib">
-		<!-- Meta Description -->
-		<meta name="description" content="">
-		<!-- Meta Keyword -->
-		<meta name="keywords" content="">
-		<!-- meta character set -->
-		<meta charset="UTF-8">
-		<!-- Site Title -->
-		<title>Travel</title>
+<?php
+session_start();
+$isLoggedIn = isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SESSION['user_first_name']) && isset($_SESSION['user_last_name']);
+$isVerified = isset($_SESSION['user_is_verified']);
+require './include/nheader.php';
+?>
+<div id="page_hotel_search">
+    <section class="account-info-area section-bg-gray section-gap-sm">
+        <div class="container p-0">
+            <div class="py-4 px-4 mb-2 bg-white border">
+                <form class="m-0 p-0" action="" method="GET">
+                    <div class="row gap-2">
+                        <div class="col-lg-2 col-md-12 col-sm-12 p-1">
+                            <div>
+                                <label class="m-0 pl-1 w-100">Place:</label>
+                                <select class="w-100 " id="hotel_place_select">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 p-1">
+                            <div class="">
+                                <label class="m-0 pl-1 w-100">Check-in date:</label>
+                                <input type="text" class="single-input single-input-primary border date-picker"
+                                    name="Check-in-date" placeholder="Select a date " onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Select a date'">
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md col-sm p-1">
+                            <div class=""><label class="m-0 pl-1 w-100">Check-out date:</label>
+                                <input type="text" class="single-input single-input-primary border date-picker"
+                                    name="Check-out-date" placeholder="Select a date " onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Select a date'">
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 p-1">
+                            <div class=""><label class="m-0 pl-1 w-100">Adults:<small>(Per room)</small></label>
+                                <input type="number" name="adults" placeholder="Adults" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Adults'" required
+                                    class="single-input single-input-primary border">
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md col-sm p-1">
+                            <div class=""><label class="m-0 pl-1 w-100">Total rooms:</label>
+                                <input type="number" name="total-room" placeholder="Total rooms"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Total rooms'" required
+                                    class="single-input single-input-primary border">
+                            </div>
+                        </div>
+                        <div class="col-lg col-md-12 col-sm-12 p-1">
+                            <div class="">
+                                <div style="height: 22.75px;"></div>
+                                <button type="submit" class="genric-btn primary w-100">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row gap-2">
+                <div class="col-md-12 col-lg-3 border bg-white p-0 m-0">
+                    <div class="card-header row">
+                        <div class="col-10 px-3">
+                            <h4>Filters</h4>
+                        </div>
+                        <div class="col-2 px-3">
+                            <a data-toggle="collapse" href="#collapseExample" aria-expanded="false"
+                                aria-controls="collapseExample"><b><i class="fa fa-chevron-down"
+                                        aria-hidden="true"></i></b>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="collapse show p-3" id="collapseExample">
+                        <div class=" border px-2 pt-2">
+                            <h6 class="border-bottom mb-2">Hotel Rating:</h6>
+                            <div class="">
+                                <input class="" type="checkbox" name="hotel_rating[]" id="rating5" value="5">
+                                <label class="" for="rating5">5 star</label>
+                            </div>
+                            <div class="">
+                                <input class="" type="checkbox" name="hotel_rating[]" id="rating4" value="4">
+                                <label class="" for="rating4">4 star</label>
+                            </div>
+                            <div class="">
+                                <input class="" type="checkbox" name="hotel_rating[]" id="rating3" value="3">
+                                <label class="" for="rating3">3 star</label>
+                            </div>
+                            <div class="">
+                                <input class="" type="checkbox" name="hotel_rating[]" id="rating2" value="2">
+                                <label class="" for="rating2">2 star</label>
+                            </div>
+                            <div class="">
+                                <input class="" type="checkbox" name="hotel_rating[]" id="rating1" value="1">
+                                <label class="" for="rating1">1 star</label>
+                            </div>
+                        </div>
+                        <div class="border mt-3 px-2 pt-2">
+                            <h6 class="border-bottom mb-2">Popularity:</h6>
+                            <div class="">
+                                <input class="" type="radio" name="popularity" id="high" value="high">
+                                <label class="" for="high">High</label>
+                            </div>
+                            <div class="">
+                                <input class="" type="radio" name="popularity" id="medium" value="low">
+                                <label class="" for="medium">Medium</label>
+                            </div>
+                        </div>
+                        <div class="border mt-3 px-2 pt-2">
+                            <h6 class="border-bottom mb-2">Price order:</h6>
+                            <div class="">
+                                <input class="" type="radio" name="price_order" id="l2h" value="l2h">
+                                <label class="" for="l2h">Low to High</label>
+                            </div>
+                            <div class="">
+                                <input class="" type="radio" name="price_order" id="h2l" value="h2l">
+                                <label class="" for="h2l">High to Low</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col border bg-white p-0 m-0">
+                    <div class="card-header">
+                        <h4 class="text-center">Hotels</h4>
+                    </div>
+                    <div class="p-3" id="card_container">
+                        <!-- from js  -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- End about-info Area -->
 
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
-			<!--
-			CSS
-			============================================= -->
-			<link rel="stylesheet" href="css/linearicons.css">
-			<link rel="stylesheet" href="css/font-awesome.min.css">
-			<link rel="stylesheet" href="css/bootstrap.css">
-			<link rel="stylesheet" href="css/magnific-popup.css">
-			<link rel="stylesheet" href="css/jquery-ui.css">				
-			<link rel="stylesheet" href="css/nice-select.css">							
-			<link rel="stylesheet" href="css/animate.min.css">
-			<link rel="stylesheet" href="css/owl.carousel.css">				
-			<link rel="stylesheet" href="css/main.css">
-		</head>
-		<body>	
-			<header id="header">
-				<div class="header-top">
-					<div class="container">
-			  		<div class="row align-items-center">
-			  			<div class="col-lg-6 col-sm-6 col-6 header-top-left">
-			  				<ul>
-			  					<li><a href="#">Visit Us</a></li>
-			  					<li><a href="#">Buy Tickets</a></li>
-			  				</ul>			
-			  			</div>
-			  			<div class="col-lg-6 col-sm-6 col-6 header-top-right">
-							<div class="header-social">
-								<a href="#"><i class="fa fa-facebook"></i></a>
-								<a href="#"><i class="fa fa-twitter"></i></a>
-								<a href="#"><i class="fa fa-dribbble"></i></a>
-								<a href="#"><i class="fa fa-behance"></i></a>
-							</div>
-			  			</div>
-			  		</div>			  					
-					</div>
-				</div>
-				<div class="container main-menu">
-					<div class="row align-items-center justify-content-between d-flex">
-				      <div id="logo">
-				        <a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
-				      </div>
-				      <nav id="nav-menu-container">
-				        <ul class="nav-menu">
-				          <li><a href="index.html">Home</a></li>
-				          <li><a href="about.html">About</a></li>
-				          <li><a href="packages.html">Packages</a></li>
-				          <li><a href="hotels.html">Hotels</a></li>
-				          <li><a href="insurance.html">Insurence</a></li>
-				          <li class="menu-has-children"><a href="">Blog</a>
-				            <ul>
-				              <li><a href="blog-home.html">Blog Home</a></li>
-				              <li><a href="blog-single.html">Blog Single</a></li>
-				            </ul>
-				          </li>	
-				          <li class="menu-has-children"><a href="">Pages</a>
-				            <ul>
-				            	  <li><a href="elements.html">Elements</a></li>
-						          <li class="menu-has-children"><a href="">Level 2 </a>
-						            <ul>
-						              <li><a href="#">Item One</a></li>
-						              <li><a href="#">Item Two</a></li>
-						            </ul>
-						          </li>					                		
-				            </ul>
-				          </li>					          					          		          
-				          <li><a href="contact.html">Contact</a></li>
-				        </ul>
-				      </nav><!-- #nav-menu-container -->					      		  
-					</div>
-				</div>
-			</header><!-- #header -->
-			  
-			<!-- start banner Area -->
-			<section class="about-banner relative">
-				<div class="overlay overlay-bg"></div>
-				<div class="container">				
-					<div class="row d-flex align-items-center justify-content-center">
-						<div class="about-content col-lg-12">
-							<h1 class="text-white">
-								Hotels				
-							</h1>	
-							<p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="hotels.html"> Hotels</a></p>
-						</div>	
-					</div>
-				</div>
-			</section>
-			<!-- End banner Area -->	
 
-			<!-- Start destinations Area -->
-			<section class="destinations-area section-gap">
-				<div class="container">
-		            <div class="row d-flex justify-content-center">
-		                <div class="menu-content pb-40 col-lg-8">
-		                    <div class="title text-center">
-		                        <h1 class="mb-10">Popular Destinations</h1>
-		                        <p>We all live in an age that belongs to the young at heart. Life that is becoming extremely fast, day to.</p>
-		                    </div>
-		                </div>
-		            </div>						
-					<div class="row">
-						<div class="col-lg-4">
-							<div class="single-destinations">
-								<div class="thumb">
-									<img src="img/hotels/d1.jpg" alt="">
-								</div>
-								<div class="details">
-									<h4 class="d-flex justify-content-between">
-										<span>Hilton Star Hotel</span>                              	
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>				
-										</div>	
-									</h4>
-									<p>
-										View on map   |   49 Reviews
-									</p>
-									<ul class="package-list">
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Swimming pool</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Gymnesium</span>
-											<span>No</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Wi-fi</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Room Service</span>
-											<span>No</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Air Condition</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Restaurant</span>
-											<span>Yes</span>
-										</li>												
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Price per night</span>
-											<a href="#" class="price-btn">$250</a>
-										</li>													
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-destinations">
-								<div class="thumb">
-									<img src="img/hotels/d2.jpg" alt="">
-								</div>
-								<div class="details">
-									<h4 class="d-flex justify-content-between">
-										<span>Hilton Star Hotel</span>                              	
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>				
-										</div>	
-									</h4>
-									<p>
-										View on map   |   49 Reviews
-									</p>
-									<ul class="package-list">
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Swimming pool</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Gymnesium</span>
-											<span>No</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Wi-fi</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Room Service</span>
-											<span>No</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Air Condition</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Restaurant</span>
-											<span>Yes</span>
-										</li>												
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Price per night</span>
-											<a href="#" class="price-btn">$250</a>
-										</li>													
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-destinations">
-								<div class="thumb">
-									<img src="img/hotels/d3.jpg" alt="">
-								</div>
-								<div class="details">
-									<h4 class="d-flex justify-content-between">
-										<span>Hilton Star Hotel</span>                              	
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>				
-										</div>	
-									</h4>
-									<p>
-										View on map   |   49 Reviews
-									</p>
-									<ul class="package-list">
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Swimming pool</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Gymnesium</span>
-											<span>No</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Wi-fi</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Room Service</span>
-											<span>No</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Air Condition</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Restaurant</span>
-											<span>Yes</span>
-										</li>												
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Price per night</span>
-											<a href="#" class="price-btn">$250</a>
-										</li>													
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-destinations">
-								<div class="thumb">
-									<img src="img/hotels/d4.jpg" alt="">
-								</div>
-								<div class="details">
-									<h4 class="d-flex justify-content-between">
-										<span>Hilton Star Hotel</span>                              	
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>				
-										</div>	
-									</h4>
-									<p>
-										View on map   |   49 Reviews
-									</p>
-									<ul class="package-list">
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Swimming pool</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Gymnesium</span>
-											<span>No</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Wi-fi</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Room Service</span>
-											<span>No</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Air Condition</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Restaurant</span>
-											<span>Yes</span>
-										</li>												
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Price per night</span>
-											<a href="#" class="price-btn">$250</a>
-										</li>													
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-destinations">
-								<div class="thumb">
-									<img src="img/hotels/d5.jpg" alt="">
-								</div>
-								<div class="details">
-									<h4 class="d-flex justify-content-between">
-										<span>Hilton Star Hotel</span>                              	
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>				
-										</div>	
-									</h4>
-									<p>
-										View on map   |   49 Reviews
-									</p>
-									<ul class="package-list">
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Swimming pool</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Gymnesium</span>
-											<span>No</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Wi-fi</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Room Service</span>
-											<span>No</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Air Condition</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Restaurant</span>
-											<span>Yes</span>
-										</li>												
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Price per night</span>
-											<a href="#" class="price-btn">$250</a>
-										</li>													
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-destinations">
-								<div class="thumb">
-									<img src="img/hotels/d6.jpg" alt="">
-								</div>
-								<div class="details">
-									<h4 class="d-flex justify-content-between">
-										<span>Hilton Star Hotel</span>                              	
-										<div class="star">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>				
-										</div>	
-									</h4>
-									<p>
-										View on map   |   49 Reviews
-									</p>
-									<ul class="package-list">
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Swimming pool</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Gymnesium</span>
-											<span>No</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Wi-fi</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Room Service</span>
-											<span>No</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Air Condition</span>
-											<span>Yes</span>
-										</li>
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Restaurant</span>
-											<span>Yes</span>
-										</li>												
-										<li class="d-flex justify-content-between align-items-center">
-											<span>Price per night</span>
-											<a href="#" class="price-btn">$250</a>
-										</li>													
-									</ul>
-								</div>
-							</div>
-						</div>																														
-					</div>
-				</div>	
-			</section>
-			<!-- End destinations Area -->
-			
+<?php
+require './include/footer.php';
+?>
+<script>
+// JavaScript code to remove the "show" class when screen size is less than lg
+const filterToggle = document.getElementById('filterToggle');
+const filterCollapse = document.getElementById('collapseExample');
 
-			<!-- Start home-about Area -->
-			<section class="home-about-area">
-				<div class="container-fluid">
-					<div class="row align-items-center justify-content-end">
-						<div class="col-lg-6 col-md-12 home-about-left">
-							<h1>
-								Did not find your Package? <br>
-								Feel free to ask us. <br>
-								We‘ll make it for you
-							</h1>
-							<p>
-								inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed.
-							</p>
-							<a href="#" class="primary-btn text-uppercase">request custom price</a>
-						</div>
-						<div class="col-lg-6 col-md-12 home-about-right no-padding">
-							<img class="img-fluid" src="img/hotels/about-img.jpg" alt="">
-						</div>
-					</div>
-				</div>	
-			</section>
-			<!-- End home-about Area -->
+function checkScreenSize() {
+    if (window.innerWidth < 992) { // 992px is the lg breakpoint in Bootstrap
+        filterCollapse.classList.remove('show');
+    } else {
+        filterCollapse.classList.add('show');
+    }
+}
 
-			<!-- start footer Area -->		
-			<footer class="footer-area section-gap">
-				<div class="container">
+// Initial check on page load
+checkScreenSize();
 
-					<div class="row">
-						<div class="col-lg-3  col-md-6 col-sm-6">
-							<div class="single-footer-widget">
-								<h6>About Agency</h6>
-								<p>
-									The world has become so fast paced that people don’t want to stand by reading a page of information, they would much rather look at a presentation and understand the message. It has come to a point 
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6 col-sm-6">
-							<div class="single-footer-widget">
-								<h6>Navigation Links</h6>
-								<div class="row">
-									<div class="col">
-										<ul>
-											<li><a href="#">Home</a></li>
-											<li><a href="#">Feature</a></li>
-											<li><a href="#">Services</a></li>
-											<li><a href="#">Portfolio</a></li>
-										</ul>
-									</div>
-									<div class="col">
-										<ul>
-											<li><a href="#">Team</a></li>
-											<li><a href="#">Pricing</a></li>
-											<li><a href="#">Blog</a></li>
-											<li><a href="#">Contact</a></li>
-										</ul>
-									</div>										
-								</div>							
-							</div>
-						</div>							
-						<div class="col-lg-3  col-md-6 col-sm-6">
-							<div class="single-footer-widget">
-								<h6>Newsletter</h6>
-								<p>
-									For business professionals caught between high OEM price and mediocre print and graphic output.									
-								</p>								
-								<div id="mc_embed_signup">
-									<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscription relative">
-										<div class="input-group d-flex flex-row">
-											<input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
-											<button class="btn bb-btn"><span class="lnr lnr-location"></span></button>		
-										</div>									
-										<div class="mt-10 info"></div>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3  col-md-6 col-sm-6">
-							<div class="single-footer-widget mail-chimp">
-								<h6 class="mb-20">InstaFeed</h6>
-								<ul class="instafeed d-flex flex-wrap">
-									<li><img src="img/i1.jpg" alt=""></li>
-									<li><img src="img/i2.jpg" alt=""></li>
-									<li><img src="img/i3.jpg" alt=""></li>
-									<li><img src="img/i4.jpg" alt=""></li>
-									<li><img src="img/i5.jpg" alt=""></li>
-									<li><img src="img/i6.jpg" alt=""></li>
-									<li><img src="img/i7.jpg" alt=""></li>
-									<li><img src="img/i8.jpg" alt=""></li>
-								</ul>
-							</div>
-						</div>						
-					</div>
+// Check on window resize
+window.addEventListener('resize', checkScreenSize);
 
-					<div class="row footer-bottom d-flex justify-content-between align-items-center">
-						<p class="col-lg-8 col-sm-12 footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-						<div class="col-lg-4 col-sm-12 footer-social">
-							<a href="#"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-							<a href="#"><i class="fa fa-dribbble"></i></a>
-							<a href="#"><i class="fa fa-behance"></i></a>
-						</div>
-					</div>
-				</div>
-			</footer>
-			<!-- End footer Area -->	
 
-			<script src="js/vendor/jquery-2.2.4.min.js"></script>
-			<script src="js/popper.min.js"></script>
-			<script src="js/vendor/bootstrap.min.js"></script>			
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>		
- 			<script src="js/jquery-ui.js"></script>					
-  			<script src="js/easing.min.js"></script>			
-			<script src="js/hoverIntent.js"></script>
-			<script src="js/superfish.min.js"></script>	
-			<script src="js/jquery.ajaxchimp.min.js"></script>
-			<script src="js/jquery.magnific-popup.min.js"></script>						
-			<script src="js/jquery.nice-select.min.js"></script>					
-			<script src="js/owl.carousel.min.js"></script>							
-			<script src="js/mail-script.js"></script>	
-			<script src="js/main.js"></script>	
-		</body>
-	</html>
+// In your Javascript (external .js resource or <script> tag)
+$(document).ready(function() {
+    $('#select2').select2();
+});
+</script>
+</body>
+
+</html>

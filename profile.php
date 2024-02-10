@@ -1,18 +1,26 @@
 <?php
 session_start();
-$isLoggedIn = isset($_SESSION['user_id'] ) && isset($_SESSION['user_email']) && isset($_SESSION['user_first_name']) && isset($_SESSION['user_last_name']);
+require './config/status_check.php';
+$isLoggedIn = isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SESSION['user_first_name']) && isset($_SESSION['user_last_name']);
 $isVerified = isset($_SESSION['user_is_verified']);
-if(!$isLoggedIn){
+$status = $_SESSION['user_status'];
+if (!$isLoggedIn) {
     header('Location:./login.php');
+} else if ($status == 'blocked') {
+    session_destroy();
+    header('Location:./login.php?error=user_blocked');
+}else if ($status == 'deleted') {
+    session_destroy();
+    header('Location:./login.php?error=account_deleted');
 }
 require './include/nheader.php';
-
 ?>
+
 <div id="page_profile">
     <section class="account-info-area section-bg-gray section-gap-sm">
         <div class="container p-0">
             <!-- <h2 class="py-4 px-4 mb-2 bg-white border text-center">Account Settings</h2> -->
-            <div class="row gap-3">
+            <div class="row gap-2">
                 <div class="col-md-4 col-lg-3 border bg-white p-0 m-0">
                     <div class="">
                         <div class="list-group corner-border" id="list-tab" role="tablist">
@@ -125,7 +133,7 @@ require './include/nheader.php';
                                             <div class="col-lg-6 col-sm m-0 p-0 col-sm">
                                                 <label class="mb-0 req">Gender:</label>
                                                 <div>
-                                                    <select id="gender" name="gender" required class=>
+                                                    <select id="gender" name="gender" required class>
                                                         <option value="" disabled selected>Select Gender</option>
                                                         <option value="male">Male</option>
                                                         <option value="female">Female</option>
@@ -173,12 +181,12 @@ require './include/nheader.php';
                                                 <label class="mb-0">Email verification:</label>
                                                 <div>
                                                     <?php
-                                                if($_SESSION['user_is_verified']==1){
-                                                    echo '<span class="badge badge-success">Verified</span>';
-                                                }else{
-                                                    echo '<span class="badge badge-danger">Not verified</span>';
-                                                }
-                                                ?>
+                                                    if ($_SESSION['user_is_verified'] == 1) {
+                                                        echo '<span class="badge badge-success">Verified</span>';
+                                                    } else {
+                                                        echo '<span class="badge badge-danger">Not verified</span>';
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -476,9 +484,9 @@ require './include/nheader.php';
                                             <label class="mb-0">Email verification:</label>
                                             <div>
                                                 <?php
-                                                if($_SESSION['user_is_verified']==1){
+                                                if ($_SESSION['user_is_verified'] == 1) {
                                                     echo '<span class="badge badge-success">Verified</span>';
-                                                }else{
+                                                } else {
                                                     echo '<span class="badge badge-danger">Not verified</span>';
                                                 }
                                                 ?>
@@ -561,30 +569,30 @@ require './include/nheader.php';
 require './include/footer.php';
 if (isset($_GET['message'])) {
     $message = urldecode($_GET['message']);
-    if ($message=='verified') {
-        
+    if ($message == 'verified') {
+
         echo '<script>Swal.fire({
             title: "Success!",
             text: "Your email is verified now!",
             icon: "success"
           });</script>';
-    }else if ($message=='already_verified') {
-        
+    } else if ($message == 'already_verified') {
+
         echo '<script>Swal.fire({
             title: "Already Verified!",
             text: "Your email has already been verified!",
             confirmButtonColor: "#f8b600",
             icon: "info"
           });</script>';
-    }else if ($message=='invalid') {
-        
+    } else if ($message == 'invalid') {
+
         echo '<script>Swal.fire({
             title: "Invalid!",
             text: "Email verification invalid!",
             icon: "error"
           });</script>';
-    }else if ($message=='token_error') {
-        
+    } else if ($message == 'token_error') {
+
         echo '<script>Swal.fire({
             title: "Token error!",
             text: "Something is wrong with the token!",
