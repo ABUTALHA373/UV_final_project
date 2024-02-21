@@ -25,7 +25,7 @@ require './include/header.php';
 <!-- End banner Area -->
 
 <!-- Start about-info Area -->
-<section class="c-area section-gap">
+<section class="c-area section-gap section-bg-white">
     <div class="container">
         <p>At BOOKITFAST, we take the security of your payment information seriously. Here are the measures we implement
             to ensure a secure payment environment:</p>

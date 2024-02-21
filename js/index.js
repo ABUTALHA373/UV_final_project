@@ -1,8 +1,9 @@
 // side bar at services
-var taka = 'BDT';
+var taka = '৳';
+var BASE_URL = "<?php echo BASE_URL; ?>";
 function getallincondition(table, column, value, callback) {
   $.ajax({
-    url: 'api/getallincondition.php',
+    url: './api/getallincondition.php',
     method: 'GET',
     data: {
       table: table,
@@ -21,16 +22,19 @@ function getallincondition(table, column, value, callback) {
     }
   });
 }
+function formatDateTime(dateTimeString) {
+  const options = {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  };
 
-// Example usage
-// getallincondition('yourTable', 'yourColumn', 'yourValue', function(response, error) {
-//   if (error) {
-//     // Handle error
-//   } else {
-//     // Use the response
-//     console.log(response);
-//   }
-// });
+  const formattedDate = new Date(dateTimeString).toLocaleString('en-US', options);
+  return formattedDate.replace(',', '');
+}
 
 
 $(document).ready(function () {
@@ -505,6 +509,7 @@ const countryOptions = [
 //profile page
 $(document).ready(function () {
   if ($("#page_profile").length > 0) {
+
     $("#gender").select2({
       minimumResultsForSearch: Infinity,
     });
@@ -525,10 +530,12 @@ $(document).ready(function () {
         // },
         dataType: "json",
         success: function (response) {
+          $("#profile_image").attr("src", response[0].profile_image_url);
           $("#email").val(response[0].email);
           $("#phone_number").val(response[0].phone_number);
           $("#first_name").val(response[0].first_name);
           $("#last_name").val(response[0].last_name);
+          $("#full_name").text(response[0].first_name + ' ' + response[0].last_name);
           $("#nid").val(response[0].nid);
           $("#dob").val(response[0].dob);
           $("#gender").val(response[0].gender).change();
@@ -735,6 +742,7 @@ $(document).ready(function () {
       }
     });
 
+
     $("#cp_password-toggle").click(function () {
       togglePasswordVisibility("current_password");
     });
@@ -849,7 +857,7 @@ $(document).ready(function () {
     fetchData();
     function fetchData(page) {
       $.ajax({
-        url: 'api/getmyupload.php',
+        url: './api/getmyupload.php',
         method: 'GET',
         data: {
           table: 'gallery',
@@ -866,8 +874,6 @@ $(document).ready(function () {
           $('#gallery-items').empty().append(data);
           $('.pagination').empty().append(paging);
           initMagnificPopup();
-
-
 
         },
         error: function (error) {
@@ -904,6 +910,325 @@ $(document).ready(function () {
       });
     }
 
+
+    $(".add_profile_img").on("click", function () {
+      $("#profile_image_modal").modal("show");
+    });
+
+    $("#modal_close").on("click", function () {
+      $("#profile_image_modal").modal("hide");
+    });
+    $("#x_modal_close").on("click", function () {
+      $("#profile_image_modal").modal("hide");
+    });
+
+
+    $("#modal_submit").on("click", function () {
+      var formData = new FormData($("#profile_pic_upload")[0]);
+
+      // Make AJAX post request
+      $.ajax({
+        type: "POST",
+        url: "./api/uploadprofileimage.php", // Replace with the actual URL to handle the upload
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+          console.log(response);
+          $("#file_profile_image").val("");
+          $("#image_preview").attr("src", "");
+          $("#profile_image_modal").modal("hide");
+          getuserdata();
+        },
+        error: function (error) {
+          console.log("Error:", error);
+          // Handle error, e.g., display an error message
+        }
+      });
+    });
+
+
+    //my booking - flight
+    $.ajax({
+      url: './api/getbooking.php',
+      method: 'GET',
+      data: {
+        table: 'flight_bookings'
+      },
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+        $("#flightDataTable").DataTable({
+          // scrollX: true,
+          info: false,
+          lengthChange: false,
+          searching: false,
+          columnDefs: [{ targets: "_all", className: "border-right" }, { targets: [0], className: "border-left" }, { targets: [0], orderable: false }],
+          data: response.data,
+          columns: [
+
+            {
+              data: null,
+              title: "Details",
+              width: "3%",
+              render: function (data, type, row) {
+                var actions =
+                  '<a href="javascript:void(0)" class="text-info" data-user-id="' +
+                  row.user_id +
+                  '"><i class="fa fa-download mt-1" aria-hidden="true"></i></a>';
+                return actions;
+              },
+            },
+            { data: "booking_id", title: "Booking ID" },
+            {
+              data: "booking_date",
+              title: "Booking Time",
+              render: function (data, type, row) {
+                // Assuming data is in the format 'YYYY-MM-DD HH:mm:ss'
+                const dateObj = new Date(data);
+                const formattedDate = dateObj.toLocaleString('en-US', {
+                  day: 'numeric',
+                  month: 'short',
+                  year: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  hour12: false,
+                });
+                return formattedDate.replace(',', '');
+              },
+            },
+            { data: "total_price", title: "Fare" },
+            {
+              data: "payment_status",
+              title: "Status",
+              render: function (data, type, row) {
+                return data === 'paid'
+                  ? '<span class="badge bg-success text-white">Paid</span>'
+                  : '<span class="badge bg-danger text-white">Unpaid</span>';
+              },
+            },
+            { data: "transaction_id", title: "Transaction ID" },
+          ],
+          order: [[2, "desc"]],
+          lengthMenu: [5],
+
+        });
+      },
+      error: function (error) {
+        // Handle error response
+        console.log(error);
+      }
+    });
+
+    //my booking - hotel
+    $.ajax({
+      url: './api/getbooking.php',
+      method: 'GET',
+      data: {
+        table: 'hotel_bookings'
+      },
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+        $("#hotelDataTable").DataTable({
+          // scrollX: true,
+          info: false,
+          lengthChange: false,
+          searching: false,
+          columnDefs: [{ targets: "_all", className: "border-right" }, { targets: [0], className: "border-left" }, { targets: [0], orderable: false }],
+          data: response.data,
+          columns: [
+
+            {
+              data: null,
+              title: "Details",
+              width: "3%",
+              render: function (data, type, row) {
+                var actions =
+                  '<a href="javascript:void(0)" class="text-info" data-user-id="' +
+                  row.user_id +
+                  '"><i class="fa fa-download mt-1" aria-hidden="true"></i></a>';
+                return actions;
+              },
+            },
+            { data: "booking_id", title: "Booking ID" },
+            {
+              data: "booking_date",
+              title: "Booking Time",
+              render: function (data, type, row) {
+                // Assuming data is in the format 'YYYY-MM-DD HH:mm:ss'
+                const dateObj = new Date(data);
+                const formattedDate = dateObj.toLocaleString('en-US', {
+                  day: 'numeric',
+                  month: 'short',
+                  year: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  hour12: false,
+                });
+                return formattedDate.replace(',', '');
+              },
+            },
+            { data: "total_price", title: "Fare" },
+            {
+              data: "payment_status",
+              title: "Status",
+              render: function (data, type, row) {
+                return data === 'paid'
+                  ? '<span class="badge bg-success text-white">Paid</span>'
+                  : '<span class="badge bg-danger text-white">Unpaid</span>';
+              },
+            },
+            { data: "transaction_id", title: "Transaction ID" },
+          ],
+          order: [[2, "desc"]],
+          lengthMenu: [5],
+
+        });
+      },
+      error: function (error) {
+        // Handle error response
+        console.log(error);
+      }
+    });
+
+
+    //my blog details
+    function myblog() {
+      $.ajax({
+        url: './blog/api/myblog.php',
+        method: 'GET',
+        data: {
+          column: 'user_id',
+          value: 'user_id',
+        },
+        dataType: "json",
+        success: function (response) {
+          console.log(response);
+          $("#myblogDataTable").DataTable({
+            info: false,
+            lengthChange: false,
+            searching: false,
+            columnDefs: [
+              { targets: "_all", className: "border-right" },
+              { targets: [0], className: "border-left", orderable: false, width: "5%" },
+              { targets: [1], className: "text-justify", },
+            ],
+            data: response,
+            columns: [
+              {
+                data: null,
+                title: "Action",
+                render: function (data, type, row) {
+                  var actions =
+                    '<div class="d-flex justify-content-center mt-1"><a href="./blog/post.php?id=' +
+                    row.post_id +
+                    '" class="text-info mr-2 view_user"><i class="fa fa-expand" aria-hidden="true"></i></a><a href="javascript:void(0)" class="text-danger delete_user" data-post-id="' +
+                    row.post_id +
+                    '"><i class="fa fa-trash" aria-hidden="true"></i></a></div>';
+                  return actions;
+                },
+              },
+              {
+                data: "title",
+                title: "Title",
+                render: function (data, type, row) {
+                  // Break line after every 45 characters
+                  return data.replace(/(.{50})/g, "$1<br>");
+                },
+              },
+
+              { data: "category_name", title: "Category" },
+              {
+                data: "created_at",
+                title: "Date-Time",
+                render: function (data, type, row) {
+                  const dateObj = new Date(data);
+                  const formattedDate = dateObj.toLocaleString('en-US', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false,
+                  });
+                  return formattedDate.replace(',', '');
+                },
+              },
+              {
+                data: "published",
+                title: "Status",
+                render: function (data, type, row) {
+                  return data === 1
+                    ? '<span class="badge bg-success text-white">Published</span>'
+                    : '<span class="badge bg-danger text-white">Unpublished</span>';
+                },
+              },
+            ],
+            order: [[3, "desc"]],
+          });
+
+        },
+        error: function (error) {
+          console.log(error);
+        }
+      });
+
+    }
+    myblog();
+
+    function deletemyblogpost(postId) {
+      return new Promise(function (resolve, reject) {
+        $.ajax({
+          url: './blog/api/deletemyblogpost.php',
+          method: 'POST',
+          data: {
+            postId: postId
+          },
+          dataType: 'json',
+          success: function (response) {
+            // Handle success
+            console.log(response);
+            resolve(response);
+          },
+          error: function (error) {
+            // Handle error
+            reject(error);
+          }
+        });
+      });
+    }
+
+    //my blog delete
+    $("#myblogDataTable").on("click", ".delete_user", function () {
+      var postId = $(this).data("post-id").toString();
+      // console.log(userId);
+      Swal.fire({
+        title: "Do you want to delete the user?",
+        // showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Delete",
+        denyButtonText: `Go Back`
+      }).then((result) => {
+        if (result.isConfirmed) {
+          //calling ajax to delete
+          deletemyblogpost(postId)
+            .then(function (result) {
+              if ($.fn.DataTable.isDataTable('#myblogDataTable')) {
+                $('#myblogDataTable').DataTable().destroy();
+              }
+              myblog();
+              Swal.fire("Deleted!", "", "success");
+            })
+            .catch(function (error) {
+              // console.error(error);
+            });
+
+
+        }
+      });
+    });
+
   }
 
 });
@@ -912,7 +1237,7 @@ $(document).ready(function () {
     fetchData();
     function fetchData(page) {
       $.ajax({
-        url: 'api/getgallery.php',
+        url: './api/getgallery.php',
         method: 'GET',
         data: {
           table: 'gallery',
@@ -1084,19 +1409,52 @@ $(document).ready(function () {
   }
 });
 
+//hotel search
 $(document).ready(function () {
   if ($("#page_hotel_search").length > 0) {
     $("#hotel_place_select").select2({
       // minimumResultsForSearch: Infinity,
     });
 
-    $.ajax({
-      url: 'api/hotels/droplocation.php',
+    function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, '\\$&');
+      var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    // Function to update hotel search form fields with received values
+    function updateHotelFormFields() {
+      const place = getParameterByName('place');
+      const checkInDate = getParameterByName('checkInDate');
+      const checkOutDate = getParameterByName('checkOutDate');
+      const adults = getParameterByName('adults');
+      const totalRooms = getParameterByName('totalRooms');
+
+      // Check if all values are present
+      if (place && checkInDate && checkOutDate && adults && totalRooms) {
+        // Update form fields
+        $('#hotel_place_select').val(place).trigger('change');
+        $('[name="Check-in-date"]').val(checkInDate);
+        $('[name="Check-out-date"]').val(checkOutDate);
+        $('[name="adults"]').val(adults);
+        $('[name="total-room"]').val(totalRooms);
+      } else {
+        // Handle the case where not all values are present
+        console.error('Not all values are present in the URL parameters.');
+      }
+    }
+
+    var lPromise = $.ajax({
+      url: './api/hotels/droplocation.php',
       type: 'GET',
       dataType: 'json',
       success: function (data) {
         $('#hotel_place_select').empty();
-        $('#hotel_place_select').append('<option disabled selected>Select Place</option>');
+        // $('#hotel_place_select').append('<option disabled selected>Select Place</option>');
         // console.log(data);
         var seenLocations = {};
         // Iterate through the array and append options
@@ -1112,151 +1470,56 @@ $(document).ready(function () {
       }
     });
 
-    // $('form').submit(function (event) {
-    //   event.preventDefault();
+    $.when(lPromise).done(function () {
+      // Handle your data if needed
+      updateHotelFormFields();
+      updateHotelResults();
+    });
+    function updateHotelResults() {
+      // Collect form data
+      var formData = {
+        place: $('#hotel_place_select').val(),
+        checkInDate: $('[name="Check-in-date"]').val(),
+        checkOutDate: $('[name="Check-out-date"]').val(),
+        adults: $('[name="adults"]').val(),
+        totalRoom: $('[name="total-room"]').val()
+      };
+      // Get selected star ratings
+      var selectedStarRatings = $('input[name="hotel_rating[]"]:checked').map(function () {
+        return parseInt(this.value); // Convert the value to integer
+      }).get();
 
-    //   // Collect form data
-    //   var formData = {
-    //     place: $('#hotel_place_select').val(),
-    //     checkInDate: $('[name="Check-in-date"]').val(),
-    //     checkOutDate: $('[name="Check-out-date"]').val(),
-    //     adults: $('[name="adults"]').val()
-    //   };
+      // Add selected star ratings to form data
+      formData['hotelRating'] = selectedStarRatings;
 
-    //   // Send AJAX request
-    //   $.ajax({
-    //     url: 'api/hotels/searchhotels.php',
-    //     type: 'GET',
-    //     data: formData,
-    //     dataType: 'json',
-    //     success: function (response) {
-    //       // Assuming you have a container div to append the hotel cards
-    //       var container = $('#card_container');
-    //       container.empty(); // Clear existing content
+      // Add "Popularity" filter
+      var selectedPopularity = $('input[name="popularity"]:checked').val();
+      var selectedPriceOrder = $('input[name="price_order"]:checked').val();
 
-    //       $.each(response, function (index, hotel) {
-    //         // Create the HTML structure for a hotel card
-    //         console.log(hotel);
-    //         var hotelCard = `
-    //     <div class="card border shadow-soft mb-2">
-    //         <div class="row">
-    //             <div class="img-col col-sm-12 col-xl-4 col-md-4 p-0">
-    //                 <div class="card_image ">
-    //                     <div id="CarouselTest" class="carousel slide" data-ride="carousel">
-    //                         <!-- Carousel Indicators and Inner -->
-    //                         <ol class="carousel-indicators">
-    //                             <!-- Indicators should be added dynamically based on the number of images -->
-    //                             ${hotel.images.map((image, i) => `<li data-target="#CarouselTest" data-slide-to="${i}" ${i === 0 ? 'class="active"' : ''}></li>`).join('')}
-    //                         </ol>
-    //                         <div class="carousel-inner">
-    //                             <!-- Carousel Items should be added dynamically based on the number of images -->
-    //                             ${hotel.images.map((image, i) => `<div class="carousel-item ${i === 0 ? 'active' : ''}">
-    //                                 <img class="d-block w-100" src="${image.image_url}" alt="">
-    //                             </div>`).join('')}
-    //                         </div>
-    //                     </div>
-    //                     <!-- Carousel Controls -->
-    //                     <a class="carousel-control-prev" href="#CarouselTest" role="button" data-slide="prev">
-    //                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    //                         <span class="sr-only">Previous</span>
-    //                     </a>
-    //                     <a class="carousel-control-next" href="#CarouselTest" role="button" data-slide="next">
-    //                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    //                         <span class="sr-only">Next</span>
-    //                     </a>
-    //                 </div>
-    //             </div>
-    //             <div class="col-sm-12 col-xl-8 col-md-8 p-0">
-    //                 <div class="row link h-100">
-    //                     <div class="col-9 py-3">
-    //                         <div class="py-2 text-left">
-    //                             <h3>${hotel.hotel_name}</h3>
-    //                         </div>
-    //                         <div class="py-1">
-    //                             <h4 class="p-0 m-0"><span class="border p-1 badge"><i class="fa fa-star text-primary mr-1"
-    //                                 aria-hidden="true"></i>${hotel.star} star</span> <span class="border p-1 badge"><i
-    //                                 class="fa fa-map-marker text-primary mr-1"
-    //                                 aria-hidden="true"></i>${hotel.address}</span></h4>
-    //                         </div>
-    //                         <div class="py-1" id="facility">
-    //                             <!-- Check if facilities exist before mapping -->
-    //                             ${hotel.facilities
-    //             ? hotel.facilities.split(',').map(facility => `<span class="badge badge-info mr-1">${facility}</span>`).join('')
-    //             : 'No facilities available'}
-    //                         </div>
-    //                         <div class="py-4">
-    //                             <p>${hotel.description}</p>
-    //                         </div>
-    //                     </div>
-    //                     <a href="" class="col-3 pr-3 d-flex align-items-center border-left">
-    //                         <div class="p-0 w-100 text-right">
-    //                             <p class="p-0 m-0 text-gray">From</p>
-    //                             <p class="p-0 m-0 "><span class=" text-danger relative start_price">${taka} ${hotel.low_price[index].price_per_night}</span></p>
-    //                             <h5><span class="badge badge-success">${hotel.low_price[index].discount}% OFF</span></h5>
-    //                             <h5 class="mb-2 mt-1">${taka} ${(hotel.low_price[index].price_per_night - ((hotel.low_price[index].discount * hotel.low_price[index].price_per_night) / 100))}</h5>
-    //                         </div>
-    //                     </a>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </div>`;
+      // Sort hotels based on popularity
+      if (selectedPopularity === 'high') {
+        response.sort((a, b) => b.popularity - a.popularity);
+      } else if (selectedPopularity === 'low') {
+        response.sort((a, b) => a.popularity - b.popularity);
+      }
 
-    //         container.append(hotelCard);
-    //       });
-    //     },
+      // Sort hotels based on price order
+      if (selectedPriceOrder === 'h2l') {
+        response.sort((a, b) => b.low_price[0].price_per_night - a.low_price[0].price_per_night);
+      } else if (selectedPriceOrder === 'l2h') {
+        response.sort((a, b) => a.low_price[0].price_per_night - b.low_price[0].price_per_night);
+      }
 
-    //     error: function () {
-    //       console.log('Error in AJAX request');
-    //     }
-    //   });
-    // });
-
-
-    // Function to handle AJAX request
-    $('form').submit(function (event) {
-      event.preventDefault();
-      function updateHotelResults() {
-        // Collect form data
-        var formData = {
-          place: $('#hotel_place_select').val(),
-          checkInDate: $('[name="Check-in-date"]').val(),
-          checkOutDate: $('[name="Check-out-date"]').val(),
-          adults: $('[name="adults"]').val(),
-          totalRoom: $('[name="total-room"]').val()
-        };
-        // Get selected star ratings
-        var selectedStarRatings = $('input[name="hotel_rating[]"]:checked').map(function () {
-          return parseInt(this.value); // Convert the value to integer
-        }).get();
-
-        // Add selected star ratings to form data
-        formData['hotelRating'] = selectedStarRatings;
-
-        // Add "Popularity" filter
-        var selectedPopularity = $('input[name="popularity"]:checked').val();
-        var selectedPriceOrder = $('input[name="price_order"]:checked').val();
-
-        // Sort hotels based on popularity
-        if (selectedPopularity === 'high') {
-          response.sort((a, b) => b.popularity - a.popularity);
-        } else if (selectedPopularity === 'low') {
-          response.sort((a, b) => a.popularity - b.popularity);
-        }
-
-        // Sort hotels based on price order
-        if (selectedPriceOrder === 'h2l') {
-          response.sort((a, b) => b.low_price[0].price_per_night - a.low_price[0].price_per_night);
-        } else if (selectedPriceOrder === 'l2h') {
-          response.sort((a, b) => a.low_price[0].price_per_night - b.low_price[0].price_per_night);
-        }
-
-        // Send AJAX request
-        $.ajax({
-          url: 'api/hotels/searchhotels.php',
-          type: 'GET',
-          data: formData,
-          dataType: 'json',
-          success: function (response) {
+      // Send AJAX request
+      $.ajax({
+        url: './api/hotels/searchhotels.php',
+        type: 'GET',
+        data: formData,
+        dataType: 'json',
+        success: function (response) {
+          if (response.length === 0) {
+            $('#card_container').html(`<h4 class="p-4 text-center">Nothing found</h4>`);
+          } else {
             // Assuming you have a container div to append the hotel cards
             var container = $('#card_container');
             container.empty(); // Clear existing content
@@ -1333,17 +1596,27 @@ $(document).ready(function () {
                 var roomLink = container.find('.card:last').find('a'); // Assuming the link is a child of the last card
                 var roomLinkHref = 'rooms.php?hotelId=' + hotel.hotel_id +
                   '&checkInDate=' + $('[name="Check-in-date"]').val() +
-                  '&checkOutDate=' + $('[name="Check-out-date"]').val() + '&totalRoom=' + $('[name="total-room"]').val() +
+                  '&checkOutDate=' + $('[name="Check-out-date"]').val() +
+                  '&totalRoom=' + $('[name="total-room"]').val() +
                   '&adults=' + $('[name="adults"]').val();
+
+                // Open the link in a new tab
+                // roomLink.attr('target', '_blank');
                 roomLink.attr('href', roomLinkHref);
+
               }
             });
-          },
-          error: function () {
-            console.log('Error in AJAX request');
           }
-        });
-      }
+        },
+        error: function () {
+          console.log('Error in AJAX request');
+        }
+      });
+    }
+
+    $('form').submit(function (event) {
+      event.preventDefault();
+      updateHotelResults();
 
       // Handle checkbox change event
       $('input[name="hotel_rating[]"], input[name="popularity"], input[name="price_order"]').change(function () {
@@ -1358,6 +1631,7 @@ $(document).ready(function () {
   }
 });
 
+//hotel rooms
 $(document).ready(function () {
   if ($("#page_hotel_rooms").length > 0) {
     // Function to get query parameters from URL
@@ -1544,7 +1818,7 @@ $(document).ready(function () {
         // Use these parameters in your new AJAX request
         // Example:
         $.ajax({
-          url: 'api/hotels/roomdetails.php',
+          url: './api/hotels/roomdetails.php',
           type: 'GET',
           data: {
             hotelId: hotelId,
@@ -1590,9 +1864,12 @@ $(document).ready(function () {
             $('#show_on_map').html(`<a href="${response.hotel[0].maps_link}"  class="genric-btn primary small">Show on Map</a>`);
 
             // for rooms 
+            // <span
+            //   class="border p-1 badge"><i class="fa fa-info-circle text-primary mr-1 avroom" aria-hidden="true"></i>${room.available_rooms} rooms available</span>
             var container = $('#card_container');
             container.empty();
             $.each(response.rooms, function (index, room) {
+              roomid = room.room_id;
               var roomcard = `<div class="card border shadow-soft mb-2">
         <div class="row">
             <div class="img-col col-sm-12 col-xl-4 col-md-4 p-0">
@@ -1607,11 +1884,11 @@ $(document).ready(function () {
                 <div class="row link h-100">
                     <div class="col-8">
                         <div class="py-2 text-left">
+                        <input type="number" value="${roomid}" id="room_id" hidden>
                             <h3 id="room_type">${room.room_type}</h3>
                         </div>
                         <div class="py-1">
-                            <h4 class="p-0 m-0"><span class="border p-1 badge"><i class="fa fa-bed text-primary mr-1" aria-hidden="true"></i>${room.bed_type}</span> <span
-                                    class="border p-1 badge"><i class="fa fa-info-circle text-primary mr-1 avroom" aria-hidden="true"></i>${room.available_rooms} rooms available</span></h4>
+                            <h4 class="p-0 m-0"><span class="border p-1 badge"><i class="fa fa-bed text-primary mr-1" aria-hidden="true"></i>${room.bed_type}</span> </h4>
                         </div>
                         <div class="py-1" id="facility">
                                 <!-- Check if facilities exist before mapping -->
@@ -1642,131 +1919,87 @@ $(document).ready(function () {
     </div>`;
               container.append(roomcard);
             })
-
-            // // Add click event listener to "Add" buttons
-            // $('#card_container').on('click', '.add-room-btn', function () {
-            //   // Get room details from the clicked button's parent container
-            //   var roomContainer = $(this).closest('.card');
-            //   var roomPrice = roomContainer.find('#disc_price').text().trim();
-            //   var room = 1;// Assuming 
-            //   var roomTotal;
-            //   $('#summary').on('click', '.plus-icon', function () {
-            //     var roomElement = $(this).siblings('.room-count');
-            //     var room = parseInt(roomElement.text());
-            //     var roomAvailable = 5; // Replace with your actual available room count
-            //     if (roomAvailable >= room) {
-            //       // roomElement.text(room + 1);
-            //       updateTotal(roomElement.text(room + 1));
-            //     }
-            //   });
-
-            //   $('#summary').on('click', '.minus-icon', function () {
-            //     var roomElement = $(this).siblings('.room-count');
-            //     var room = parseInt(roomElement.text());
-            //     // Ensure count does not go below 1
-            //     if (room > 1) {
-            //       // roomElement.text(room - 1);
-            //       updateTotal(roomElement.text(room - 1));
-            //     }
-            //   });
-            //   updateTotal(room);
-
-            //   function updateTotal(room) {
-            //     roomTotal = (roomPrice * room * totalDays);
-            //   };
-            //   // Append a new row to the summary
-            //   // $('#summary:last').append(`
-            //   // <div class="border p-1 m-0">
-            //   // <div class="row p-0 m-0">
-            //   //     <div class="col-3 p-0 text-left">Price:</div>
-            //   //     <div class="col-9 p-0 text-right"><span
-            //   //             class=" text-danger relative start_price">${taka}${roomPrice}</span></div>
-            //   // </div>
-            //   // <h5 class="row p-0 m-0">
-            //   //     <div class="col-3 p-0 text-left">Discount:</div>
-            //   //     <div class="col-9 p-0 text-right"><span class="badge badge-success">${roomDiscount}</span>
-            //   //     </div>
-            //   // </h5>
-            //   // <div class="row p-0 m-0">
-            //   //     <div class="col-3 p-0 text-left">Rooms:</div>
-            //   //     <div class="col-9 p-0 text-right">
-            //   //         <span class="border p-1 badge plus-icon"><i class="fa fa-plus text-primary" aria-hidden="true"></i></span>
-            //   //         <span id="room" class="p-0 m-1">2</span>
-            //   //         <span class="border p-1 badge minus-icon"><i class="fa fa-minus text-primary" aria-hidden="true"></i></span>
-            //   //     </div>
-            //   // </div>
-            //   // <h5 class="row p-0 m-0">
-            //   //     <div class="col-3 p-0 text-left">Total:</div>
-            //   //     <div class="col-9 p-0 text-right">2500</div>
-            //   // </h5>
-            //   // </div>
-            //   //         `);
-            //   $('#summary:last').append(`
-            //       <div class="border p-1 m-0">
-            //           <div class="row p-0 m-0">
-            //               <div class="col-3 p-0 text-left">Price:</div>
-            //               <div class="col-9 p-0 text-right">${taka} ${roomPrice}</div>
-            //           </div>
-            //           <div class="row p-0 m-0">
-            //               <div class="col-3 p-0 text-left">Rooms:</div>
-            //               <div class="col-9 p-0 text-right">
-            //                   <span class="border p-1 badge plus-icon">
-            //                       <i class="fa fa-plus text-primary" aria-hidden="true"></i>
-            //                   </span>
-            //                   <span class="room-count p-0 m-1">1</span>
-            //                   <span class="border p-1 badge minus-icon">
-            //                       <i class="fa fa-minus text-primary" aria-hidden="true"></i>
-            //                   </span>
-            //               </div>
-            //           </div>
-            //           <h5 class="row p-0 m-0">
-            //               <div class="col-3 p-0 text-left">Total:</div>
-            //               <div class="col-9 p-0 text-right">${taka} ${roomTotal}</div>
-            //           </h5>
-            //       </div>
-            //   `);
-
+            // $('#continue').attr('disabled', true);
+            $('#continue').addClass('disable');
+            $('#continue').removeClass('primary');
             var totalPay = 0;
 
             $('#card_container').on('click', '.add-room-btn', function () {
               var roomContainer = $(this).closest('.card');
               var roomPrice = parseFloat(roomContainer.find('#disc_price').text().trim());
               var roomType = (roomContainer.find('#room_type').text().trim());
+              var roomid = (roomContainer.find('#room_id').val().trim());
 
               $('.add-room-btn').attr('disabled', true);
               $('.add-room-btn').addClass('disable');
               $('.add-room-btn').removeClass('primary');
+              $('#continue').attr('disabled', false);
+              $('#continue').addClass('primary');
+              $('#continue').removeClass('disable');
 
               $('#summary:last').append(`
         <div class="border p-1 m-0 cancel_relative bg-gray">
             <div class="cancel"><i class="fa fa-times" aria-hidden="true"></i></div>
-            <h6 class="p-2 text-center">${roomType}</h6>
-            <h5 class="p-2 m-0 text-center">${taka}${roomPrice}</h5>
+            <p class="p-1 m-0 text-center">${roomType}</p>
+            <input type="number" value="${roomid}" id="room_id_cart" hidden>
+            <h5 class="p-2 m-0 text-center">${taka} ${roomPrice}</h5>
         </div>
-    `);
-              totalPay += roomPrice;
-              updatePay();
+    `); totalPay = roomPrice;
+              updatePay(totalPay);
             });
             $('#summary').on('click', '.fa-times', function () {
-              var roomPrice = parseFloat($(this).closest('.border').find('h5').text().trim());
-
               $(this).closest('.border').remove();
-              totalPay -= roomPrice;
+              totalPay = 0;
+              $('#continue').attr('disabled', true);
+              $('#continue').addClass('disable');
+              $('#continue').removeClass('primary');
               $('.add-room-btn').attr('disabled', false);
               $('.add-room-btn').addClass('primary');
               $('.add-room-btn').removeClass('disable');
 
-              updatePay();
+              updatePay(totalPay);
             });
 
-            function updatePay() {
-              $('#pay').text(`${totalPay.toFixed(2)} tk`);
+            function updatePay(totalPay) {
+              if (totalPay > 0) {
+                $('#pay').val(totalPay);
+              } else {
+                $('#pay').val('');
+              }
             }
           },
           error: function () {
             console.log('Error in AJAX request');
           }
         });
+
+
+        $('#continue').on('click', function (event) {
+          event.preventDefault();
+
+          var roomId = $('#room_id_cart').val();
+          var payable = $('#pay').val();
+          var InDate = (checkInDate.toISOString());
+          var OutDate = (checkOutDate.toISOString());
+
+          // Check if all required values are set
+          if (roomId && payable && InDate && OutDate && totalRoom && adults) {
+            var bookingType = 'hotel';
+            var redirectUrl = 'ssl/sslpay.php?' +
+              'type=' + encodeURIComponent(bookingType) +
+              '&roomId=' + encodeURIComponent(roomId) +
+              '&checkInDate=' + encodeURIComponent(InDate) +
+              '&checkOutDate=' + encodeURIComponent(OutDate) +
+              '&totalRoom=' + encodeURIComponent(totalRoom) +
+              '&payable=' + encodeURIComponent(payable) +
+              '&adults=' + encodeURIComponent(adults);
+
+            // Redirect to the new URL
+            window.location.href = redirectUrl;
+          }
+        });
+
+
       }
     });
 
@@ -1774,6 +2007,834 @@ $(document).ready(function () {
   }
 });
 
+//index page
+$(document).ready(function () {
+  if ($("#page_index").length > 0) {
+    $("#flight_select_class").select2({
+      minimumResultsForSearch: Infinity,
+    });
+    $("#flight_ari_select").select2({
+    });
+    $("#flight_dep_select").select2({
+    });
+    $("#hotel_place_select").select2({
+      // minimumResultsForSearch: Infinity,
+    });
+    $.ajax({
+      url: './api/flight/locations.php',
+      type: 'GET',
+      dataType: 'json',
+      data: {
+        ctype: 'arrival_city',
+      },
+      success: function (data) {
+        $('#flight_ari_select').empty();
+        // $('#flight_dep_select').append('<option disabled selected>Select Place</option>');
+        console.log(data);
+        var deplocations = {};
+        // Iterate through the array and append options
+        $.each(data, function (index, location) {
+          $('#flight_ari_select').append('<option value="' + location.arrival_city + '">' + location.arrival_city + '</option>');
+
+        });
+      },
+      error: function () {
+        // console.log('Error fetching data');
+      }
+    });
+
+    //city name 
+    $.ajax({
+      url: './api/flight/locations.php',
+      type: 'GET',
+      dataType: 'json',
+      data: {
+        ctype: 'departure_city',
+      },
+      success: function (data) {
+        $('#flight_dep_select').empty();
+        // $('#flight_dep_select').append('<option disabled selected>Select Place</option>');
+        // console.log(data);
+        $.each(data, function (index, location) {
+          $('#flight_dep_select').append('<option value="' + location.departure_city + '">' + location.departure_city + '</option>');
+
+        });
+      },
+      error: function () {
+        // console.log('Error fetching data');
+      }
+    });
+
+    function constructFlightSearchUrl() {
+      const baseUrl = 'flights.php'; // Change this to the actual URL of flights.php
+      const from = $('#flight_dep_select').val();
+      const to = $('#flight_ari_select').val();
+      const date = $('[name="flight_date"]').val();
+      const person = $('[name="flight_person"]').val();
+      const selectedClass = $('#flight_select_class').val();
+
+      // Construct the URL with parameters
+      const url = `${baseUrl}?from=${from}&to=${to}&date=${date}&person=${person}&class=${selectedClass}`;
+
+      return url;
+    }
+
+    // Get the search flights button
+    $('#search_flight_button').on('click', function () {
+      // Validate all fields are filled
+      if ($('#flight_dep_select').val() && $('#flight_ari_select').val() && $('[name="flight_date"]').val() && $('[name="flight_person"]').val() && $('#flight_select_class').val()) {
+        // Construct the URL with form parameters
+        const searchUrl = constructFlightSearchUrl();
+
+        // Redirect the user to the flights.php page with the form parameters
+        window.location.href = searchUrl;
+      } else {
+        // Show an alert or perform other actions for incomplete form
+        Swal.fire({
+          title: "Empty!",
+          text: "All fields are required!",
+          icon: "error"
+        });
+      }
+    });
+
+    // for flights /////////////////////////////////////////////////////////////////////////////
+
+    $.ajax({
+      url: './api/hotels/droplocation.php',
+      type: 'GET',
+      dataType: 'json',
+      success: function (data) {
+        $('#hotel_place_select').empty();
+        // $('#hotel_place_select').append('<option disabled selected>Select Place</option>');
+        // console.log(data);
+        var seenLocations = {};
+        // Iterate through the array and append options
+        $.each(data, function (index, location) {
+          if (!seenLocations[location.location]) {
+            $('#hotel_place_select').append('<option value="' + location.location + '">' + location.location + '</option>');
+            seenLocations[location.location] = true;
+          }
+        });
+      },
+      error: function () {
+        // console.log('Error fetching data');
+      }
+    });
+
+    function constructHotelSearchUrl() {
+      const baseUrl = 'hotels.php'; // Change this to the actual URL of hotels.php
+      const place = $('#hotel_place_select').val();
+      const checkInDate = $('[name="Check-in-date"]').val();
+      const checkOutDate = $('[name="Check-out-date"]').val();
+      const adults = $('[name="adults"]').val();
+      const totalRooms = $('[name="total-room"]').val();
+
+      // Construct the URL with parameters
+      const url = `${baseUrl}?place=${place}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&adults=${adults}&totalRooms=${totalRooms}`;
+
+      return url;
+    }
+
+    // Get the search hotels button
+    $('#search_hotel_button').on('click', function () {
+      // Validate all fields are filled
+      if (
+        $('#hotel_place_select').val() &&
+        $('[name="Check-in-date"]').val() &&
+        $('[name="Check-out-date"]').val() &&
+        $('[name="adults"]').val() &&
+        $('[name="total-room"]').val()
+      ) {
+        // Construct the URL with form parameters for hotel search
+        const searchUrl = constructHotelSearchUrl();
+
+        // Redirect the user to the hotels.php page with the form parameters
+        window.location.href = searchUrl;
+      } else {
+        // Show an alert or perform other actions for incomplete form
+        Swal.fire({
+          title: "Empty!",
+          text: "All fields are required!",
+          icon: "error"
+        });
+      }
+    });
+    //
+  }
+});
+
+//flight search
+$(document).ready(function () {
+  if ($("#page_flight_search").length > 0) {
+    //
+
+    $("#flight_select_class").select2({
+      minimumResultsForSearch: Infinity,
+    });
+    $("#flight_ari_select").select2({
+    });
+    $("#flight_dep_select").select2({
+    });
+
+    function getParameterByName(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, '\\$&');
+      var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    // Function to update form fields with received values
+    function updateFormFields() {
+      const from = getParameterByName('from');
+      const to = getParameterByName('to');
+      const date = getParameterByName('date');
+      const person = getParameterByName('person');
+      const selectedClass = getParameterByName('class');
+
+      // Check if all values are present
+      if (from && to && date && person && selectedClass) {
+        // Update form fields
+        $('#flight_dep_select').val(from).trigger('change');
+        $('#flight_ari_select').val(to).trigger('change');
+        $('[name="flight_date"]').val(date);
+        $('[name="flight_person"]').val(person);
+        $('#flight_select_class').val(selectedClass).trigger('change');
+      } else {
+        // Handle the case where not all values are present
+        console.error('Not all values are present in the URL parameters.');
+      }
+    }
+
+    var depPromise = $.ajax({
+      url: './api/flight/locations.php',
+      type: 'GET',
+      dataType: 'json',
+      data: {
+        ctype: 'arrival_city',
+      },
+      success: function (data) {
+        $('#flight_ari_select').empty();
+        // $('#flight_dep_select').append('<option disabled selected>Select Place</option>');
+        console.log(data);
+        var deplocations = {};
+        // Iterate through the array and append options
+        $.each(data, function (index, location) {
+          $('#flight_ari_select').append('<option value="' + location.arrival_city + '">' + location.arrival_city + '</option>');
+
+        });
+      },
+      error: function () {
+        // console.log('Error fetching data');
+      }
+    });
+
+    //city name 
+    var arrPromise = $.ajax({
+      url: './api/flight/locations.php',
+      type: 'GET',
+      dataType: 'json',
+      data: {
+        ctype: 'departure_city',
+      },
+      success: function (data) {
+        $('#flight_dep_select').empty();
+        // $('#flight_dep_select').append('<option disabled selected>Select Place</option>');
+        // console.log(data);
+        $.each(data, function (index, location) {
+          $('#flight_dep_select').append('<option value="' + location.departure_city + '">' + location.departure_city + '</option>');
+
+        });
+      },
+      error: function () {
+        // console.log('Error fetching data');
+      }
+    });
+
+    $.when(depPromise, arrPromise).done(function (depData, arrData) {
+      // Handle your data if needed
+
+      // Call the updateFormFields function
+      updateFormFields();
+      resultflightsearch();
+    });
+
+    //search filights
+
+    $('#search_flight_button').click(function (e) {
+      e.preventDefault();
+      resultflightsearch();
+    });
+
+    function resultflightsearch() {
+      var from = $('#flight_dep_select').val();
+      var to = $('#flight_ari_select').val();
+      var date = $('input[name="flight_date"]').val();
+      var person = $('input[name="flight_person"]').val();
+      var classType = $('#flight_select_class').val();
+      if (!person || parseInt(person) < 1) {
+        person = 1; // Set person to 1
+      } else if (parseInt(person) > 4) {
+        person = 4; // Set person to 4 if it's more than 4
+      }
+
+      $.ajax({
+        type: 'POST',
+        url: './api/flight/searchflights.php',
+        data: {
+          departureCity: from,
+          arrivalCity: to,
+          person: person,
+          class: classType,
+          flightDate: date
+        },
+        success: function (response) {
+          // console.log(response);
+          if (response.length === 0) {
+            $('#card_container').html(`<h4 class="p-4 text-center">Nothing found</h4>`);
+          } else {
+            $('#card_container').html(response);
+          }
+        },
+        error: function (error) {
+          console.log('Error:', error);
+        }
+      });
+    }
+
+    //
+  }
+});
+
+//flight booking
+$(document).ready(function () {
+  if ($("#page_book_flight").length > 0) {
+    function generatePersonForms(personCount) {
+      $('#person_details').empty();
+      for (let i = 1; i <= personCount; i++) {
+        let formHtml = `
+              <div class="mb-2 border">
+                <p class="p-1 px-4 m-0 fw-500 border-bottom card-header w-100">Person ${i}</p>
+                <div class="row gap-3 text-left px-2">
+                    <div class="col-6 p-0 m-0">
+                        <small class="p-0 m-0 fw-500 text-gray">First Name:</small>
+                        <input type="text" class="single-input single-input-primary border" name="personal_fname_${i}" required>
+                    </div>
+                    <div class="col p-0 m-0">
+                        <small class="p-0 m-0 fw-500 text-gray">Last Name:</small>
+                        <input type="text" class="single-input single-input-primary border" name="personal_lname_${i}" required>
+                    </div>
+                </div>
+                <div class="row gap-3 mt-1 text-left px-2">
+                    <div class="col-6 p-0 m-0">
+                        <small class="p-0 m-0 fw-500 text-gray">Passport No:</small>
+                        <input type="text" class="single-input single-input-primary border" name="personal_passport_${i}" required>
+                    </div>
+                    <div class="col p-0 pb-2 m-0">
+                        <small class="p-0 m-0 fw-500 text-gray">Contact:</small>
+                        <input type="text" class="single-input single-input-primary border" name="personal_contact_${i}" required>
+                    </div>
+                </div>
+              </div>
+          `;
+        $('#person_details').append(formHtml);
+      }
+    }
+
+    var urlParams = new URLSearchParams(window.location.search);
+    var flightId = urlParams.get('flightId');
+    var flightClass = urlParams.get('class');
+    var personCount = urlParams.get('person');
+    if (!personCount || parseInt(personCount) < 1) {
+      personCount = 1; // Set person to 1
+    } else if (parseInt(personCount) > 4) {
+      personCount = 4; // Set person to 4 if it's more than 4
+    }
+    if (personCount) {
+      generatePersonForms(parseInt(personCount));
+    } else {
+      // Default to 1 person if the parameter is not provided
+      generatePersonForms(1);
+    }
+
+
+    var selectedSeats = [];
+    // Make AJAX call
+    $.ajax({
+      type: 'POST',
+      url: './api/flight/flightdetails.php', // Replace with the actual path
+      data: {
+        flightId: flightId,
+        class: flightClass,
+        person: personCount
+      },
+      success: function (response) {
+        var fare = ((response[0].price - ((response[0].discount * response[0].price) / 100)) * personCount);
+        var tax = ((fare * 5) / 100);
+        var total = fare + tax;
+        console.log(response);
+        $('#air_img').attr('href', response[0].image_url);
+        $('#der_city').text(response[0].departure_city);
+        $('#dep_time').text(response[0].departure_time);
+        $('#ari_city').text(response[0].arrival_city);
+        $('#ari_time').text(response[0].arrival_time);
+        $('#flight_num').text(response[0].flight_number);
+        $('#airplane_model').text(response.airplane_model);
+        if (flightClass == 'economy_class') {
+          $('#ticket_class').text('Economy');
+        } else if (flightClass == 'business_class') {
+          $('#ticket_class').text('Business');
+        }
+
+        $('#bag_cabin').text(response[0].bag_cabin + ' Kg');
+        $('#bag_check_in').text(response[0].bag_check_in + ' Kg');
+        $('#cancelation').text(response[0].cancelation);
+        $('#discount').text(response[0].discount);
+        $('#ticket_fare').text(fare);
+        $('#ticket_tax').text(tax);
+        $('#ticket_total').text(total);
+        $('#pay').val(total);
+
+        // $('#seats_table').data('seats', response[0].booked_seats);
+        // Set data attribute using jQuery
+        $('#seats_table').data('seats', response[0].booked_seats);
+
+        // Get the seatDiagram using jQuery
+        // const seatDiagram = $("#seats_table")[0]; // Convert jQuery object to DOM element
+        // let booked_seats = "";
+
+        // if (seatDiagram) {
+        //   booked_seats = $(seatDiagram).data('seats');
+        // }
+
+        // if (booked_seats) {
+        //   // Color the taken seats as purple
+        //   booked_seats = booked_seats.split(",");
+
+        //   booked_seats.forEach(seatNo => {
+        //     const seat = $('#seat-' + seatNo, seatDiagram);
+        //     seat.addClass('booked');
+        //   });
+        // }
+
+        // // Handle seat selection for the given person value
+        // const maxSeatsAllowed = personCount;
+        // const selectedSeats = [];
+
+        // $("#seats_table td").click(function () {
+        //   const selectedSeat = $(this).attr('id');
+
+        //   // Check if the seat is already booked
+        //   if (!booked_seats.includes(selectedSeat)) {
+        //     // Check if the selected seat is within the allowed range for the person
+        //     const seatNumber = parseInt(selectedSeat.substr(1));
+
+        //     if (selectedSeats.length < maxSeatsAllowed) {
+        //       // Check if the seat is not already selected
+        //       if (!selectedSeats.includes(selectedSeat)) {
+        //         // Add the seat to the selected seats array
+        //         selectedSeats.push(selectedSeat);
+        //         $(this).toggleClass('selected');
+        //       } else {
+        //         // Seat is already selected, remove it
+        //         const index = selectedSeats.indexOf(selectedSeat);
+        //         selectedSeats.splice(index, 1);
+        //         $(this).toggleClass('selected');
+        //       }
+        //     } else {
+        //       alert('You can only select ' + maxSeatsAllowed + ' seats.');
+        //     }
+        //   } else {
+        //     alert('This seat is already booked.');
+        //   }
+
+        //   // Log the selected seats (you can use this array for further processing)
+        //   console.log(selectedSeats);
+        // });
+        const seatDiagram = $("#seats_table")[0];
+        let booked_seats = "";
+
+        if (seatDiagram) {
+          booked_seats = $(seatDiagram).data('seats');
+          if (booked_seats) {
+            booked_seats = booked_seats.split(",");
+            booked_seats.forEach(seatNo => {
+              const seat = $('#seat-' + seatNo, seatDiagram);
+              seat.addClass('booked');
+              seat.prop('disabled', true); // Disable already booked seats
+            });
+          }
+        }
+
+        const maxSeatsAllowed = personCount;
+
+
+        function updateSelectedSeatsDisplay() {
+          // Display selected seats somewhere in your UI
+          const selectedSeatsDisplay = selectedSeats.join(", ");
+          console.log("Selected Seats: ", selectedSeatsDisplay);
+          // Update your UI or perform any other action with selected seats
+        }
+
+        $("#seats_table td:not(.booked)").click(function () {
+          const selectedSeat = $(this).attr('id');
+
+          // Check if the selected seat is within the allowed range for the person
+          const seatNumber = parseInt(selectedSeat.substr(5));
+          if (seatNumber > personCount) {
+            alert('You can only select up to ' + personCount + ' seats for the selected person.');
+            return;
+          }
+
+          // Toggle seat selection if it's not booked
+          const isSelected = $(this).hasClass('selected');
+          if (!isSelected && selectedSeats.length < maxSeatsAllowed) {
+            // Add seat to selection
+            selectedSeats.push(selectedSeat);
+            $(this).addClass('selected');
+          } else if (isSelected) {
+            // Remove seat from selection
+            const index = selectedSeats.indexOf(selectedSeat);
+            selectedSeats.splice(index, 1);
+            $(this).removeClass('selected');
+          }
+
+          // Update the display of selected seats
+          updateSelectedSeatsDisplay();
+        });
+
+      },
+      error: function (error) {
+        // Handle errors
+        console.error('Error:', error);
+      }
+    });
+
+
+
+    // $("#continue").on("click", function () {
+    //   selectedSeats = selectedSeats.map(seat => seat.replace('seat-', ''));
+    //   var seatsString = selectedSeats.join(',');
+    //   // Create an array to store the person details
+    //   var personData = [];
+
+    //   for (let i = 1; i <= personCount; i++) {
+    //     // Create an object to store individual person's data
+    //     let person = {
+    //       firstName: $(`input[name="personal_fname_${i}"]`).val(),
+    //       lastName: $(`input[name="personal_lname_${i}"]`).val(),
+    //       passportNo: $(`input[name="personal_passport_${i}"]`).val(),
+    //       contact: $(`input[name="personal_contact_${i}"]`).val(),
+    //     };
+
+    //     // Push the person's data to the array
+    //     personData.push(person);
+
+    //   }
+    //   personData['seatsString'] = seatsString;
+
+    //   console.log(personData);
+
+
+    $("#continue").on("click", function () {
+      // Validate that the number of selected seats matches the person count
+      if (selectedSeats.length === parseInt(personCount)) {
+
+        let allFieldsFilled = true;
+
+        for (let i = 1; i <= personCount; i++) {
+          if (
+            !$(`input[name="personal_fname_${i}"]`).val() ||
+            !$(`input[name="personal_lname_${i}"]`).val() ||
+            !$(`input[name="personal_passport_${i}"]`).val() ||
+            !$(`input[name="personal_contact_${i}"]`).val()
+          ) {
+            Swal.fire({
+              icon: 'warning',
+              title: 'Oops...!',
+              text: 'Fill in all fields.',
+            });
+
+            allFieldsFilled = false;
+            break;
+          }
+        }
+        if (allFieldsFilled) {
+          selectedSeats = selectedSeats.map(seat => seat.replace('seat-', ''));
+          var seatsString = selectedSeats.join(',');
+          var bookingdata = [];
+
+          for (let i = 1; i <= personCount; i++) {
+            let person = {
+              firstName: $(`input[name="personal_fname_${i}"]`).val(),
+              lastName: $(`input[name="personal_lname_${i}"]`).val(),
+              passportNo: $(`input[name="personal_passport_${i}"]`).val(),
+              contact: $(`input[name="personal_contact_${i}"]`).val(),
+            };
+            bookingdata.push(person);
+          }
+          console.log(JSON.stringify({
+            amount: $('#pay').val(),
+            seats: seatsString,
+            flightId: flightId,
+            ticketClass: flightClass,
+            personDetails: bookingdata
+          }));
+
+          $.ajax({
+            type: "POST",
+            url: "./api/flight/flightbooking.php", // Replace with the actual URL of your next page
+            data: JSON.stringify({
+              amount: $('#pay').val(),
+              seats: seatsString,
+              flightId: flightId,
+              ticketClass: flightClass,
+              personDetails: bookingdata
+            }),
+            dataType: 'json',  // Corrected attribute name
+            success: function (response) {
+              // Handle the response from the server
+              console.log(response);
+              // Redirect to the next page if needed
+              window.location.href = "./ssl/sslpay.php?type=flight";
+            },
+            error: function (error) {
+              console.log("Error:", error);
+            }
+          });
+
+
+
+        }
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Oops...!',
+          text: 'Select all ' + personCount + ' seats.',
+        });
+      }
+
+    });
+
+
+    ///
+  }
+});
+
+function getblogposts() {
+  $.ajax({
+    url: './api/getallpost.php',
+    type: 'GET',
+    dataType: 'json',
+    success: function (response) {
+      $('#blog_posts').empty();
+      // console.log(response);
+      $.each(response, function (index, post) {
+        console.log(post);
+
+        var imageUrl = `${post.image_url}`;
+        var dateObject = new Date(post.created_at);
+
+        var date = dateObject.toISOString().split('T')[0];
+
+        var content = post.content;
+        var truncatedContent = content.slice(0, 350);
+        if (content.length > 350) {
+          truncatedContent += '...';
+        }
+        var contentcard = `
+          <div class="single-post  mb-2 border">
+                            <div class="p-0">
+                                <div class="feature-img p-4 m-0">
+                                    <div class="d-flex border p-2 justify-content-center align-items-center">
+                                    <img class="img-fluid" src="${imageUrl}" alt="">
+                                    </div>
+                                </div>
+                                <div class="px-4 text-center row">
+                                    <div class="col-6 col-lg-3 py-3 border">
+                                        <a class="fw-500 text-primary anc" href="#">${post.category_name}</a>
+                                    </div>
+                                    <div class="col-6 col-lg-3 py-3 border">
+                                        <p class="user-name p-0 m-0">${post.first_name} ${post.last_name}
+                                        </p>
+                                    </div>
+                                    <div class="col-6 col-lg-3 py-3 border">
+                                        <p class="date p-0  m-0">${date}
+                                    </div>
+                                    <div class="col-6 col-lg-3 py-3  border">
+                                        <p class="comments p-0  m-0">${post.total_comments} comments
+                                    </div>
+                                </div>
+                                <div class="p-4 m-0">
+                                    <a class="posts-title text-justify" href="blog-single.html">
+                                        <h3 class=" m-0 mb-3">${post.title}</h3>
+                                    </a>
+                                    <div class="content_blogpost text-justify">${truncatedContent}</div>
+                                    <a href="post.php?id=${post.post_id}" class="genric-btn primary">View More</a>
+                                </div>
+                            </div>
+                        </div>`;
+        // $('#view_post_content').html(post.content);
+        $('#blog_posts').append(contentcard);
+
+      }
+      )
+    },
+    error: function (error) {
+      console.log('Error:', error);
+    }
+  });
+}
+//blog home
+$(document).ready(function () {
+  if ($("#page_blog_home").length > 0) {
+
+    $("#category_blogpost").select2({
+      minimumResultsForSearch: Infinity,
+    });
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap ',
+      height: 300,
+      automatic_uploads: true
+    });
+    getblogposts()
+    $("#post_blog").click(function (event) {
+      event.preventDefault();
+      var title = $('#title_blogpost').val();
+      var category = $('#category_blogpost').val();
+      var image = $('#image_blogpost')[0].files[0];
+      var content = tinymce.get('content_blogpost').getContent();
+
+      var formData = new FormData();
+      formData.append('title', title);
+      formData.append('category', category);
+      formData.append('image', image);
+      formData.append('content', content);
+
+      if (title.trim() === '' || category.trim() === '' || !image || content.trim() === '') {
+        Swal.fire({
+          title: "Empty!",
+          text: "All fields are required!",
+          icon: "warning",
+        });
+      } else {
+
+        $.ajax({
+          url: './api/savepost.php', // Update with your PHP script URL
+          type: 'POST',
+          data: formData,
+          contentType: false,
+          processData: false,
+          cache: false,
+          success: function (response) {
+            $("#title_blogpost").val("");
+            $("#category_blogpost").val('').trigger("change");
+            tinymce.get('content_blogpost').setContent('');
+            $('#data_blogpost')[0].reset();
+            getblogposts();
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your blog have been saved.',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          },
+          error: function (error) {
+            // console.log(error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+            });
+          }
+        });
+
+      }
+
+    });
+
+
+
+    //
+  }
+});
+//blog post
+$(document).ready(function () {
+  if ($("#page_blog_single").length > 0) {
+
+    var currentUrl = window.location.href;
+    var urlParams = new URLSearchParams(currentUrl.split('?')[1]);
+    var postId = urlParams.get('id');
+
+    $.ajax({
+      url: './api/singlepost.php',
+      type: 'GET',
+      data: {
+        postId: postId
+      },
+      dataType: 'json',
+      success: function (response) {
+        $('#blog_posts').empty();
+        // console.log(response);
+        // $.each(response, function (index, post) {
+        //   console.log(post);
+
+        var imageUrl = `${response.posts[0].image_url}`;
+        var dateObject = new Date(response.posts[0].created_at);
+        var date = dateObject.toISOString().split('T')[0];
+        var content = response.posts[0].content;
+        var contentcard = `
+            <div class="single-post  mb-2 border">
+                              <div class="p-0">
+                                  <div class="feature-img p-4 m-0">
+                                      <div class="d-flex border p-2 justify-content-center align-items-center">
+                                      <img class="img-fluid" src="${imageUrl}" alt="">
+                                      </div>
+                                  </div>
+                                  <div class="px-4 text-center row">
+                                      <div class="col-6 col-lg-3 py-3 border">
+                                          <a class="fw-500 text-primary anc" href="#">${response.posts[0].category_name}</a>
+                                      </div>
+                                      <div class="col-6 col-lg-3 py-3 border">
+                                          <p class="user-name p-0 m-0">${response.posts[0].first_name} ${response.posts[0].last_name}
+                                          </p>
+                                      </div>
+                                      <div class="col-6 col-lg-3 py-3 border">
+                                          <p class="date p-0  m-0">${date}
+                                      </div>
+                                      <div class="col-6 col-lg-3 py-3  border">
+                                          <p class="comments p-0  m-0">${response.posts[0].total_comments} comments
+                                      </div>
+                                  </div>
+                                  <div class="p-4 m-0">
+                                      <div class=" text-justify" >
+                                          <h3 class="text-primary m-0 mb-3">${response.posts[0].title}</h3>
+                                      </div>
+                                      <div class="content_blogpost text-justify">${content}</div>
+                                      <button onclick="history.back()" class="genric-btn primary mr-2">Back</button>
+                                      <a href="blog.php" class="genric-btn primary">Back to Blog Feed</a>
+                                  </div>
+                              </div>
+                          </div>`;
+        // $('#view_post_content').html(post.content);
+        $('#blog_posts').append(contentcard);
+
+        // }
+        // )
+      },
+      error: function (error) {
+        console.log('Error:', error);
+      }
+    });
+
+  }
+})
 
 
 

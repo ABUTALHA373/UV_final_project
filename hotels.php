@@ -20,28 +20,30 @@ require './include/nheader.php';
                         <div class="col-lg-2 col-md-6 col-sm-6 p-1">
                             <div class="">
                                 <label class="m-0 pl-1 w-100">Check-in date:</label>
-                                <input type="text" class="single-input single-input-primary border date-picker"
-                                    name="Check-in-date" placeholder="Select a date " onfocus="this.placeholder = ''"
+                                <input type="text" value="<?php echo date('Y-m-d'); ?>"
+                                    class="single-input single-input-primary border date-picker" name="Check-in-date"
+                                    placeholder="Select a date " onfocus="this.placeholder = ''"
                                     onblur="this.placeholder = 'Select a date'">
                             </div>
                         </div>
                         <div class="col-lg-2 col-md col-sm p-1">
                             <div class=""><label class="m-0 pl-1 w-100">Check-out date:</label>
-                                <input type="text" class="single-input single-input-primary border date-picker"
-                                    name="Check-out-date" placeholder="Select a date " onfocus="this.placeholder = ''"
+                                <input type="text" value="<?php echo date('Y-m-d', strtotime('+2 days')); ?>"
+                                    class="single-input single-input-primary border date-picker" name="Check-out-date"
+                                    placeholder="Select a date " onfocus="this.placeholder = ''"
                                     onblur="this.placeholder = 'Select a date'">
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-6 col-sm-6 p-1">
                             <div class=""><label class="m-0 pl-1 w-100">Adults:<small>(Per room)</small></label>
-                                <input type="number" name="adults" placeholder="Adults" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = 'Adults'" required
+                                <input type="number" value="2" name="adults" placeholder="Adults"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults'" required
                                     class="single-input single-input-primary border">
                             </div>
                         </div>
                         <div class="col-lg-2 col-md col-sm p-1">
                             <div class=""><label class="m-0 pl-1 w-100">Total rooms:</label>
-                                <input type="number" name="total-room" placeholder="Total rooms"
+                                <input type="number" value="1" name="total-room" placeholder="Total rooms"
                                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Total rooms'" required
                                     class="single-input single-input-primary border">
                             </div>
@@ -122,6 +124,7 @@ require './include/nheader.php';
                     </div>
                     <div class="p-3" id="card_container">
                         <!-- from js  -->
+
                     </div>
                 </div>
             </div>

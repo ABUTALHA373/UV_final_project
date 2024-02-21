@@ -45,11 +45,23 @@ body {
 .text-primary {
   color: #f8b600 !important;
 }
+.text-primary.anc:hover {
+  margin-right: 10px;
+}
 .bg-primary {
   background-color: #f8b600 !important;
 }
 .text-gray {
   color: #787878 !important;
+}
+.fw-500 {
+  font-weight: 500 !important;
+}
+.fw-400 {
+  font-weight: 400 !important;
+}
+.fw-600 {
+  font-weight: 600 !important;
 }
 #mobile-nav-toggle {
   padding-right: 15px;
@@ -61,7 +73,7 @@ body {
 .nheader-height {
   height: 109.75px !important;
 }
-.page_profile .account-info-area i {
+#page_profile .account-info-area i {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -123,8 +135,10 @@ body {
   background-image: url(img/hero-bg.jpg);
 }
 
-.sing-area label {
+.sing-area label,
+.inputarea {
   color: #333333 !important;
+  font-weight: 500 !important;
 }
 .bb {
   border-bottom: 2px solid #f8b600;
@@ -201,7 +215,8 @@ body {
   background-color: #f8b600 !important;
   border-color: #f8b600 !important;
 }
-.list-group-item {
+.list-group-item,
+.br-0 {
   border-radius: 0 !important;
 }
 
@@ -283,7 +298,7 @@ body {
   -webkit-border-radius: 0 3px 3px 0;
   -moz-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
-  height: 40px;
+  height: 39px;
   width: 40px;
 }
 
@@ -487,6 +502,117 @@ input[type="file"]::file-selector-button:hover {
   border-radius: 50%;
   color: red;
 }
+.dataTables_scrollHeadInner,
+thead {
+  width: 100% !important;
+}
+#pay {
+  width: 100%;
+  border: 1px solid #e4e4e4;
+  outline: none;
+  font-weight: 600;
+}
+
+#seats_table {
+  margin: 1rem auto;
+  gap: 0.5rem;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+#seats_table td {
+  cursor: pointer !important;
+}
+#seats_table .none {
+  cursor: default !important;
+  background-color: transparent !important;
+}
+#seats_table .none:hover {
+  cursor: default !important;
+  background-color: transparent !important;
+}
+#seats_table td:hover {
+  background-color: rgb(174, 255, 174) !important;
+}
+#seats_table .selected:hover {
+  background-color: green !important;
+}
+#seats_table .booked:hover {
+  background-color: red !important;
+  cursor: default !important;
+}
+#seats_table td,
+#seats_table th {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #e4e4e4;
+}
+.booked {
+  background-color: red !important;
+  color: white !important;
+  cursor: text !important;
+}
+.selected {
+  background-color: green !important;
+  color: white !important;
+}
+.tox-tinymce {
+  border-radius: 0 !important;
+  border: 1px solid #dee2e6 !important;
+}
+.tox-tinymce:hover,
+.tox-tinymce:focus {
+  border: 1px solid #f8b600;
+}
+.single-post li {
+  list-style-type: disc;
+  margin-left: 2rem;
+}
+.post-content-area .single-post .feature-img img {
+  width: auto !important;
+  height: 25rem !important;
+  padding: 0.5rem !important;
+  object-fit: cover !important;
+}
+
+#page_index small {
+  z-index: 2;
+  position: absolute !important;
+  top: -10px !important;
+  left: 5px !important;
+  padding: 0 7px;
+  background-color: white !important;
+  color: #777 !important;
+}
+
+.add_profile_img {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: #444;
+}
+/* .prifileimage {
+  width: 8rem;
+  height: 8rem;
+} */
+.profile_image_card img {
+  width: 8rem !important;
+  height: 8rem !important;
+  object-fit: cover !important;
+  border: 1px solid #888 !important;
+}
+.modal-content {
+  border-radius: 0 !important;
+}
+.table_overflow {
+  overflow: scroll !important;
+}
+th {
+  font-weight: 500 !important;
+  background-color: #e7e7e7;
+}
+
 /*
 /
 /
@@ -591,6 +717,18 @@ input[type="file"]::file-selector-button:hover {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  overflow: hidden;
+}
+
+.card_images_flight {
+  height: 10rem;
+}
+.card_images_flight img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
+  width: auto;
 }
 @media (min-width: 769px) {
   .card_images,
@@ -599,6 +737,9 @@ input[type="file"]::file-selector-button:hover {
   }
   .card_img_hotel {
     height: 20rem;
+  }
+  .card_flight .card_images_flight {
+    height: 10rem;
   }
 }
 

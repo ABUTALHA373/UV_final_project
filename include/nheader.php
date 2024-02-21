@@ -6,6 +6,7 @@ require __DIR__ . '/../config/db_con.php';
 <html lang="zxx" class="no-js">
 
 <head>
+
     <!-- Mobile Specific Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon-->
@@ -38,6 +39,9 @@ require __DIR__ . '/../config/db_con.php';
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/main.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+
 
 </head>
 
@@ -48,10 +52,10 @@ require __DIR__ . '/../config/db_con.php';
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-sm-6 col-6 header-top-left ">
                         <div class="header-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                            <a href="#"><i class="fa fa-behance"></i></a>
+                            <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="https://youtube.com/" target="_blank"><i class="fa fa-youtube-play"></i></a>
+                            <a href="https://instagram.com/" target="_blank"><i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-6 col-6 header-top-right">
@@ -79,7 +83,7 @@ require __DIR__ . '/../config/db_con.php';
                         <li><a href="<?php echo BASE_URL; ?>flights.php">Flight</a></li>
                         <li><a href="<?php echo BASE_URL; ?>hotels.php">Hotel</a></li>
                         <li><a href="<?php echo BASE_URL; ?>tours.html">Tour</a></li>
-                        <li><a href="<?php echo BASE_URL; ?>home.php">Blog</a></li>
+                        <li><a href="<?php echo BASE_URL; ?>blog/home.php">Blog</a></li>
                         <li><a href="<?php echo BASE_URL; ?>services.php">Services</a>
                             <!-- <ul>
                                 <li><a href="#">Item One</a></li>

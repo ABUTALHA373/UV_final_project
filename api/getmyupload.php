@@ -13,7 +13,7 @@ if (isset($_GET['table']) && isset($_GET['column']) && isset($_GET['columnvalue'
         $page = $_GET['page'];
     }
     $pageSize = 9;
-    $offset = ($page - 1) * $pageSize;
+    $offset = (($page - 1) * $pageSize);
 
     $stmt = $con->prepare("SELECT * FROM $table WHERE $column = ? ORDER BY image_id DESC LIMIT ?, ?");
     $stmt->bind_param('sii', $value, $offset, $pageSize);

@@ -25,7 +25,7 @@ require './include/header.php';
 <!-- End banner Area -->
 
 <!-- Start about-info Area -->
-<section class="c-area section-gap">
+<section class="c-area section-gap section-bg-white">
     <div class="container">
         <p>This Privacy Policy describes how BOOKITFAST ("we," "us," or "our") collects, uses, and discloses your
             personal information when you visit our website or use our services.</p>
@@ -75,7 +75,7 @@ require './include/header.php';
         <h3>7. Contact Us:</h3>
 
         <p>If you have any questions about our Privacy Policy, please contact us at <a
-                href="mailto:info@bookitfast.com">info@bookitfast.com</a>.</p>
+                href="mailto:info.bookitfast@gmail.com">info.bookitfast@gmail.com</a>.</p>
 
         <p"><em class="bg-pm text-w">Last Updated: [01-01-2024]</em></p>
     </div>

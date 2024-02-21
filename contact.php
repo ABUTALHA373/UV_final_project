@@ -26,16 +26,21 @@ require './include/header.php';
 <section class="contact-page-area section-gap">
     <div class="container">
         <div class="row">
-            <div class="map-wrap" style="width:100%; height: 445px;" id="map"></div>
+            <div class="map-wrap" style="width:100%; height: 445px;" id="map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d550.0725001667165!2d90.37746650857007!3d23.786871615671625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7d046e14d25%3A0xaabaf696a3c03aa7!2sGreen%20University%20Dhaka%20City%20Information%20Center!5e0!3m2!1sen!2sbd!4v1708227648116!5m2!1sen!2sbd"
+                    width="100%" height="100%" style="border: 1px solid #ced4da;" allowfullscreen="" loading=""
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
             <div class="col-lg-4 d-flex flex-column address-wrap">
                 <div class="single-contact-address d-flex flex-row">
                     <div class="icon">
                         <span class="lnr lnr-home"></span>
                     </div>
                     <div class="contact-details">
-                        <h5>Binghamton, New York</h5>
+                        <h5>Mirpur, Dhaka</h5>
                         <p>
-                            4343 Hinkle Deegan Lake Road
+                            Shewrapara Mirpur
                         </p>
                     </div>
                 </div>
@@ -44,8 +49,8 @@ require './include/header.php';
                         <span class="lnr lnr-phone-handset"></span>
                     </div>
                     <div class="contact-details">
-                        <h5>00 (958) 9865 562</h5>
-                        <p>Mon to Fri 9am to 6 pm</p>
+                        <h5>+8801700-123123</h5>
+                        <p>Sun to Thu 9am to 6 pm</p>
                     </div>
                 </div>
                 <div class="single-contact-address d-flex flex-row">
@@ -53,7 +58,7 @@ require './include/header.php';
                         <span class="lnr lnr-envelope"></span>
                     </div>
                     <div class="contact-details">
-                        <h5>support@colorlib.com</h5>
+                        <h5>info@bookitfast@gmail.com</h5>
                         <p>Send us your query anytime!</p>
                     </div>
                 </div>

@@ -25,8 +25,8 @@ require './include/header.php';
 <!-- End banner Area -->
 
 <!-- Start about-info Area -->
-<section class="c-area section-gap">
-    <div class="container">
+<section class="c-area section-gap section-bg-white">
+    <div class="container bg-white">
 
         <p>Welcome to BOOKITFAST! These Terms and Conditions ("Terms") govern your use of the
             BOOKITFAST website and
@@ -114,7 +114,7 @@ require './include/header.php';
         <h3>9. Contact Us:</h3>
         <ul class="unordered-list">
             <li>If you have any questions about these Terms, please contact us at <a
-                    href="mailto:info@example.com">info@bookitfast.com</a>.</li>
+                    href="mailto:info@bookitfast@gmail.com">info.bookitfast@gmail.com</a>.</li>
         </ul>
         <h3>Additional Information</h3>
         <ul class="unordered-list">

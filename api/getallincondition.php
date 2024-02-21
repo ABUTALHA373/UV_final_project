@@ -1,10 +1,15 @@
 <?php
+session_start();
 require '../config/db_con.php';
 
 if (isset($_GET['table']) && isset($_GET['column']) && isset($_GET['value'])) {
     $table = $_GET['table'];
     $column = $_GET['column'];
-    $value = $_GET['value'];
+    if($_GET['value']==='user_id'){
+        $value = $_SESSION['user_id'];
+    }else{
+        $value = $_GET['value'];
+    }
 
     $stmt = $con->prepare("SELECT * FROM $table WHERE $column = ?");
     $stmt->bind_param('s', $value);

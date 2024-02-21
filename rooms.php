@@ -85,18 +85,23 @@ require './include/nheader.php';
                 <div class="col-md-12 col-lg-3 p-0 m-0">
                     <div class=" border bg-white" id="sticky">
                         <div class="card-header">
-                            <div class="col-10 px-3">
+                            <div class=" px-3 text-center">
                                 <h4>Summary</h4>
                             </div>
                         </div>
                         <div class="p-2" style="min-height:200px" id="summary">
                             <!-- /// -->
                         </div>
-                        <h5 class="mb-2 text-center" id="pay">Pay 1700 tk</h5>
+                        <div class="mx-4 mb-2">
+                            <p class=" mb-1 text-center text-success fw-400">Payable:(BDT)</p>
+                            <input type="text" class="text-center" id="pay" readonly />
+                        </div>
                         <?php if (!$isLoggedIn || $status=='blocked' || $status=='deleted') {
                             echo '<div class="pb-4 text-center"><a href="'.BASE_URL.'login.php">Login</a> to Continue.</div>';
+                        }else if ($isLoggedIn && !$isVerified) {
+                            echo '<div class="pb-4 text-center"><a href="'.BASE_URL.'profile.php">Verify</a> your account.</div>';
                         }else{
-                            echo '<div class="p-2"><button href="#" class="genric-btn primary small w-100">Next</button>
+                            echo '<div class="p-2"><button href="" class="genric-btn primary small w-100" id="continue">Continue</button>
                             </div>';
                         } ?>
                     </div>

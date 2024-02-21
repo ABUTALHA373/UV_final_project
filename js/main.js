@@ -22,8 +22,17 @@ $(document).ready(function () {
             changeYear: true,
             yearRange: '1910:c'
         });
-
     });
+
+    $('[name="flight_date"]').datepicker({
+        minDate: 0, // Set minDate to 0 to disable previous dates
+        dateFormat: "yy-mm-dd", // Set the desired date format
+        onSelect: function (selectedDate) {
+            // Set the maximum date for check-in-date as the selected check-out-date
+            $('[name="Check-in-date"]').datepicker("option", "maxDate", selectedDate);
+        }
+    });
+
     $('[name="Check-in-date"]').datepicker({
         minDate: 0, // Set minDate to 0 to disable previous dates
         dateFormat: "yy-mm-dd", // Set the desired date format

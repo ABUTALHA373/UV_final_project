@@ -7,7 +7,7 @@ require './include/header.php';
 
 
 <!-- start banner Area -->
-<section class="about-banner relative">
+<section class="about-banner  relative">
     <div class="overlay overlay-bg"></div>
     <div class="container">
         <div class="row d-flex align-items-center justify-content-center">
@@ -25,7 +25,7 @@ require './include/header.php';
 <!-- End banner Area -->
 
 <!-- Start about-info Area -->
-<section class="about-info-area section-gap">
+<section class="about-info-area section-gap section-bg-white">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 info-left">
@@ -47,7 +47,7 @@ require './include/header.php';
 <!-- End about-info Area -->
 
 <!-- Start price Area -->
-<section class="price-area section-gap">
+<section class="price-area section-gap section-bg-gray">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
@@ -65,27 +65,27 @@ require './include/header.php';
                     <ul class="price-list">
                         <li class="d-flex justify-content-between align-items-center">
                             <span>New York</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳50000</a>
                         </li>
                         <li class="d-flex justify-content-between align-items-center">
                             <span>Maldives</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳40000</a>
                         </li>
                         <li class="d-flex justify-content-between align-items-center">
                             <span>Sri Lanka</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳20000</a>
                         </li>
                         <li class="d-flex justify-content-between align-items-center">
                             <span>Nepal</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳20000</a>
                         </li>
                         <li class="d-flex justify-content-between align-items-center">
                             <span>Thiland</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳12000</a>
                         </li>
                         <li class="d-flex justify-content-between align-items-center">
                             <span>Singapore</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳40000</a>
                         </li>
                     </ul>
                 </div>
@@ -96,27 +96,27 @@ require './include/header.php';
                     <ul class="price-list">
                         <li class="d-flex justify-content-between align-items-center">
                             <span>New York</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳150000</a>
                         </li>
                         <li class="d-flex justify-content-between align-items-center">
                             <span>Maldives</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳100000</a>
                         </li>
                         <li class="d-flex justify-content-between align-items-center">
                             <span>Sri Lanka</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳50000</a>
                         </li>
                         <li class="d-flex justify-content-between align-items-center">
                             <span>Nepal</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳30000</a>
                         </li>
                         <li class="d-flex justify-content-between align-items-center">
                             <span>Thiland</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳25000</a>
                         </li>
                         <li class="d-flex justify-content-between align-items-center">
                             <span>Singapore</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳30000</a>
                         </li>
                     </ul>
                 </div>
@@ -127,27 +127,27 @@ require './include/header.php';
                     <ul class="price-list">
                         <li class="d-flex justify-content-between align-items-center">
                             <span>New York</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳45000</a>
                         </li>
                         <li class="d-flex justify-content-between align-items-center">
                             <span>Maldives</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳30000</a>
                         </li>
                         <li class="d-flex justify-content-between align-items-center">
                             <span>Sri Lanka</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳20000</a>
                         </li>
                         <li class="d-flex justify-content-between align-items-center">
                             <span>Nepal</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳20000</a>
                         </li>
                         <li class="d-flex justify-content-between align-items-center">
                             <span>Thiland</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳25000</a>
                         </li>
                         <li class="d-flex justify-content-between align-items-center">
                             <span>Singapore</span>
-                            <a href="#" class="price-btn">$1500</a>
+                            <a href="#" class="price-btn">৳40000</a>
                         </li>
                     </ul>
                 </div>
@@ -229,7 +229,7 @@ require './include/header.php';
 
 
 <!-- Start testimonial Area -->
-<section class="testimonial-area section-gap">
+<section class="testimonial-area section-gap section-bg-white">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
@@ -241,7 +241,7 @@ require './include/header.php';
         </div>
         <div class="row">
             <div class="active-testimonial">
-                <div class="single-testimonial item d-flex flex-row">
+                <div class="single-testimonial item d-flex flex-row bg-gray">
                     <div class="thumb">
                         <img class="img-fluid" src="img/elements/user1.png" alt="">
                     </div>
@@ -260,7 +260,7 @@ require './include/header.php';
                         </div>
                     </div>
                 </div>
-                <div class="single-testimonial item d-flex flex-row">
+                <div class="single-testimonial item d-flex flex-row bg-gray">
                     <div class="thumb">
                         <img class="img-fluid" src="img/elements/user2.png" alt="">
                     </div>
@@ -279,7 +279,7 @@ require './include/header.php';
                         </div>
                     </div>
                 </div>
-                <div class="single-testimonial item d-flex flex-row">
+                <div class="single-testimonial item d-flex flex-row bg-gray">
                     <div class="thumb">
                         <img class="img-fluid" src="img/elements/user1.png" alt="">
                     </div>
@@ -298,7 +298,7 @@ require './include/header.php';
                         </div>
                     </div>
                 </div>
-                <div class="single-testimonial item d-flex flex-row">
+                <div class="single-testimonial item d-flex flex-row bg-gray">
                     <div class="thumb">
                         <img class="img-fluid" src="img/elements/user2.png" alt="">
                     </div>
@@ -317,7 +317,7 @@ require './include/header.php';
                         </div>
                     </div>
                 </div>
-                <div class="single-testimonial item d-flex flex-row">
+                <div class="single-testimonial item d-flex flex-row bg-gray">
                     <div class="thumb">
                         <img class="img-fluid" src="img/elements/user1.png" alt="">
                     </div>
@@ -336,7 +336,7 @@ require './include/header.php';
                         </div>
                     </div>
                 </div>
-                <div class="single-testimonial item d-flex flex-row">
+                <div class="single-testimonial item d-flex flex-row bg-gray">
                     <div class="thumb">
                         <img class="img-fluid" src="img/elements/user2.png" alt="">
                     </div>

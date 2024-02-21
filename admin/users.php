@@ -37,7 +37,6 @@ require '../include/c_header.php';
                                     <th class="d-none d-md-table-cell">Is Verified</th>
                                     <th class="d-none d-md-table-cell">Status</th>
                                     <th class="d-none d-md-table-cell">Last Update</th>
-
                                 </tr>
                             </thead>
                             <tbody>

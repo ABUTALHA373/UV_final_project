@@ -33,22 +33,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $rowhotel['images'] = $images; //will make images array into hotels details
     $hotel[] = $rowhotel;
   }
+  // $queryrooms = "SELECT * FROM rooms 
+  // WHERE hotel_id = ? 
+  //   AND capacity = ?
+  //   AND available_rooms >= ? 
+  //   AND NOT EXISTS (
+  //     SELECT 1  FROM hotel_bookings 
+  //     WHERE rooms.room_id = hotel_bookings.room_id 
+  //       AND (
+  //         (? <= hotel_bookings.check_in_date AND ? >= hotel_bookings.check_out_date)
+  //         OR ( hotel_bookings.check_in_date BETWEEN ? AND ?)
+  //         OR ( hotel_bookings.check_out_date BETWEEN ? AND ?)
+  //       )
+  //   )";
+
   $queryrooms = "SELECT * FROM rooms 
   WHERE hotel_id = ? 
     AND capacity = ?
     AND available_rooms >= ? 
-    AND NOT EXISTS (
-      SELECT 1  FROM hotel_bookings 
-      WHERE rooms.room_id = hotel_bookings.room_id 
-        AND (
-          (? <= hotel_bookings.check_in_date AND ? >= hotel_bookings.check_out_date)
-          OR ( hotel_bookings.check_in_date BETWEEN ? AND ?)
-          OR ( hotel_bookings.check_out_date BETWEEN ? AND ?)
-        )
-    )";
+    AND (available_rooms - (
+        SELECT COALESCE(SUM(total_room), 0) AS sum0frooms 
+        FROM hotel_bookings
+        WHERE rooms.room_id = hotel_bookings.room_id
+        AND hotel_bookings.payment_status = 'paid'
+          AND (
+            ? <= hotel_bookings.check_in_date AND ? >= hotel_bookings.check_out_date
+            OR hotel_bookings.check_in_date BETWEEN ? AND ?
+            OR hotel_bookings.check_out_date BETWEEN ? AND ?
+          )
+    ) )>= ?";
+  
 
   $stmtrooms = $con->prepare($queryrooms);
-  $stmtrooms->bind_param('iiissssss', $hotelId, $capacity,$totalRoom, $checkInDate, $checkOutDate, $checkInDate, $checkOutDate, $checkInDate, $checkOutDate);
+  $stmtrooms->bind_param('iiissssssi', $hotelId, $capacity,$totalRoom, $checkInDate, $checkOutDate, $checkInDate, $checkOutDate, $checkInDate, $checkOutDate,$totalRoom);
 
   $stmtrooms->execute();
   $resulrooms = $stmtrooms->get_result();

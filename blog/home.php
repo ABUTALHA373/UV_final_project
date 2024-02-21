@@ -1,303 +1,140 @@
 <?php
 session_start();
-$isLoggedIn = isset($_SESSION['user_id'] ) && isset($_SESSION['user_email']) && isset($_SESSION['user_first_name']) && isset($_SESSION['user_last_name']);
+require '../config/status_check.php';
+$isLoggedIn = isset($_SESSION['user_id']) && isset($_SESSION['user_email']) && isset($_SESSION['user_first_name']) && isset($_SESSION['user_last_name']);
 $isVerified = isset($_SESSION['user_is_verified']);
+$status = isset($_SESSION['user_status']);
+
 require '../include/header.php'
 ?>
 
 
 <!-- start banner Area -->
-<section class="banner-area relative blog-home-banner" id="home">
-    <div class="overlay overlay-bg"></div>
-    <div class="container">
-        <div class="row d-flex align-items-center justify-content-center">
-            <div class="about-content blog-header-content col-lg-12">
-                <h1 class="text-white">
-                    Dude You’re Getting
-                    a Telescope
-                </h1>
-                <p class="text-white">
-                    There is a moment in the life of any aspiring astronomer that it is time to buy that first
-                </p>
-                <a href="blog-single.php" class="primary-btn">View More</a>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End banner Area -->
-
-<!-- Start top-category-widget Area -->
-<section class="top-category-widget-area pt-90 pb-90 ">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="single-cat-widget">
-                    <div class="content relative">
-                        <div class="overlay overlay-bg"></div>
-                        <a href="#" target="_blank">
-                            <div class="thumb">
-                                <img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget1.jpg"
-                                    alt="">
-                            </div>
-                            <div class="content-details">
-                                <h4 class="content-title mx-auto text-uppercase">Social life</h4>
-                                <span></span>
-                                <p>Enjoy your social life together</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-cat-widget">
-                    <div class="content relative">
-                        <div class="overlay overlay-bg"></div>
-                        <a href="#" target="_blank">
-                            <div class="thumb">
-                                <img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget2.jpg"
-                                    alt="">
-                            </div>
-                            <div class="content-details">
-                                <h4 class="content-title mx-auto text-uppercase">Politics</h4>
-                                <span></span>
-                                <p>Be a part of politics</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single-cat-widget">
-                    <div class="content relative">
-                        <div class="overlay overlay-bg"></div>
-                        <a href="#" target="_blank">
-                            <div class="thumb">
-                                <img class="content-image img-fluid d-block mx-auto" src="img/blog/cat-widget3.jpg"
-                                    alt="">
-                            </div>
-                            <div class="content-details">
-                                <h4 class="content-title mx-auto text-uppercase">Food</h4>
-                                <span></span>
-                                <p>Let the food be finished</p>
-                            </div>
-                        </a>
-                    </div>
+<div id="page_blog_home">
+    <section class="relative about-banner">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Blog
+                    </h1>
+                    <p class="text-white link-nav"><a href="index.php">Home </a> <span
+                            class="lnr lnr-arrow-right"></span>
+                        <a href="contact.php">Blog</a>
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- End top-category-widget Area -->
-
-<!-- Start post-content Area -->
-<section class="post-content-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 posts-list">
-                <div class="single-post row">
-                    <div class="col-lg-3  col-md-3 meta-details">
-                        <ul class="tags">
-                            <li><a href="#">Food,</a></li>
-                            <li><a href="#">Technology,</a></li>
-                            <li><a href="#">Politics,</a></li>
-                            <li><a href="#">Lifestyle</a></li>
-                        </ul>
-                        <div class="user-details row">
-                            <p class="user-name col-lg-12 col-md-12 col-6"><a href="#">Mark wiens</a> <span
-                                    class="lnr lnr-user"></span></p>
-                            <p class="date col-lg-12 col-md-12 col-6"><a href="#">12 Dec, 2017</a> <span
-                                    class="lnr lnr-calendar-full"></span></p>
-                            <p class="view col-lg-12 col-md-12 col-6"><a href="#">1.2M Views</a> <span
-                                    class="lnr lnr-eye"></span></p>
-                            <p class="comments col-lg-12 col-md-12 col-6"><a href="#">06 Comments</a> <span
-                                    class="lnr lnr-bubble"></span></p>
-                        </div>
-                    </div>
-                    <div class="col-lg-9 col-md-9 ">
-                        <div class="feature-img">
-                            <img class="img-fluid" src="img/blog/feature-img1.jpg" alt="">
-                        </div>
-                        <a class="posts-title" href="blog-single.html">
-                            <h3>Astronomy Binoculars A Great Alternative</h3>
-                        </a>
-                        <p class="excert">
-                            MCSE boot camps have its supporters and its detractors. Some people do not understand why
-                            you should have to spend money on boot camp when you can get the MCSE study materials
-                            yourself at a fraction.
-                        </p>
-                        <a href="blog-single.html" class="primary-btn">View More</a>
-                    </div>
-                </div>
-                <div class="single-post row">
-                    <div class="col-lg-3  col-md-3 meta-details">
-                        <ul class="tags">
-                            <li><a href="#">Food,</a></li>
-                            <li><a href="#">Technology,</a></li>
-                            <li><a href="#">Politics,</a></li>
-                            <li><a href="#">Lifestyle</a></li>
-                        </ul>
-                        <div class="user-details row">
-                            <p class="user-name col-lg-12 col-md-12 col-6"><a href="#">Mark wiens</a> <span
-                                    class="lnr lnr-user"></span></p>
-                            <p class="date col-lg-12 col-md-12 col-6"><a href="#">12 Dec, 2017</a> <span
-                                    class="lnr lnr-calendar-full"></span></p>
-                            <p class="view col-lg-12 col-md-12 col-6"><a href="#">1.2M Views</a> <span
-                                    class="lnr lnr-eye"></span></p>
-                            <p class="comments col-lg-12 col-md-12 col-6"><a href="#">06 Comments</a> <span
-                                    class="lnr lnr-bubble"></span></p>
-                        </div>
-                    </div>
-                    <div class="col-lg-9 col-md-9 ">
-                        <div class="feature-img">
-                            <img class="img-fluid" src="img/blog/feature-img2.jpg" alt="">
-                        </div>
-                        <a class="posts-title" href="blog-single.html">
-                            <h3>The Basics Of Buying A Telescope</h3>
-                        </a>
-                        <p class="excert">
-                            MCSE boot camps have its supporters and its detractors. Some people do not understand why
-                            you should have to spend money on boot camp when you can get the MCSE study materials
-                            yourself at a fraction.
-                        </p>
-                        <a href="blog-single.html" class="primary-btn">View More</a>
-                    </div>
-                </div>
-                <div class="single-post row">
-                    <div class="col-lg-3  col-md-3 meta-details">
-                        <ul class="tags">
-                            <li><a href="#">Food,</a></li>
-                            <li><a href="#">Technology,</a></li>
-                            <li><a href="#">Politics,</a></li>
-                            <li><a href="#">Lifestyle</a></li>
-                        </ul>
-                        <div class="user-details row">
-                            <p class="user-name col-lg-12 col-md-12 col-6"><a href="#">Mark wiens</a> <span
-                                    class="lnr lnr-user"></span></p>
-                            <p class="date col-lg-12 col-md-12 col-6"><a href="#">12 Dec, 2017</a> <span
-                                    class="lnr lnr-calendar-full"></span></p>
-                            <p class="view col-lg-12 col-md-12 col-6"><a href="#">1.2M Views</a> <span
-                                    class="lnr lnr-eye"></span></p>
-                            <p class="comments col-lg-12 col-md-12 col-6"><a href="#">06 Comments</a> <span
-                                    class="lnr lnr-bubble"></span></p>
-                        </div>
-                    </div>
-                    <div class="col-lg-9 col-md-9">
-                        <div class="feature-img">
-                            <img class="img-fluid" src="img/blog/feature-img3.jpg" alt="">
-                        </div>
-                        <a class="posts-title" href="blog-single.html">
-                            <h3>The Glossary Of Telescopes</h3>
-                        </a>
-                        <p class="excert">
-                            MCSE boot camps have its supporters and its detractors. Some people do not understand why
-                            you should have to spend money on boot camp when you can get the MCSE study materials
-                            yourself at a fraction.
-                        </p>
-                        <a href="blog-single.html" class="primary-btn">View More</a>
-                    </div>
-                </div>
-                <div class="single-post row">
-                    <div class="col-lg-3  col-md-3 meta-details">
-                        <ul class="tags">
-                            <li><a href="#">Food,</a></li>
-                            <li><a href="#">Technology,</a></li>
-                            <li><a href="#">Politics,</a></li>
-                            <li><a href="#">Lifestyle</a></li>
-                        </ul>
-                        <div class="user-details row">
-                            <p class="user-name col-lg-12 col-md-12 col-6"><a href="#">Mark wiens</a> <span
-                                    class="lnr lnr-user"></span></p>
-                            <p class="date col-lg-12 col-md-12 col-6"><a href="#">12 Dec, 2017</a> <span
-                                    class="lnr lnr-calendar-full"></span></p>
-                            <p class="view col-lg-12 col-md-12 col-6"><a href="#">1.2M Views</a> <span
-                                    class="lnr lnr-eye"></span></p>
-                            <p class="comments col-lg-12 col-md-12 col-6"><a href="#">06 Comments</a> <span
-                                    class="lnr lnr-bubble"></span></p>
-                        </div>
-                    </div>
-                    <div class="col-lg-9 col-md-9">
-                        <div class="feature-img">
-                            <img class="img-fluid" src="img/blog/feature-img4.jpg" alt="">
-                        </div>
-                        <a class="posts-title" href="blog-single.html">
-                            <h3>The Night Sky</h3>
-                        </a>
-                        <p class="excert">
-                            MCSE boot camps have its supporters and its detractors. Some people do not understand why
-                            you should have to spend money on boot camp when you can get the MCSE study materials
-                            yourself at a fraction.
-                        </p>
-                        <a href="blog-single.html" class="primary-btn">View More</a>
-                    </div>
-                </div>
-                <div class="single-post row">
-                    <div class="col-lg-3 col-md-3 meta-details">
-                        <ul class="tags">
-                            <li><a href="#">Food,</a></li>
-                            <li><a href="#">Technology,</a></li>
-                            <li><a href="#">Politics,</a></li>
-                            <li><a href="#">Lifestyle</a></li>
-                        </ul>
-                        <div class="user-details row">
-                            <p class="user-name col-lg-12 col-md-12 col-6"><a href="#">Mark wiens</a> <span
-                                    class="lnr lnr-user"></span></p>
-                            <p class="date col-lg-12 col-md-12 col-6"><a href="#">12 Dec, 2017</a> <span
-                                    class="lnr lnr-calendar-full"></span></p>
-                            <p class="view col-lg-12 col-md-12 col-6"><a href="#">1.2M Views</a> <span
-                                    class="lnr lnr-eye"></span></p>
-                            <p class="comments col-lg-12 col-md-12 col-6"><a href="#">06 Comments</a> <span
-                                    class="lnr lnr-bubble"></span></p>
-                        </div>
-                    </div>
-                    <div class="col-lg-9 col-md-9">
-                        <div class="feature-img">
-                            <img class="img-fluid" src="img/blog/feature-img5.jpg" alt="">
-                        </div>
-                        <a class="posts-title" href="blog-single.html">
-                            <h3>Telescopes 101</h3>
-                        </a>
-                        <p class="excert">
-                            MCSE boot camps have its supporters and its detractors. Some people do not understand why
-                            you should have to spend money on boot camp when you can get the MCSE study materials
-                            yourself at a fraction.
-                        </p>
-                        <a href="blog-single.html" class="primary-btn">View More</a>
-                    </div>
-                </div>
-                <nav class="blog-pagination justify-content-center d-flex">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a href="#" class="page-link" aria-label="Previous">
-                                <span aria-hidden="true">
-                                    <span class="lnr lnr-chevron-left"></span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a href="#" class="page-link">01</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">02</a></li>
-                        <li class="page-item"><a href="#" class="page-link">03</a></li>
-                        <li class="page-item"><a href="#" class="page-link">04</a></li>
-                        <li class="page-item"><a href="#" class="page-link">09</a></li>
-                        <li class="page-item">
-                            <a href="#" class="page-link" aria-label="Next">
-                                <span aria-hidden="true">
-                                    <span class="lnr lnr-chevron-right"></span>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+    </section>
+    <section class="post-content-area section-bg-gray p-2">
+        <div class="container border bg-white p-0">
+            <div class="p-3 mb-3 bg-primary">
+                <h4 class="text-white text-center br-0">Blog Feed</h4>
             </div>
-            <div class="col-lg-4 sidebar-widgets">
-                <div class="widget-wrap">
-                    <div class="single-sidebar-widget search-widget">
+            <div class="row">
+                <div class="col-lg-9 posts-list">
+                    <div class="card-header border mb-2">
+                        <?php if($isLoggedIn && $status == 'active'){
+                            echo '<form id="data_blogpost" action="post" enctype="multipart/form-data">
+                            <div>
+                                <label class="ml-1 mb-0 inputarea">Title:</label>
+                                <input type="text" id="title_blogpost" name="title_blogpost" placeholder="Post Title"
+                                    onfocus="this.placeholder = """ onblur="this.placeholder = "Post Title" required
+                                    class="single-input single-input-primary border">
+                            </div>
+                            <div class="row column-gap-2 p-0 m-0">
+                                <div class="col-xl-6 col-sm-12 p-0 m-0">
+                                    <div class="mt-2">
+                                        <label class="ml-1 mb-0 inputarea">Category:</label>
+                                        <select id="category_blogpost" name="category_blogpost" required>
+                                            <option value="" selected disabled>Select a Category</option>
+                                            <option value="1">Food</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl col-sm-12 p-0 m-0">
+                                    <div class="mt-2">
+                                        <label class="ml-1 mb-0 inputarea">Image:</label>
+                                        <div class=" file">
+                                            <input type="file" name="image_blogpost" id="image_blogpost"
+                                                class="single-input single-input-primary border" accept="image/*"
+                                                required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <label class="ml-1 mb-0 inputarea">Content:</label>
+                                <textarea name="content_blogpost" id="content_blogpost" required></textarea>
+                            </div>
+                            <div class="mt-2">
+                                <button id="post_blog" class="genric-btn primary w-100">Post</button>
+                            </div>
+                        </form>';
+                        } else{
+                            echo '<div class="p-4">
+                            <p class="text-center p-0 m-0">Please <a href="'.BASE_URL.'login.php">Login</a> to create a new post.</p>
+                        </div>';
+                        }?>
+
+
+                    </div>
+                    <div id="blog_posts">
+                        <!-- <div class="single-post  mb-2 row border">
+                            <div class="p-0">
+                                <div class="feature-img p-4 m-0">
+                                    <img class="img-fluid" src="<?php echo BASE_URL; ?>img/b2.jpg" alt="">
+                                </div>
+                                <div class="px-4 text-center row">
+                                    <div class="col-6 col-lg-3 py-3 border">
+                                        <a class="fw-500 text-primary anc" href="#">Technology</a>
+                                    </div>
+                                    <div class="col-6 col-lg-3 py-3 border">
+                                        <p class="user-name p-0 m-0">Shohel Islam
+                                        </p>
+                                    </div>
+                                    <div class="col-6 col-lg-3 py-3 border">
+                                        <p class="date p-0  m-0">12 Dec, 2022
+                                    </div>
+                                    <div class="col-6 col-lg-3 py-3  border">
+                                        <p class="comments p-0  m-0">06 Comments
+                                    </div>
+                                </div>
+                                <div class="p-4 m-0">
+                                    <a class="posts-title text-justify" href="blog-single.html">
+                                        <h3 class=" m-0 mb-3">Unveiling the Future: A Dive into Cutting-Edge Technology
+                                            Trends</h3>
+                                    </a>
+                                    <p class="excert text-justify">
+                                        In the fast-paced realm of technology, innovation is the driving force that
+                                        propels
+                                        us
+                                        into
+                                        an era of endless possibilities. As we stand on the cusp of the digital
+                                        frontier,
+                                        let's
+                                        embark on a journey to explore some of the most exciting and transformative
+                                        technology
+                                        trends shaping our world.
+                                    </p>
+                                    <a href="blog-single.html" class="genric-btn primary">View More</a>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+
+                </div>
+                <div class="col-lg-3 p-0">
+                    <div class="widget-wrap">
+                        <!-- <div class="single-sidebar-widget search-widget">
                         <form class="search-form" action="#">
                             <input placeholder="Search Posts" name="search" type="text" onfocus="this.placeholder = ''"
                                 onblur="this.placeholder = 'Search Posts'">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
-                    </div>
-                    <div class="single-sidebar-widget user-info-widget">
+                    </div> -->
+                        <!-- <div class="single-sidebar-widget user-info-widget">
                         <img src="img/blog/user-info.png" alt="">
                         <a href="#">
                             <h4>Charlie Barber</h4>
@@ -316,107 +153,108 @@ require '../include/header.php'
                             should have to spend money on boot camp when you can get. Boot camps have itssuppor ters
                             andits detractors.
                         </p>
-                    </div>
-                    <div class="single-sidebar-widget popular-post-widget">
-                        <h4 class="popular-title">Popular Posts</h4>
-                        <div class="popular-post-list">
-                            <div class="single-post-list d-flex flex-row align-items-center">
-                                <div class="thumb">
-                                    <img class="img-fluid" src="img/blog/pp1.jpg" alt="">
-                                </div>
-                                <div class="details">
-                                    <a href="blog-single.html">
-                                        <h6>Space The Final Frontier</h6>
+                    </div> -->
+                        <div class="single-sidebar-widget post-category-widget">
+                            <h4 class="category-title">Post Catgories</h4>
+                            <ul class="cat-list">
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Technology</p>
+                                        <p>37</p>
                                     </a>
-                                    <p>02 Hours ago</p>
-                                </div>
-                            </div>
-                            <div class="single-post-list d-flex flex-row align-items-center">
-                                <div class="thumb">
-                                    <img class="img-fluid" src="img/blog/pp2.jpg" alt="">
-                                </div>
-                                <div class="details">
-                                    <a href="blog-single.html">
-                                        <h6>The Amazing Hubble</h6>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Lifestyle</p>
+                                        <p>24</p>
                                     </a>
-                                    <p>02 Hours ago</p>
-                                </div>
-                            </div>
-                            <div class="single-post-list d-flex flex-row align-items-center">
-                                <div class="thumb">
-                                    <img class="img-fluid" src="img/blog/pp3.jpg" alt="">
-                                </div>
-                                <div class="details">
-                                    <a href="blog-single.html">
-                                        <h6>Astronomy Or Astrology</h6>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Fashion</p>
+                                        <p>59</p>
                                     </a>
-                                    <p>02 Hours ago</p>
-                                </div>
-                            </div>
-                            <div class="single-post-list d-flex flex-row align-items-center">
-                                <div class="thumb">
-                                    <img class="img-fluid" src="img/blog/pp4.jpg" alt="">
-                                </div>
-                                <div class="details">
-                                    <a href="blog-single.html">
-                                        <h6>Asteroids telescope</h6>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Art</p>
+                                        <p>29</p>
                                     </a>
-                                    <p>02 Hours ago</p>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Food</p>
+                                        <p>15</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Architecture</p>
+                                        <p>09</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <p>Adventure</p>
+                                        <p>44</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="single-sidebar-widget popular-post-widget">
+                            <h4 class="popular-title">Popular Posts</h4>
+                            <div class="popular-post-list">
+                                <div class="single-post-list d-flex flex-row align-items-center">
+                                    <div class="thumb">
+                                        <img class="img-fluid" src="" alt="">
+                                    </div>
+                                    <div class="details">
+                                        <a href="blog-single.html">
+                                            <h6>Space The Final Frontier</h6>
+                                        </a>
+                                        <p>02 Hours ago</p>
+                                    </div>
+                                </div>
+                                <div class="single-post-list d-flex flex-row align-items-center">
+                                    <div class="thumb">
+                                        <img class="img-fluid" src="" alt="">
+                                    </div>
+                                    <div class="details">
+                                        <a href="blog-single.html">
+                                            <h6>The Amazing Hubble</h6>
+                                        </a>
+                                        <p>02 Hours ago</p>
+                                    </div>
+                                </div>
+                                <div class="single-post-list d-flex flex-row align-items-center">
+                                    <div class="thumb">
+                                        <img class="img-fluid" src="" alt="">
+                                    </div>
+                                    <div class="details">
+                                        <a href="blog-single.html">
+                                            <h6>Astronomy Or Astrology</h6>
+                                        </a>
+                                        <p>02 Hours ago</p>
+                                    </div>
+                                </div>
+                                <div class="single-post-list d-flex flex-row align-items-center">
+                                    <div class="thumb">
+                                        <img class="img-fluid" src="" alt="">
+                                    </div>
+                                    <div class="details">
+                                        <a href="blog-single.html">
+                                            <h6>Asteroids telescope</h6>
+                                        </a>
+                                        <p>02 Hours ago</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="single-sidebar-widget ads-widget">
+                        <!-- <div class="single-sidebar-widget ads-widget">
                         <a href="#"><img class="img-fluid" src="img/blog/ads-banner.jpg" alt=""></a>
-                    </div>
-                    <div class="single-sidebar-widget post-category-widget">
-                        <h4 class="category-title">Post Catgories</h4>
-                        <ul class="cat-list">
-                            <li>
-                                <a href="#" class="d-flex justify-content-between">
-                                    <p>Technology</p>
-                                    <p>37</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex justify-content-between">
-                                    <p>Lifestyle</p>
-                                    <p>24</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex justify-content-between">
-                                    <p>Fashion</p>
-                                    <p>59</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex justify-content-between">
-                                    <p>Art</p>
-                                    <p>29</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex justify-content-between">
-                                    <p>Food</p>
-                                    <p>15</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex justify-content-between">
-                                    <p>Architecture</p>
-                                    <p>09</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex justify-content-between">
-                                    <p>Adventure</p>
-                                    <p>44</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="single-sidebar-widget newsletter-widget">
+                    </div> -->
+
+                        <!-- <div class="single-sidebar-widget newsletter-widget">
                         <h4 class="newsletter-title">Newsletter</h4>
                         <p>
                             Here, I focus on a range of items and features that we use in life without
@@ -439,8 +277,8 @@ require '../include/header.php'
                         <p class="text-bottom">
                             You can unsubscribe at any time
                         </p>
-                    </div>
-                    <div class="single-sidebar-widget tag-cloud-widget">
+                    </div> -->
+                        <!-- <div class="single-sidebar-widget tag-cloud-widget">
                         <h4 class="tagcloud-title">Tag Clouds</h4>
                         <ul>
                             <li><a href="#">Technology</a></li>
@@ -456,12 +294,13 @@ require '../include/header.php'
                             <li><a href="#">Lifestyle</a></li>
                             <li><a href="#">Adventure</a></li>
                         </ul>
+                    </div> -->
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 <!-- End post-content Area -->
 <?php
 
