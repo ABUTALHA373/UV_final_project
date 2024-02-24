@@ -506,6 +506,74 @@ const countryOptions = [
   { id: "Zimbabwe", text: "Zimbabwe" },
 ];
 
+const cityOptions = [
+  { id: "Dhaka", text: "Dhaka" },
+  { id: "Faridpur", text: "Faridpur" },
+  { id: "Gazipur", text: "Gazipur" },
+  { id: "Gopalganj", text: "Gopalganj" },
+  { id: "Jamalpur", text: "Jamalpur" },
+  { id: "Kishoreganj", text: "Kishoreganj" },
+  { id: "Madaripur", text: "Madaripur" },
+  { id: "Manikganj", text: "Manikganj" },
+  { id: "Munshiganj", text: "Munshiganj" },
+  { id: "Mymensingh", text: "Mymensingh" },
+  { id: "Narayanganj", text: "Narayanganj" },
+  { id: "Narsingdi", text: "Narsingdi" },
+  { id: "Netrokona", text: "Netrokona" },
+  { id: "Rajbari", text: "Rajbari" },
+  { id: "Shariatpur", text: "Shariatpur" },
+  { id: "Sherpur", text: "Sherpur" },
+  { id: "Tangail", text: "Tangail" },
+  { id: "Bogra", text: "Bogra" },
+  { id: "Joypurhat", text: "Joypurhat" },
+  { id: "Naogaon", text: "Naogaon" },
+  { id: "Natore", text: "Natore" },
+  { id: "Nawabganj", text: "Nawabganj" },
+  { id: "Pabna", text: "Pabna" },
+  { id: "Rajshahi", text: "Rajshahi" },
+  { id: "Sirajgonj", text: "Sirajgonj" },
+  { id: "Dinajpur", text: "Dinajpur" },
+  { id: "Gaibandha", text: "Gaibandha" },
+  { id: "Kurigram", text: "Kurigram" },
+  { id: "Lalmonirhat", text: "Lalmonirhat" },
+  { id: "Nilphamari", text: "Nilphamari" },
+  { id: "Panchagarh", text: "Panchagarh" },
+  { id: "Rangpur", text: "Rangpur" },
+  { id: "Thakurgaon", text: "Thakurgaon" },
+  { id: "Barguna", text: "Barguna" },
+  { id: "Barisal", text: "Barisal" },
+  { id: "Bhola", text: "Bhola" },
+  { id: "Jhalokati", text: "Jhalokati" },
+  { id: "Patuakhali", text: "Patuakhali" },
+  { id: "Pirojpur", text: "Pirojpur" },
+  { id: "Bandarban", text: "Bandarban" },
+  { id: "Brahmanbaria", text: "Brahmanbaria" },
+  { id: "Chandpur", text: "Chandpur" },
+  { id: "Chittagong", text: "Chittagong" },
+  { id: "Comilla", text: "Comilla" },
+  { id: "Cox's Bazar", text: "Cox's Bazar" },
+  { id: "Feni", text: "Feni" },
+  { id: "Khagrachari", text: "Khagrachari" },
+  { id: "Lakshmipur", text: "Lakshmipur" },
+  { id: "Noakhali", text: "Noakhali" },
+  { id: "Rangamati", text: "Rangamati" },
+  { id: "Habiganj", text: "Habiganj" },
+  { id: "Maulvibazar", text: "Maulvibazar" },
+  { id: "Sunamganj", text: "Sunamganj" },
+  { id: "Sylhet", text: "Sylhet" },
+  { id: "Bagerhat", text: "Bagerhat" },
+  { id: "Chuadanga", text: "Chuadanga" },
+  { id: "Jessore", text: "Jessore" },
+  { id: "Jhenaidah", text: "Jhenaidah" },
+  { id: "Khulna", text: "Khulna" },
+  { id: "Kushtia", text: "Kushtia" },
+  { id: "Magura", text: "Magura" },
+  { id: "Meherpur", text: "Meherpur" },
+  { id: "Narail", text: "Narail" },
+  { id: "Satkhira", text: "Satkhira" },
+];
+
+
 //profile page
 $(document).ready(function () {
   if ($("#page_profile").length > 0) {
@@ -973,9 +1041,9 @@ $(document).ready(function () {
               width: "3%",
               render: function (data, type, row) {
                 var actions =
-                  '<a href="javascript:void(0)" class="text-info" data-user-id="' +
-                  row.user_id +
-                  '"><i class="fa fa-download mt-1" aria-hidden="true"></i></a>';
+                  '<a class="text-info" href="reportflight.php?flb_Id=' +
+                  row.booking_id +
+                  '" target="_blank"><i class="fa fa-download mt-1"  aria-hidden="true"></i></a>';
                 return actions;
               },
             },
@@ -1020,6 +1088,7 @@ $(document).ready(function () {
       }
     });
 
+
     //my booking - hotel
     $.ajax({
       url: './api/getbooking.php',
@@ -1045,9 +1114,9 @@ $(document).ready(function () {
               width: "3%",
               render: function (data, type, row) {
                 var actions =
-                  '<a href="javascript:void(0)" class="text-info" data-user-id="' +
-                  row.user_id +
-                  '"><i class="fa fa-download mt-1" aria-hidden="true"></i></a>';
+                  '<a href="reporthotel.php?hb_Id=' +
+                  row.booking_id +
+                  '" class="text-info" target="_blank"><i class="fa fa-download mt-1" aria-hidden="true"></i></a>';
                 return actions;
               },
             },
@@ -1204,7 +1273,7 @@ $(document).ready(function () {
       var postId = $(this).data("post-id").toString();
       // console.log(userId);
       Swal.fire({
-        title: "Do you want to delete the user?",
+        title: "Do you want to delete the post?",
         // showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: "Delete",
@@ -1232,6 +1301,8 @@ $(document).ready(function () {
   }
 
 });
+
+//gallery
 $(document).ready(function () {
   if ($("#page_gallery").length > 0) {
     fetchData();
@@ -1293,7 +1364,7 @@ $(document).ready(function () {
   }
 });
 
-//profile page end
+
 //reset pass
 $(document).ready(function () {
   if ($("#page_reset_pass").length > 0) {
@@ -2109,7 +2180,6 @@ $(document).ready(function () {
         // $('#hotel_place_select').append('<option disabled selected>Select Place</option>');
         // console.log(data);
         var seenLocations = {};
-        // Iterate through the array and append options
         $.each(data, function (index, location) {
           if (!seenLocations[location.location]) {
             $('#hotel_place_select').append('<option value="' + location.location + '">' + location.location + '</option>');
@@ -2118,27 +2188,23 @@ $(document).ready(function () {
         });
       },
       error: function () {
-        // console.log('Error fetching data');
       }
     });
 
     function constructHotelSearchUrl() {
-      const baseUrl = 'hotels.php'; // Change this to the actual URL of hotels.php
+      const baseUrl = 'hotels.php'; // 
       const place = $('#hotel_place_select').val();
       const checkInDate = $('[name="Check-in-date"]').val();
       const checkOutDate = $('[name="Check-out-date"]').val();
       const adults = $('[name="adults"]').val();
       const totalRooms = $('[name="total-room"]').val();
 
-      // Construct the URL with parameters
       const url = `${baseUrl}?place=${place}&checkInDate=${checkInDate}&checkOutDate=${checkOutDate}&adults=${adults}&totalRooms=${totalRooms}`;
 
       return url;
     }
 
-    // Get the search hotels button
     $('#search_hotel_button').on('click', function () {
-      // Validate all fields are filled
       if (
         $('#hotel_place_select').val() &&
         $('[name="Check-in-date"]').val() &&
@@ -2146,18 +2212,97 @@ $(document).ready(function () {
         $('[name="adults"]').val() &&
         $('[name="total-room"]').val()
       ) {
-        // Construct the URL with form parameters for hotel search
         const searchUrl = constructHotelSearchUrl();
 
-        // Redirect the user to the hotels.php page with the form parameters
         window.location.href = searchUrl;
       } else {
-        // Show an alert or perform other actions for incomplete form
         Swal.fire({
           title: "Empty!",
           text: "All fields are required!",
           icon: "error"
         });
+      }
+    });
+
+    //top from blog
+    $.ajax({
+      url: './api/topfromblog.php',
+      method: 'GET',
+      success: function (response) {
+        // console.log(response);
+        $('#blogPostsContainer').html(response);
+        $('.active-recent-blog-carusel').owlCarousel({
+          items: 3,
+          loop: true,
+          margin: 30,
+          dots: true,
+          autoplayHoverPause: true,
+          smartSpeed: 500,
+          autoplay: true,
+          responsive: {
+            0: {
+              items: 1
+            },
+            480: {
+              items: 1,
+            },
+            768: {
+              items: 2,
+            },
+            961: {
+              items: 3,
+            }
+          }
+        });
+      },
+      error: function (error) {
+        console.log('Error:', error);
+      }
+    });
+
+    //reviews 
+    $.ajax({
+      url: './api/reviewfromusers.php',
+      method: 'GET',
+      success: function (response) {
+        console.log(response);
+        $('.active-testimonial').html(response);
+        $('.active-testimonial').owlCarousel({
+          items: 2,
+          loop: true,
+          margin: 30,
+          autoplayHoverPause: true,
+          smartSpeed: 500,
+          dots: true,
+          autoplay: true,
+          responsive: {
+            0: {
+              items: 1
+            },
+            480: {
+              items: 1,
+            },
+            992: {
+              items: 2,
+            }
+          }
+        });
+      },
+      error: function (error) {
+        console.log('Error:', error);
+      }
+    });
+
+    //popular hotels 
+    $.ajax({
+      url: './api/popularhotels.php',
+      method: 'GET',
+      success: function (response) {
+        console.log(response);
+        $('#popularhotels').html(response);
+      },
+      error: function (error) {
+        console.log('Error:', error);
       }
     });
     //
@@ -2624,70 +2769,214 @@ $(document).ready(function () {
   }
 });
 
-function getblogposts() {
+// function getblogposts() {
+//   $.ajax({
+//     url: './api/getallpost.php',
+//     type: 'GET',
+//     dataType: 'json',
+//     success: function (response) {
+//       $('#blog_posts').empty();
+//       // console.log(response);
+//       $.each(response, function (index, post) {
+//         console.log(post);
+
+//         var imageUrl = `${post.image_url}`;
+//         var dateObject = new Date(post.created_at);
+
+//         var date = dateObject.toISOString().split('T')[0];
+
+//         var content = post.content;
+//         var truncatedContent = content.slice(0, 350);
+//         if (content.length > 350) {
+//           truncatedContent += '...';
+//         }
+//         var contentcard = `
+//           <div class="single-post  mb-2 border">
+//                             <div class="p-0">
+//                                 <div class="feature-img p-4 m-0">
+//                                     <div class="d-flex border p-2 justify-content-center align-items-center">
+//                                     <img class="img-fluid" src="${imageUrl}" alt="">
+//                                     </div>
+//                                 </div>
+//                                 <div class="px-4 text-center row">
+//                                     <div class="col-6 col-lg-3 py-3 border">
+//                                         <a class="fw-500 text-primary anc" href="#">${post.category_name}</a>
+//                                     </div>
+//                                     <div class="col-6 col-lg-3 py-3 border">
+//                                         <p class="user-name p-0 m-0">${post.first_name} ${post.last_name}
+//                                         </p>
+//                                     </div>
+//                                     <div class="col-6 col-lg-3 py-3 border">
+//                                         <p class="date p-0  m-0">${date}
+//                                     </div>
+//                                     <div class="col-6 col-lg-3 py-3  border">
+//                                         <p class="comments p-0  m-0">${post.total_comments} comments
+//                                     </div>
+//                                 </div>
+//                                 <div class="p-4 m-0">
+//                                     <a class="posts-title text-justify" href="blog-single.html">
+//                                         <h3 class=" m-0 mb-3">${post.title}</h3>
+//                                     </a>
+//                                     <div class="content_blogpost text-justify">${truncatedContent}</div>
+//                                     <a href="post.php?id=${post.post_id}" class="genric-btn primary">View More</a>
+//                                 </div>
+//                             </div>
+//                         </div>`;
+//         // $('#view_post_content').html(post.content);
+//         $('#blog_posts').append(contentcard);
+
+//       }
+//       )
+//     },
+//     error: function (error) {
+//       console.log('Error:', error);
+//     }
+//   });
+// }
+
+
+// function getblogposts(page) {
+//   $.ajax({
+//     url: './api/getallpost.php',
+//     type: 'GET',
+//     data: { page: page },
+//     dataType: 'json',
+//     success: function (response) {
+//       $('#blog_posts').empty();
+
+//       $.each(response.data, function (index, post) {
+//         var imageUrl = `${post.image_url}`;
+//         var dateObject = new Date(post.created_at);
+//         var date = dateObject.toISOString().split('T')[0];
+//         var content = post.content;
+//         var truncatedContent = content.slice(0, 350);
+//         if (content.length > 350) {
+//           truncatedContent += '...';
+//         }
+
+//         var contentcard = `
+//           <div class="single-post mb-2 border">
+//             <div class="p-0">
+//               <div class="feature-img p-4 m-0">
+//                 <div class="d-flex border p-2 justify-content-center align-items-center">
+//                   <img class="img-fluid" src="${imageUrl}" alt="">
+//                 </div>
+//               </div>
+//               <div class="px-4 text-center row">
+//                 <div class="col-6 col-lg-3 py-3 border">
+//                   <a class="fw-500 text-primary anc" href="#">${post.category_name}</a>
+//                 </div>
+//                 <div class="col-6 col-lg-3 py-3 border">
+//                   <p class="user-name p-0 m-0">${post.first_name} ${post.last_name}</p>
+//                 </div>
+//                 <div class="col-6 col-lg-3 py-3 border">
+//                   <p class="date p-0 m-0">${date}</p>
+//                 </div>
+//                 <div class="col-6 col-lg-3 py-3  border">
+//                   <p class="comments p-0 m-0">${post.total_comments} comments</p>
+//                 </div>
+//               </div>
+//               <div class="p-4 m-0">
+//                 <a class="posts-title text-justify" href="blog-single.html">
+//                   <h3 class="m-0 mb-3">${post.title}</h3>
+//                 </a>
+//                 <div class="content_blogpost text-justify">${truncatedContent}</div>
+//                 <a href="post.php?id=${post.post_id}" class="genric-btn primary">View More</a>
+//               </div>
+//             </div>
+//           </div>`;
+//         $('#blog_posts').append(contentcard);
+//       });
+
+//       // If you want to log the pagination details, you can use:
+//       console.log(response.pagination);
+
+//       // Example: Display current page and total pages
+//       $('#pagination_info').text('Page ' + response.pagination.currentPage + ' of ' + response.pagination.totalPages);
+//     },
+//     error: function (error) {
+//       console.log('Error:', error);
+//     }
+//   });
+// }
+
+
+function getBlogPosts(page) {
   $.ajax({
     url: './api/getallpost.php',
-    type: 'GET',
+    method: 'GET',
+    data: {
+      page: page
+    },
     dataType: 'json',
     success: function (response) {
-      $('#blog_posts').empty();
-      // console.log(response);
-      $.each(response, function (index, post) {
-        console.log(post);
+      var blogPosts = response.data;
+      var pagination = response.pagination;
+      console.log(response.pagination)
 
+      // Clear existing blog posts
+      $('#blog_posts').empty();
+
+      // Append new blog posts
+      $.each(blogPosts, function (index, post) {
         var imageUrl = `${post.image_url}`;
         var dateObject = new Date(post.created_at);
-
         var date = dateObject.toISOString().split('T')[0];
-
         var content = post.content;
         var truncatedContent = content.slice(0, 350);
         if (content.length > 350) {
           truncatedContent += '...';
         }
-        var contentcard = `
-          <div class="single-post  mb-2 border">
-                            <div class="p-0">
-                                <div class="feature-img p-4 m-0">
-                                    <div class="d-flex border p-2 justify-content-center align-items-center">
-                                    <img class="img-fluid" src="${imageUrl}" alt="">
-                                    </div>
-                                </div>
-                                <div class="px-4 text-center row">
-                                    <div class="col-6 col-lg-3 py-3 border">
-                                        <a class="fw-500 text-primary anc" href="#">${post.category_name}</a>
-                                    </div>
-                                    <div class="col-6 col-lg-3 py-3 border">
-                                        <p class="user-name p-0 m-0">${post.first_name} ${post.last_name}
-                                        </p>
-                                    </div>
-                                    <div class="col-6 col-lg-3 py-3 border">
-                                        <p class="date p-0  m-0">${date}
-                                    </div>
-                                    <div class="col-6 col-lg-3 py-3  border">
-                                        <p class="comments p-0  m-0">${post.total_comments} comments
-                                    </div>
-                                </div>
-                                <div class="p-4 m-0">
-                                    <a class="posts-title text-justify" href="blog-single.html">
-                                        <h3 class=" m-0 mb-3">${post.title}</h3>
-                                    </a>
-                                    <div class="content_blogpost text-justify">${truncatedContent}</div>
-                                    <a href="post.php?id=${post.post_id}" class="genric-btn primary">View More</a>
-                                </div>
-                            </div>
-                        </div>`;
-        // $('#view_post_content').html(post.content);
-        $('#blog_posts').append(contentcard);
 
+        var contentcard = `
+          <div class="single-post mb-2 border">
+            <div class="p-0">
+              <div class="feature-img p-4 m-0">
+                <div class="d-flex border p-2 justify-content-center align-items-center">
+                  <img class="img-fluid" src="${imageUrl}" alt="">
+                </div>
+              </div>
+              <div class="px-4 text-center row">
+                <div class="col-6 col-lg-3 py-3 border">
+                  <a class="fw-500 text-primary anc" href="#">${post.category_name}</a>
+                </div>
+                <div class="col-6 col-lg-3 py-3 border">
+                  <p class="user-name p-0 m-0">${post.first_name} ${post.last_name}</p>
+                </div>
+                <div class="col-6 col-lg-3 py-3 border">
+                  <p class="date p-0 m-0">${date}</p>
+                </div>
+                <div class="col-6 col-lg-3 py-3  border">
+                  <p class="comments p-0 m-0">${post.total_comments} comments</p>
+                </div>
+              </div>
+              <div class="p-4 m-0">
+                <a class="posts-title text-justify" href="post.php?id=${post.post_id}">
+                  <h3 class="m-0 mb-3">${post.title}</h3>
+                </a>
+                <div class="content_blogpost text-justify">${truncatedContent}</div>
+                <a href="post.php?id=${post.post_id}" class="genric-btn primary">View More</a>
+              </div>
+            </div>
+          </div>`;
+
+        $('#blog_posts').append(contentcard);
+      });
+
+      // Update pagination
+      var paginationHtml = '';
+      for (var i = 1; i <= pagination.totalPages; i++) {
+        paginationHtml += '<li class="page-item"><span class="page-link pagination_link" data-page="' + i + '">' + i + '</span></li>';
       }
-      )
+
+      $('#pagination').empty().append(paginationHtml);
     },
     error: function (error) {
       console.log('Error:', error);
     }
   });
 }
+
 //blog home
 $(document).ready(function () {
   if ($("#page_blog_home").length > 0) {
@@ -2702,7 +2991,13 @@ $(document).ready(function () {
       height: 300,
       automatic_uploads: true
     });
-    getblogposts()
+    getBlogPosts(1)
+
+    $(document).on('click', '.pagination_link', function () {
+      var page = $(this).data('page');
+      getBlogPosts(page);
+    });
+
     $("#post_blog").click(function (event) {
       event.preventDefault();
       var title = $('#title_blogpost').val();
@@ -2781,7 +3076,7 @@ $(document).ready(function () {
       dataType: 'json',
       success: function (response) {
         $('#blog_posts').empty();
-        // console.log(response);
+        console.log(response);
         // $.each(response, function (index, post) {
         //   console.log(post);
 
@@ -2818,7 +3113,7 @@ $(document).ready(function () {
                                       </div>
                                       <div class="content_blogpost text-justify">${content}</div>
                                       <button onclick="history.back()" class="genric-btn primary mr-2">Back</button>
-                                      <a href="blog.php" class="genric-btn primary">Back to Blog Feed</a>
+                                      <a href="home.php" class="genric-btn primary">Back to Blog Feed</a>
                                   </div>
                               </div>
                           </div>`;
@@ -2827,9 +3122,91 @@ $(document).ready(function () {
 
         // }
         // )
+        var commentcard = '';
+        $.each(response.comments, function (index, comment) {
+          var dateObject = new Date(comment.created_at);
+          var options = { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+          var date = dateObject.toLocaleString('en-US', options);
+
+          commentcard += `<div class="border p-0 mb-2">
+          <h5 class="card-header m-0"><a href="#">${comment.first_name + ' ' + comment.last_name}</a></h5>
+          <div class="p-3">
+              <p class="date">${date}</p>
+              <p class="comment">
+              ${comment.content}
+              </p>
+          </div>
+      </div>`
+        });
+        $('.comment-list').append(commentcard);
       },
       error: function (error) {
         console.log('Error:', error);
+      }
+    });
+
+  }
+})
+
+//emergency 
+$(document).ready(function () {
+  if ($("#page_services").length > 0) {
+    $("#locations").select2({
+      // minimumResultsForSearch: Infinity,
+    });
+    $.ajax({
+      url: './api/serviceslocation.php',
+      type: 'GET',
+      dataType: 'json',
+      data: {
+        ctype: 'location',
+      },
+      success: function (data) {
+        console.log(data);
+        $('#locations').empty();
+        // $('#flight_dep_select').append('<option disabled selected>Select Place</option>');
+        console.log(data);
+        var deplocations = {};
+        // Iterate through the array and append options
+        $.each(data, function (index, location) {
+          $('#locations').append('<option value="' + location.location + '">' + location.location + '</option>');
+
+        });
+      },
+      error: function () {
+        // console.log('Error fetching data');
+      }
+    });
+
+    $('#searchBtn').on('click', function (event) {
+      // Prevent the default form submission
+      event.preventDefault();
+
+      // Get the selected location value
+      var selectedLocation = $('#locations').val();
+
+      // Check if a location is selected
+      if (selectedLocation) {
+        // Send an AJAX request
+        $.ajax({
+          url: './api/emergencysearch.php', // Replace with your actual backend endpoint
+          type: 'GET',
+          data: { location: selectedLocation },
+          success: function (response) {
+            console.log(response);
+            $('#emergency_services').empty();
+            $('#emergency_services').html(response);
+
+
+          },
+          error: function (error) {
+            // Handle errors
+            console.error(error);
+          }
+        });
+      } else {
+        // Handle the case when no location is selected
+        alert('Please select a location before searching.');
       }
     });
 

@@ -13,10 +13,10 @@ require '../include/header.php'
                     <h1 class="text-white">
                         Blog Details Page
                     </h1>
-                    <p class=" text-center text-white link-nav"><a href="index.php">Home </a> <span
-                            class="lnr lnr-arrow-right"></span>
-                        <a href="contact.php">Blog</a><span class="lnr lnr-arrow-right"></span>
-                        <a href="contact.php">Blog Details Page</a>
+                    <p class=" text-center text-white link-nav"><a href="<?php echo BASE_URL; ?>index.php">Home </a>
+                        <span class="lnr lnr-arrow-right"></span>
+                        <a href="<?php echo BASE_URL; ?>blog/home.php">Blog</a><span class="lnr lnr-arrow-right"></span>
+                        <a>Blog Details Page</a>
                     </p>
                 </div>
             </div>
@@ -80,17 +80,19 @@ require '../include/header.php'
                     </div>
                     <div class="comments-area my-3 py-3 border">
                         <h3 class="p-3 text-center">Comments</h3>
-                        <div class="comment-list">
-                            <div class="border p-0 mb-2">
-                                <h5 class="card-header m-0"><a href="#">Ishrak Ahmed</a></h5>
-                                <div class="p-3">
-                                    <p class="date">December 15, 2022 at 3:12 pm </p>
-                                    <p class="comment">
-                                        Good!
-                                    </p>
-                                </div>
+                        <div class="border p-0 mb-2">
+                            <h5 class="card-header m-0 text-center">Add New Comment</h5>
+                            <div class="p-2">
+                                <textarea class="single-textarea single-input-primary" name="commentbox" id="commentbox"
+                                    cols="30"></textarea>
                             </div>
-                            <div class="border p-0 mb-2">
+                            <div class="px-2 pb-2">
+                                <button class="genric-btn primary" id="add_comment">Comment</button>
+                            </div>
+                        </div>
+                        <div class="comment-list">
+
+                            <!-- <div class="border p-0 mb-2">
                                 <h5 class="card-header m-0"><a href="#">Sohel Islam</a></h5>
                                 <div class="p-3">
                                     <p class="date">December 1, 2022 at 2:17 pm </p>
@@ -107,7 +109,7 @@ require '../include/header.php'
                                         Nice!
                                     </p>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
                     </div>

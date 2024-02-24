@@ -29,8 +29,6 @@ if (isset($_GET['table']) && isset($_GET['column'])) {
     $totalpages = ceil($rows / $pageSize);
 
     for ($i = 1; $i <= $totalpages; $i++) {
-        // $output .= "<span class='pagination_link' style='cursor:pointer; padding:6px; border:1px solid #ccc;' id='" . $i . "'>" . $i . "</span>";
-
         $output .= '<li class="page-item"><span class="page-link pagination_link" id="'.$i.'">'. $i .'</span></li>';
     }
 

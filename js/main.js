@@ -104,51 +104,51 @@ $(document).ready(function () {
         dots: true
     });
 
-    $('.active-testimonial').owlCarousel({
-        items: 2,
-        loop: true,
-        margin: 30,
-        autoplayHoverPause: true,
-        smartSpeed: 500,
-        dots: true,
-        autoplay: true,
-        responsive: {
-            0: {
-                items: 1
-            },
-            480: {
-                items: 1,
-            },
-            992: {
-                items: 2,
-            }
-        }
-    });
+    // $('.active-testimonial').owlCarousel({
+    //     items: 2,
+    //     loop: true,
+    //     margin: 30,
+    //     autoplayHoverPause: true,
+    //     smartSpeed: 500,
+    //     dots: true,
+    //     autoplay: true,
+    //     responsive: {
+    //         0: {
+    //             items: 1
+    //         },
+    //         480: {
+    //             items: 1,
+    //         },
+    //         992: {
+    //             items: 2,
+    //         }
+    //     }
+    // });
 
 
-    $('.active-recent-blog-carusel').owlCarousel({
-        items: 3,
-        loop: true,
-        margin: 30,
-        dots: true,
-        autoplayHoverPause: true,
-        smartSpeed: 500,
-        autoplay: true,
-        responsive: {
-            0: {
-                items: 1
-            },
-            480: {
-                items: 1,
-            },
-            768: {
-                items: 2,
-            },
-            961: {
-                items: 3,
-            }
-        }
-    });
+    // $('.active-recent-blog-carusel').owlCarousel({
+    //     items: 3,
+    //     loop: true,
+    //     margin: 30,
+    //     dots: true,
+    //     autoplayHoverPause: true,
+    //     smartSpeed: 500,
+    //     autoplay: true,
+    //     responsive: {
+    //         0: {
+    //             items: 1
+    //         },
+    //         480: {
+    //             items: 1,
+    //         },
+    //         768: {
+    //             items: 2,
+    //         },
+    //         961: {
+    //             items: 3,
+    //         }
+    //     }
+    // });
 
     //------- Mobile Nav  js --------//  
 

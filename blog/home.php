@@ -19,9 +19,9 @@ require '../include/header.php'
                     <h1 class="text-white">
                         Blog
                     </h1>
-                    <p class="text-white link-nav"><a href="index.php">Home </a> <span
+                    <p class="text-white link-nav"><a href="<?php echo BASE_URL; ?>index.php">Home </a> <span
                             class="lnr lnr-arrow-right"></span>
-                        <a href="contact.php">Blog</a>
+                        <a href="<?php echo BASE_URL; ?>blog/home.php">Blog</a>
                     </p>
                 </div>
             </div>
@@ -123,8 +123,11 @@ require '../include/header.php'
                             </div>
                         </div> -->
                     </div>
-
+                    <div class="d-flex justify-content-center p-4 border mb-2">
+                        <ul id="pagination" class="pagination"></ul>
+                    </div>
                 </div>
+
                 <div class="col-lg-3 p-0">
                     <div class="widget-wrap">
                         <!-- <div class="single-sidebar-widget search-widget">
@@ -158,43 +161,43 @@ require '../include/header.php'
                             <h4 class="category-title">Post Catgories</h4>
                             <ul class="cat-list">
                                 <li>
-                                    <a href="#" class="d-flex justify-content-between">
+                                    <a class="d-flex justify-content-between">
                                         <p>Technology</p>
                                         <p>37</p>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="d-flex justify-content-between">
+                                    <a class="d-flex justify-content-between">
                                         <p>Lifestyle</p>
                                         <p>24</p>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="d-flex justify-content-between">
+                                    <a class="d-flex justify-content-between">
                                         <p>Fashion</p>
                                         <p>59</p>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="d-flex justify-content-between">
+                                    <a class="d-flex justify-content-between">
                                         <p>Art</p>
                                         <p>29</p>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="d-flex justify-content-between">
+                                    <a class="d-flex justify-content-between">
                                         <p>Food</p>
                                         <p>15</p>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="d-flex justify-content-between">
+                                    <a class="d-flex justify-content-between">
                                         <p>Architecture</p>
                                         <p>09</p>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="d-flex justify-content-between">
+                                    <a class="d-flex justify-content-between">
                                         <p>Adventure</p>
                                         <p>44</p>
                                     </a>

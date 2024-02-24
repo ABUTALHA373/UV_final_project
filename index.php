@@ -11,7 +11,7 @@ $title = 'Home ';
 <!-- start banner Area -->
 <div id="page_index">
     <section class="banner-area relative">
-        <div class="overlay overlay-bg"></div>
+        <div class="overlay overlay-bg "></div>
         <div class="container padding">
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-6 col-md-6 banner-left">
@@ -34,9 +34,9 @@ $title = 'Home ';
                             <a class="nav-link" id="hotel-tab" data-toggle="tab" href="#hotel" role="tab"
                                 aria-controls="hotel" aria-selected="false">Hotels</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="s.php">Costome Tour</a>
-                        </li>
+                        </li> -->
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="flight" role="tabpanel" aria-labelledby="flight-tab">
@@ -178,7 +178,7 @@ $title = 'Home ';
     </section>
     <!-- End banner Area -->
     <!-- Start popular-destination Area -->
-    <section class="popular-destination-area section-bg-white section-gap">
+    <!-- <section class="popular-destination-area section-bg-white section-gap">
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="menu-content pb-70 col-lg-8">
@@ -231,11 +231,11 @@ $title = 'Home ';
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- End popular-destination Area -->
 
     <!-- Start package Area -->
-    <section class="price-area section-bg-gray section-gap">
+    <!-- <section class="price-area section-bg-gray section-gap">
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="menu-content pb-70 col-lg-8">
@@ -341,7 +341,7 @@ $title = 'Home ';
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- End package Area -->
 
 
@@ -356,18 +356,21 @@ $title = 'Home ';
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-6 ">
+            <div class="row" id="popularhotels">
+                <!-- <div class="col-lg-3 col-md-6 mb-2">
                     <div class="single-other-issue">
                         <div class="thumb">
-                            <img class="img-fluid" src="img/h1.jpeg" alt="">
+                            <img class="img-fluid" src="img/hero-bg.jpg" alt="">
                         </div>
-                        <a href="#">
-                            <h4>Raffles Makkah Palace</h4>
-                        </a>
-                        <p>
-                            <i class="fa fa-map-marker"></i> Mecca (Makkah), Saudi Arabia
-                        </p>
+                        <div class="px-2 border">
+                            <a href="hotels.php">
+                                <h4 class="line1">Raffles sdfasdf adsfasdf Makkah Palace</h4>
+                            </a>
+                            <p>
+                                <i class="fa fa-map-marker text-primary mr-1" aria-hidden="true"></i> Mecca (Makkah),
+                                Saudi Arabia
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 ">
@@ -408,14 +411,11 @@ $title = 'Home ';
                             <i class="fa fa-map-marker"></i> Abu Dhabi, United Arab Emirates
                         </p>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
-    <!-- End Popular hotels Area -->
 
-
-    <!-- Start testimonial Area -->
     <section class="testimonial-area section-bg-gray section-gap">
         <div class="container">
             <div class="row d-flex justify-content-center">
@@ -428,9 +428,12 @@ $title = 'Home ';
             </div>
             <div class="row">
                 <div class="active-testimonial">
-                    <div class="single-testimonial item d-flex flex-row">
+
+                    <!-- <div class="single-testimonial item d-flex flex-row">
                         <div class="thumb">
-                            <img class="img-fluid" src="img/elements/user1.png" alt="">
+                            <div class="img-con">
+                                <img class="j-fluid" src="images/profile/65d3097a2c1f9.png" alt="">
+                            </div>
                         </div>
                         <div class="desc">
                             <p>
@@ -541,28 +544,25 @@ $title = 'Home ';
                                 <span class="fa fa-star"></span>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
     </section>
-    <!-- End testimonial Area -->
 
-    <!-- Start explore BD Area -->
     <section class="home-about-area section-bg-white">
         <div class="container-fluid">
             <div class="row align-items-center justify-content-end">
-                <div class="col-lg-6 col-md-12 home-about-left">
+                <div class="col-lg-6 col-md-12 home-about-left ">
                     <h1>
                         Bangladesh Unveiled:<br> Explore Beauty, Culture, Wonders
                     </h1>
-                    <p>
+                    <p class="text-justify">
                         Immerse yourself in the charm of this enchanting destination with personalized packages designed
                         just for you. Discover the beauty, culture, and wonders of Bangladesh on a journey crafted to
-                        match
-                        your preferences. Let the adventure begin!
+                        match your preferences. Let the adventure begin!
                     </p>
-                    <a href="#" class="primary-btn text-uppercase">Explore Bangladesh</a>
+                    <a href="hotels.php" class="primary-btn text-uppercase">Explore Bangladesh</a>
                 </div>
                 <div class="col-lg-6 col-md-12 home-about-right no-padding">
                     <img class="img-fluid" src="img/explorebd.png" alt="">
@@ -570,28 +570,25 @@ $title = 'Home ';
             </div>
         </div>
     </section>
-    <!-- End explore BD Area -->
 
-
-    <!-- Start blog Area -->
     <section class="recent-blog-area section-bg-gray section-gap">
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="menu-content pb-60 col-lg-9">
                     <div class="title text-center">
                         <h1 class="mb-10">Latest from Our Blog</h1>
-                        <p>With the exception of Nietzsche, no other madman has contributed so much to human sanity as
-                            has.</p>
+                        <p>Exploring Boundless Horizons: Dive into the Latest Insights and Discoveries from Our Blog.
+                        </p>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="active-recent-blog-carusel ">
+                <div class="active-recent-blog-carusel " id="blogPostsContainer">
                     <div class="single-recent-blog-post item bg-white">
                         <div class="thumb">
                             <img class="img-fluid" src="img/b1.jpg" alt="">
                         </div>
-                        <div class="details px-4 pb-2">
+                        <div class="details px-4 pb-3">
                             <div class="tags">
                                 <ul>
                                     <li>
@@ -628,7 +625,7 @@ $title = 'Home ';
                                 </ul>
                             </div>
                             <a href="#">
-                                <h4 class="title">Creative Outdoor Ads</h4>
+                                <h4 class="title">Creative Outdoor Ads Creative Outdoor Ads</h4>
                             </a>
                             <p>
                                 Acres of Diamonds… you’ve read the famous story, or at least had it related to you. A
@@ -737,7 +734,6 @@ $title = 'Home ';
                             <h6 class="date">31st January,2018</h6>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

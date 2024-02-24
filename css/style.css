@@ -613,6 +613,58 @@ th {
   background-color: #e7e7e7;
 }
 
+.line1 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.line2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  line-height: 1.2em;
+  min-height: 2.4em;
+}
+.line3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  line-height: 1.3rem;
+  min-height: 3.9rem;
+}
+
+.single-recent-blog-post .thumb {
+  position: relative !important;
+  width: 100% !important;
+  height: 0 !important;
+  padding-bottom: 70% !important; /* This creates a square container based on width */
+  overflow: hidden !important;
+}
+
+.single-recent-blog-post .thumb img {
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+.single-other-issue .thumb {
+  position: relative !important;
+  width: 100% !important;
+  height: 0 !important;
+  padding-bottom: 70% !important; /* This creates a square container based on width */
+  overflow: hidden !important;
+}
+
+.single-other-issue .thumb img {
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
 /*
 /
 /
