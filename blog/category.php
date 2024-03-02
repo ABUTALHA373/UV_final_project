@@ -81,79 +81,12 @@ require '../include/header.php'
 
                     </div>
                     <div id="blog_posts">
-                        <!-- <div class="single-post  mb-2 row border">
-                            <div class="p-0">
-                                <div class="feature-img p-4 m-0">
-                                    <img class="img-fluid" src="<?php echo BASE_URL; ?>img/b2.jpg" alt="">
-                                </div>
-                                <div class="px-4 text-center row">
-                                    <div class="col-6 col-lg-3 py-3 border">
-                                        <a class="fw-500 text-primary anc" href="#">Technology</a>
-                                    </div>
-                                    <div class="col-6 col-lg-3 py-3 border">
-                                        <p class="user-name p-0 m-0">Shohel Islam
-                                        </p>
-                                    </div>
-                                    <div class="col-6 col-lg-3 py-3 border">
-                                        <p class="date p-0  m-0">12 Dec, 2022
-                                    </div>
-                                    <div class="col-6 col-lg-3 py-3  border">
-                                        <p class="comments p-0  m-0">06 Comments
-                                    </div>
-                                </div>
-                                <div class="p-4 m-0">
-                                    <a class="posts-title text-justify" href="blog-single.html">
-                                        <h3 class=" m-0 mb-3">Unveiling the Future: A Dive into Cutting-Edge Technology
-                                            Trends</h3>
-                                    </a>
-                                    <p class="excert text-justify">
-                                        In the fast-paced realm of technology, innovation is the driving force that
-                                        propels
-                                        us
-                                        into
-                                        an era of endless possibilities. As we stand on the cusp of the digital
-                                        frontier,
-                                        let's
-                                        embark on a journey to explore some of the most exciting and transformative
-                                        technology
-                                        trends shaping our world.
-                                    </p>
-                                    <a href="blog-single.html" class="genric-btn primary">View More</a>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
 
                 </div>
                 <div class="col-lg-3 p-0">
                     <div class="widget-wrap">
-                        <!-- <div class="single-sidebar-widget search-widget">
-                        <form class="search-form" action="#">
-                            <input placeholder="Search Posts" name="search" type="text" onfocus="this.placeholder = ''"
-                                onblur="this.placeholder = 'Search Posts'">
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </form>
-                    </div> -->
-                        <!-- <div class="single-sidebar-widget user-info-widget">
-                        <img src="img/blog/user-info.png" alt="">
-                        <a href="#">
-                            <h4>Charlie Barber</h4>
-                        </a>
-                        <p>
-                            Senior blog writer
-                        </p>
-                        <ul class="social-links">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-github"></i></a></li>
-                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                        </ul>
-                        <p>
-                            Boot camps have its supporters andit sdetractors. Some people do not understand why you
-                            should have to spend money on boot camp when you can get. Boot camps have itssuppor ters
-                            andits detractors.
-                        </p>
-                    </div> -->
+
                         <div class="single-sidebar-widget post-category-widget">
                             <h4 class="category-title">Post Catgories</h4>
                             <ul class="cat-list">
@@ -250,51 +183,7 @@ require '../include/header.php'
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="single-sidebar-widget ads-widget">
-                        <a href="#"><img class="img-fluid" src="img/blog/ads-banner.jpg" alt=""></a>
-                    </div> -->
 
-                        <!-- <div class="single-sidebar-widget newsletter-widget">
-                        <h4 class="newsletter-title">Newsletter</h4>
-                        <p>
-                            Here, I focus on a range of items and features that we use in life without
-                            giving them a second thought.
-                        </p>
-                        <div class="form-group d-flex flex-row">
-                            <div class="col-autos">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
-                                    <input type="text" class="form-control" id="inlineFormInputGroup"
-                                        placeholder="Enter email" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Enter email'">
-                                </div>
-                            </div>
-                            <a href="#" class="bbtns">Subcribe</a>
-                        </div>
-                        <p class="text-bottom">
-                            You can unsubscribe at any time
-                        </p>
-                    </div> -->
-                        <!-- <div class="single-sidebar-widget tag-cloud-widget">
-                        <h4 class="tagcloud-title">Tag Clouds</h4>
-                        <ul>
-                            <li><a href="#">Technology</a></li>
-                            <li><a href="#">Fashion</a></li>
-                            <li><a href="#">Architecture</a></li>
-                            <li><a href="#">Fashion</a></li>
-                            <li><a href="#">Food</a></li>
-                            <li><a href="#">Technology</a></li>
-                            <li><a href="#">Lifestyle</a></li>
-                            <li><a href="#">Art</a></li>
-                            <li><a href="#">Adventure</a></li>
-                            <li><a href="#">Food</a></li>
-                            <li><a href="#">Lifestyle</a></li>
-                            <li><a href="#">Adventure</a></li>
-                        </ul>
-                    </div> -->
                     </div>
                 </div>
             </div>

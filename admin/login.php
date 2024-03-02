@@ -32,10 +32,10 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="m-sm-3">
-                                    <form action="" method="post">
+                                    <form action="../admin/postdata/loginpost.php" method="post">
                                         <div class="mb-3">
                                             <label class="form-label">Admin ID</label>
-                                            <input class="form-control form-control-lg" type="email" name="email"
+                                            <input class="form-control form-control-lg" type="text" name="id"
                                                 placeholder="Enter your ID" />
                                         </div>
                                         <div class="mb-3">
@@ -61,6 +61,33 @@
     <script src="js/app.js"></script>
     <script src="js/include.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <?php
+    if (isset($_GET['error'])) {
+        $message = urldecode($_GET['error']);
+        if ($message == 'error_password') {
+
+            echo '<script>Swal.fire({
+            title: "Wrong Password!",
+            icon: "error"
+          });</script>';
+        } else if ($message == 'user_blocked') {
+
+            echo '<script>Swal.fire({
+            title: "Blocked!",
+            text: "User account has been blocked! Please contact us.",
+            icon: "error"
+          });</script>';
+        } else if ($message == 'error_id') {
+
+            echo '<script>Swal.fire({
+            title: "Wrong user!",
+            text: "User is not registered!",
+            icon: "error"
+          });</script>';
+        }
+    }
+
+    ?>
 
 </body>
 

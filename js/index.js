@@ -584,6 +584,9 @@ $(document).ready(function () {
     $("#marital_status").select2({
       minimumResultsForSearch: Infinity,
     });
+    $("#review_star").select2({
+      minimumResultsForSearch: Infinity,
+    });
     $("#country").select2({
       data: countryOptions,
     });
@@ -662,6 +665,51 @@ $(document).ready(function () {
             passport: $("#passport").val(),
             country: $("#country").val(),
             religion: $("#religion").val(),
+          },
+          success: function (response) {
+            console.log(response);
+            if (response == "success") {
+              Swal.fire({
+                title: "Updated!",
+                text: "Your data updated successfully!",
+                icon: "success",
+              });
+            } else {
+              Swal.fire({
+                title: "Invalid!",
+                text: "Cannot update your data!",
+                icon: "error",
+              });
+            }
+          },
+          error: function (error) {
+            // Handle the error here
+            Swal.fire({
+              title: "Error!",
+              text: "Something is wrong!",
+              icon: "error",
+            });
+          },
+        });
+      }
+    });
+    $("#update_review").click(function (event) {
+      event.preventDefault();
+      if (
+        $("#text_review").val().trim() === "" ||
+        $("#review_star").val().trim() === "") {
+        Swal.fire({
+          title: "Empty!",
+          text: "All fields are required!",
+          icon: "warning",
+        });
+      } else {
+        $.ajax({
+          url: "./api/updatereview.php",
+          type: "POST",
+          data: {
+            text_review: $("#text_review").val(),
+            review_star: $("#review_star").val(),
           },
           success: function (response) {
             console.log(response);
@@ -1605,62 +1653,59 @@ $(document).ready(function () {
               // Check if the hotel's star rating is among the selected ratings
               if (selectedStarRatings.length === 0 || selectedStarRatings.includes(hotel.star)) {
                 // Create the HTML structure for a hotel card
-                var hotelCard = `
-        <div class="card border shadow-soft mb-2">
-            <div class="row">
-                <div class="img-col col-sm-12 col-xl-4 col-md-4 p-0">
-                    <div class="card_images">
-                        <div id="CarouselTest" class="carousel slide" data-ride="carousel">
-                            <!-- Carousel Indicators and Inner -->
-                            <ol class="carousel-indicators">
-                                <!-- Indicators should be added dynamically based on the number of images -->
-                                ${hotel.images.map((image, i) => `<li data-target="#CarouselTest" data-slide-to="${i}" ${i === 0 ? 'class="active"' : ''}></li>`).join('')}
-                            </ol>
-                            <div class="carousel-inner">
-                                <!-- Carousel Items should be added dynamically based on the number of images -->
-                                ${hotel.images.map((image, i) => `<div class="carousel-item ${i === 0 ? 'active' : ''}">
-                                    <img class="d-block w-100" src="${image.image_url}" alt="">
-                                </div>`).join('')}
+                var hotelCard = `<div class="card border shadow-soft mb-2">
+                <div class="row">
+                    <div class="img-col col-sm-12 col-xl-4 col-md-4 p-0">
+                        <div class="card_images">
+                            <div id="CarouselTest" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src="${hotel.image_url}" alt="">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <!-- Carousel Controls -->
-                        
                     </div>
-                </div>
-                <div class="col-sm-12 col-xl-8 col-md-8 p-0">
-                    <div class="row link h-100">
-                        <div class="col-9">
-                            <div class="py-2 text-left">
-                                <h3>${hotel.hotel_name} </h3>
-                            </div>
-                            <div class="py-1">
-                                <h4 class="p-0 m-0"><span class="border p-1 badge"><i class="fa fa-star text-primary mr-1"
-                                    aria-hidden="true"></i>${hotel.star} star</span> <span class="border p-1 badge"><i
-                                    class="fa fa-map-marker text-primary mr-1"
-                                    aria-hidden="true"></i>${hotel.address}</span></h4>
-                            </div>
-                            <div class="py-1" id="facility">
-                                <!-- Check if facilities exist before mapping -->
-                                ${hotel.facilities
-                    ? hotel.facilities.split(',').map(facility => `<span class="badge badge-info mr-1">${facility}</span>`).join('')
+                    <div class="col-sm-12 col-xl-8 col-md-8 p-0">
+                        <div class="row link h-100">
+                            <div class="col-9">
+                                <div class="py-2 text-left">
+                                    <h3>${hotel.hotel_name} </h3>
+                                </div>
+                                <div class="py-1">
+                                    <h4 class="p-0 m-0"><span class="border p-1 badge"><i
+                                                class="fa fa-star text-primary mr-1" aria-hidden="true"></i>${hotel.star}
+                                            star</span> <span class="border p-1 badge"><i
+                                                class="fa fa-map-marker text-primary mr-1"
+                                                aria-hidden="true"></i>${hotel.address}</span></h4>
+                                </div>
+                                <div class="py-1" id="facility">
+                                    <!-- Check if facilities exist before mapping -->
+                                    ${hotel.facilities
+                    ? hotel.facilities.split(',').map(facility => `<span
+                                        class="badge badge-info mr-1">${facility}</span>`).join('')
                     : 'No facilities available'}
+                                </div>
+                                <div class="py-4">
+                                    
+                                </div>
                             </div>
-                            <div class="py-4">
-                                <p>${hotel.description}</p>
-                            </div>
+                            <a href="rooms.php" class="col-3 pr-3 d-flex align-items-center border-left">
+                                <div class="p-0 w-100 text-right">
+                                    <p class="p-0 m-0 text-gray"><small>1 room/night</small></p>
+                                    <p class="p-0 m-0 "><span class=" text-danger relative start_price">${taka}
+                                            ${hotel.low_price[index].price_per_night}</span></p>
+                                    <h5><span class="badge badge-success">${hotel.low_price[index].discount}% OFF</span>
+                                    </h5>
+                                    <h5 class="mb-2 mt-1">${taka} ${(hotel.low_price[index].price_per_night -
+                    ((hotel.low_price[index].discount * hotel.low_price[index].price_per_night) / 100))}
+                                    </h5>
+                                </div>
+                            </a>
                         </div>
-                        <a href="rooms.php" class="col-3 pr-3 d-flex align-items-center border-left">
-                            <div class="p-0 w-100 text-right">
-                                <p class="p-0 m-0 text-gray">From</p>
-                                <p class="p-0 m-0 "><span class=" text-danger relative start_price">${taka} ${hotel.low_price[index].price_per_night}</span></p>
-                                <h5><span class="badge badge-success">${hotel.low_price[index].discount}% OFF</span></h5>
-                                <h5 class="mb-2 mt-1">${taka} ${(hotel.low_price[index].price_per_night - ((hotel.low_price[index].discount * hotel.low_price[index].price_per_night) / 100))}</h5>
-                            </div>
-                        </a>
                     </div>
                 </div>
-            </div>
-                </div>`;
+            </div>`;
                 container.append(hotelCard).find('.card:last').attr('data-hotel-id', hotel.hotel_id);
 
                 // Update the link's href to include parameters
@@ -1705,250 +1750,71 @@ $(document).ready(function () {
 //hotel rooms
 $(document).ready(function () {
   if ($("#page_hotel_rooms").length > 0) {
+
+
     // Function to get query parameters from URL
-    // function getQueryParam(name) {
-    //   const urlParams = new URLSearchParams(window.location.search);
-    //   return urlParams.get(name);
-    // }
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
 
-    // // Retrieve parameters from URL
-    // const hotelId = getQueryParam('hotelId');
-    // const checkInDate = getQueryParam('checkInDate');
-    // const checkOutDate = getQueryParam('checkOutDate');
-    // const adults = getQueryParam('adults');
+    // Retrieve parameters from URL
+    const hotelId = getQueryParam('hotelId');
+    const checkInDate = new Date(getQueryParam('checkInDate'));
+    const checkOutDate = new Date(getQueryParam('checkOutDate'));
+    const totalRoom = getQueryParam('totalRoom');
+    const adults = getQueryParam('adults');
 
-    // // Use these parameters in your new AJAX request
-    // // Example:
-    // $.ajax({
-    //   url: 'api/hotels/roomdetails.php',
-    //   type: 'GET',
-    //   data: {
-    //     hotelId: hotelId,
-    //     checkInDate: checkInDate,
-    //     checkOutDate: checkOutDate,
-    //     adults: adults,
-    //   },
-    //   dataType: 'json',
-    //   success: function (response) {
+    const totalDays = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
 
-    //     //for hotels 
-    //     $('#hotel_images').html(`<div id="CarouselTest" class="carousel slide" data-ride="carousel">
-    //     <!-- Carousel Indicators and Inner -->
-    //     <ol class="carousel-indicators">
-    //         <!-- Indicators should be added dynamically based on the number of images -->
-    //         ${response.hotel[0].images.map((image, i) => `<li data-target="#CarouselTest" data-slide-to="${i}" ${i === 0 ? 'class="active"' : ''}></li>`).join('')}
-    //     </ol>
-    //     <div class="carousel-inner">
-    //         <!-- Carousel Items should be added dynamically based on the number of images -->
-    //         ${response.hotel[0].images.map((image, i) => `<div class="carousel-item ${i === 0 ? 'active' : ''}">
-    //             <img class="d-block w-100" src="${image.image_url}" alt="">
-    //         </div>`).join('')}
-    //     </div>
-    // </div>
-    // <!-- Carousel Controls -->
-    // <a class="carousel-control-prev" href="#CarouselTest" role="button" data-slide="prev">
-    //     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    //     <span class="sr-only">Previous</span>
-    // </a>
-    // <a class="carousel-control-next" href="#CarouselTest" role="button" data-slide="next">
-    //     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    //     <span class="sr-only">Next</span>
-    // </a>`);
-    //     $('#hotel_name').text(response.hotel[0].hotel_name);
-    //     $('#star_address').html(`<span class="border p-1 badge"><i
-    //     class="fa fa-star text-primary mr-1" aria-hidden="true"></i>${response.hotel[0].star} star</span> <span
-    // class="border p-1 badge"><i class="fa fa-map-marker text-primary mr-1"
-    //     aria-hidden="true"></i>${response.hotel[0].address}</span>`);
-    //     $('#other_details').text(response.hotel[0].other_details);
-    //     $('#facilities').html(`${response.hotel[0].facilities
-    //       ? response.hotel[0].facilities.split(',').map(facilities => `<span class="badge badge-info mr-1">${facilities}</span>`).join('')
-    //       : 'No facilities available'}`);
-    //     $('#show_on_map').html(`<a href="${response.hotel[0].maps_link}"  class="genric-btn primary small">Show on Map</a>`);
-
-    //     // for rooms 
-    //     var container = $('#card_container');
-    //     container.empty();
-    //     $.each(response.rooms, function (index, room) {
-    //       var roomcard = `<div class="card border shadow-soft mb-2">
-    //     <div class="row">
-    //         <div class="img-col col-sm-12 col-xl-4 col-md-4 p-0">
-    //             <div class="card_img_room">
-    //                 <div class="carousel-item active">
-    //                     <img class="d-block w-100" src="${room.image_url}" alt="">
-    //                 </div>
-
-    //             </div>
-    //         </div>
-    //         <div class="col-sm-12 col-xl-8 col-md-8 p-0">
-    //             <div class="row link h-100">
-    //                 <div class="col-9">
-    //                     <div class="py-2 text-left">
-    //                         <h3>${room.room_type}</h3>
-    //                     </div>
-    //                     <div class="py-1">
-    //                         <h4 class="p-0 m-0"><span class="border p-1 badge"><i class="fa fa-bed text-primary mr-1" aria-hidden="true"></i>${room.bed_type}</span> <span
-    //                                 class="border p-1 badge"><i class="fa fa-info-circle text-primary mr-1" aria-hidden="true"></i>${room.available_rooms} rooms available</span></h4>
-    //                     </div>
-    //                     <div class="py-1" id="facility">
-    //                             <!-- Check if facilities exist before mapping -->
-    //                             ${room.facility
-    //           ? room.facility.split(',').map(facility => `<span class="badge badge-info mr-1">${facility}</span>`).join('')
-    //           : 'No facilities available'}
-    //                         </div>
-    //                     <div class="py-3">
-    //                         <ul>
-    //                             <li>${room.breakfast === 0 ? '<i class="fa fa-ban text-primary mr-1" aria-hidden="true"></i> No Breakfast' : '<i class="fa fa-check-circle text-primary mr-1" aria-hidden="true"></i> Breakfast'}</li>
-    //                             <li>${room.smoking === 0 ? '<i class="fa fa-ban text-primary mr-1" aria-hidden="true"></i> No Smoking' : '<i class="fa fa-check-circle text-primary mr-1" aria-hidden="true"></i> Smoking'}</li>
-    //                         </ul>
-    //                     </div>
-    //                 </div>
-    //                 <div href="" class="col-3 p-3 d-flex align-items-center border-left">
-    //                     <div class="p-1 w-100 text-right">
-    //                         <p class="p-0 m-0 text-gray">From</p>
-    //                         <p class="p-0 m-0 "><span class=" text-danger relative start_price">BDT
-    //                         ${room.price_per_night}</span></p>
-    //                         <h5><span class="badge badge-success">${room.discount}% OFF</span></h5>
-    //                         <h5 class="mb-2 mt-1">${taka} ${(room.price_per_night - ((room.discount * room.price_per_night) / 100))}</h5>
-    //                         <button class="genric-btn primary small w-100 add-room-btn">Add</button>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </div>
-    // </div>`;
-    //       container.append(roomcard);
-    //     })
-
-    //   },
-    //   error: function () {
-    //     // console.log('Error in AJAX request');
-    //   }
-    // });
-    // $('#card_container').on('click', '.add-room-btn', function () {
-    //   // Get room details from the clicked button's parent container
-    //   var roomContainer = $(this).closest('.card');
-    //   var roomPrice = roomContainer.find('.start_price').text().trim(); // Assuming start_price contains the price
-    //   var roomDiscount = roomContainer.find('.badge-success').text().trim(); // Assuming badge-success contains the discount
-    //   var roomTotal = roomContainer.find('.mb-2:last').text().trim(); // Assuming the last h5 contains the total
-
-    //   // Append a new row to the summary
-    //   $('#sticky .p-0.m-0:last').after(`
-    //       <div class="row border p-0 m-0">
-    //           <div class="col-3 p-0">
-    //               <div class="p-2 text-left">
-    //                   <p class="p-0 m-0">Price:</p>
-    //                   <p class="p-0 m-0">Discount</p>
-    //                   <h5 class="mb-2">Total</h5>
-    //               </div>
-    //           </div>
-    //           <div class="col-9 p-0">
-    //               <div class="p-2 text-right">
-    //                   <p class="p-0 m-0">${roomPrice}</p>
-    //                   <label><span class="badge badge-primary w-100">${roomDiscount}</span></label>
-    //                   <h6 class="mb-2">${roomTotal}</h6>
-    //               </div>
-    //           </div>
-    //       </div>
-    //   `);
-
-    //   // Recalculate the total and update the final total section
-    //   updateTotal();
-    // });
-
-    // // Function to update the final total section
-    // function updateTotal() {
-    //   var total = 0;
-    //   $('#sticky .mb-2:last').prevAll('.border').each(function () {
-    //     var totalPrice = $(this).find('.mb-2').text().trim().split('=')[1];
-    //     total += parseFloat(totalPrice);
-    //   });
-
-    //   $('#sticky .mb-2.text-center').text(`${total.toFixed(2)} tk`);
-    // }
-
-
-
-
-    $(document).ready(function () {
-      if ($("#page_hotel_rooms").length > 0) {
-        // Function to get query parameters from URL
-        function getQueryParam(name) {
-          const urlParams = new URLSearchParams(window.location.search);
-          return urlParams.get(name);
-        }
-
-        // Retrieve parameters from URL
-        const hotelId = getQueryParam('hotelId');
-        const checkInDate = new Date(getQueryParam('checkInDate'));
-        const checkOutDate = new Date(getQueryParam('checkOutDate'));
-        const totalRoom = getQueryParam('totalRoom');
-        const adults = getQueryParam('adults');
-
-        const totalDays = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
-
-        // Use these parameters in your new AJAX request
-        // Example:
-        $.ajax({
-          url: './api/hotels/roomdetails.php',
-          type: 'GET',
-          data: {
-            hotelId: hotelId,
-            checkInDate: checkInDate.toISOString(),
-            checkOutDate: checkOutDate.toISOString(),
-            totalRoom: totalRoom,
-            adults: adults,
-          },
-          dataType: 'json',
-          success: function (response) {
-            //for hotels 
-            $('#hotel_images').html(`<div id="CarouselTest" class="carousel slide" data-ride="carousel">
-        <!-- Carousel Indicators and Inner -->
-        <ol class="carousel-indicators">
-            <!-- Indicators should be added dynamically based on the number of images -->
-            ${response.hotel[0].images.map((image, i) => `<li data-target="#CarouselTest" data-slide-to="${i}" ${i === 0 ? 'class="active"' : ''}></li>`).join('')}
-        </ol>
+    // Use these parameters in your new AJAX request
+    // Example:
+    $.ajax({
+      url: './api/hotels/roomdetails.php',
+      type: 'GET',
+      data: {
+        hotelId: hotelId,
+        checkInDate: checkInDate.toISOString(),
+        checkOutDate: checkOutDate.toISOString(),
+        totalRoom: totalRoom,
+        adults: adults,
+      },
+      dataType: 'json',
+      success: function (response) {
+        //for hotels 
+        $('#hotel_images').html(`<div id="CarouselTest" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-            <!-- Carousel Items should be added dynamically based on the number of images -->
-            ${response.hotel[0].images.map((image, i) => `<div class="carousel-item ${i === 0 ? 'active' : ''}">
-                <img class="d-block w-100" src="${image.image_url}" alt="">
-            </div>`).join('')}
+            
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="${response.hotel[0].image_url}" alt="">
+            </div>
         </div>
-    </div>
-    <!-- Carousel Controls -->
-    <a class="carousel-control-prev" href="#CarouselTest" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#CarouselTest" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>`);
-            $('#hotel_name').text(response.hotel[0].hotel_name);
-            $('#star_address').html(`<span class="border p-1 badge"><i
+    </div>`);
+        $('#hotel_name').text(response.hotel[0].hotel_name);
+        $('#star_address').html(`<span class="border p-1 badge"><i
         class="fa fa-star text-primary mr-1" aria-hidden="true"></i>${response.hotel[0].star} star</span> <span
     class="border p-1 badge"><i class="fa fa-map-marker text-primary mr-1"
         aria-hidden="true"></i>${response.hotel[0].address}</span>`);
-            $('#other_details').text(response.hotel[0].other_details);
-            $('#facilities').html(`${response.hotel[0].facilities
-              ? response.hotel[0].facilities.split(',').map(facilities => `<span class="badge badge-info mr-1">${facilities}</span>`).join('')
-              : 'No facilities available'}`);
-            $('#show_on_map').html(`<a href="${response.hotel[0].maps_link}"  class="genric-btn primary small">Show on Map</a>`);
+        $('#other_details').text(response.hotel[0].other_details);
+        $('#facilities').html(`${response.hotel[0].facilities
+          ? response.hotel[0].facilities.split(',').map(facilities => `<span class="badge badge-info mr-1">${facilities}</span>`).join('')
+          : 'No facilities available'}`);
+        $('#show_on_map').html(`<a href="${response.hotel[0].maps_link}"  class="genric-btn primary small">Show on Map</a>`);
 
-            // for rooms 
-            // <span
-            //   class="border p-1 badge"><i class="fa fa-info-circle text-primary mr-1 avroom" aria-hidden="true"></i>${room.available_rooms} rooms available</span>
-            var container = $('#card_container');
-            container.empty();
-            $.each(response.rooms, function (index, room) {
-              roomid = room.room_id;
-              var roomcard = `<div class="card border shadow-soft mb-2">
+        // for rooms 
+        // <span
+        //   class="border p-1 badge"><i class="fa fa-info-circle text-primary mr-1 avroom" aria-hidden="true"></i>${room.available_rooms} rooms available</span>
+        var container = $('#card_container');
+        container.empty();
+        $.each(response.rooms, function (index, room) {
+          roomid = room.room_id;
+          var roomcard = `<div class="card border shadow-soft mb-2">
         <div class="row">
             <div class="img-col col-sm-12 col-xl-4 col-md-4 p-0">
                 <div class="card_img_room">
                     <div class="carousel-item active">
                         <img class="d-block w-100" src="${room.image_url}" alt="">
                     </div>
-
                 </div>
             </div>
             <div class="col-sm-12 col-xl-8 col-md-8 p-0">
@@ -1964,8 +1830,8 @@ $(document).ready(function () {
                         <div class="py-1" id="facility">
                                 <!-- Check if facilities exist before mapping -->
                                 ${room.facility
-                  ? room.facility.split(',').map(facility => `<span class="badge badge-info mr-1">${facility}</span>`).join('')
-                  : 'No facilities available'}
+              ? room.facility.split(',').map(facility => `<span class="badge badge-info mr-1">${facility}</span>`).join('')
+              : 'No facilities available'}
                             </div>
                         <div class="py-3">
                             <ul>
@@ -1988,27 +1854,27 @@ $(document).ready(function () {
             </div>
         </div>
     </div>`;
-              container.append(roomcard);
-            })
-            // $('#continue').attr('disabled', true);
-            $('#continue').addClass('disable');
-            $('#continue').removeClass('primary');
-            var totalPay = 0;
+          container.append(roomcard);
+        })
+        // $('#continue').attr('disabled', true);
+        $('#continue').addClass('disable');
+        $('#continue').removeClass('primary');
+        var totalPay = 0;
 
-            $('#card_container').on('click', '.add-room-btn', function () {
-              var roomContainer = $(this).closest('.card');
-              var roomPrice = parseFloat(roomContainer.find('#disc_price').text().trim());
-              var roomType = (roomContainer.find('#room_type').text().trim());
-              var roomid = (roomContainer.find('#room_id').val().trim());
+        $('#card_container').on('click', '.add-room-btn', function () {
+          var roomContainer = $(this).closest('.card');
+          var roomPrice = parseFloat(roomContainer.find('#disc_price').text().trim());
+          var roomType = (roomContainer.find('#room_type').text().trim());
+          var roomid = (roomContainer.find('#room_id').val().trim());
 
-              $('.add-room-btn').attr('disabled', true);
-              $('.add-room-btn').addClass('disable');
-              $('.add-room-btn').removeClass('primary');
-              $('#continue').attr('disabled', false);
-              $('#continue').addClass('primary');
-              $('#continue').removeClass('disable');
+          $('.add-room-btn').attr('disabled', true);
+          $('.add-room-btn').addClass('disable');
+          $('.add-room-btn').removeClass('primary');
+          $('#continue').attr('disabled', false);
+          $('#continue').addClass('primary');
+          $('#continue').removeClass('disable');
 
-              $('#summary:last').append(`
+          $('#summary:last').append(`
         <div class="border p-1 m-0 cancel_relative bg-gray">
             <div class="cancel"><i class="fa fa-times" aria-hidden="true"></i></div>
             <p class="p-1 m-0 text-center">${roomType}</p>
@@ -2016,67 +1882,65 @@ $(document).ready(function () {
             <h5 class="p-2 m-0 text-center">${taka} ${roomPrice}</h5>
         </div>
     `); totalPay = roomPrice;
-              updatePay(totalPay);
-            });
-            $('#summary').on('click', '.fa-times', function () {
-              $(this).closest('.border').remove();
-              totalPay = 0;
-              $('#continue').attr('disabled', true);
-              $('#continue').addClass('disable');
-              $('#continue').removeClass('primary');
-              $('.add-room-btn').attr('disabled', false);
-              $('.add-room-btn').addClass('primary');
-              $('.add-room-btn').removeClass('disable');
+          updatePay(totalPay);
+        });
+        $('#summary').on('click', '.fa-times', function () {
+          $(this).closest('.border').remove();
+          totalPay = 0;
+          $('#continue').attr('disabled', true);
+          $('#continue').addClass('disable');
+          $('#continue').removeClass('primary');
+          $('.add-room-btn').attr('disabled', false);
+          $('.add-room-btn').addClass('primary');
+          $('.add-room-btn').removeClass('disable');
 
-              updatePay(totalPay);
-            });
-
-            function updatePay(totalPay) {
-              if (totalPay > 0) {
-                $('#pay').val(totalPay);
-              } else {
-                $('#pay').val('');
-              }
-            }
-          },
-          error: function () {
-            console.log('Error in AJAX request');
-          }
+          updatePay(totalPay);
         });
 
-
-        $('#continue').on('click', function (event) {
-          event.preventDefault();
-
-          var roomId = $('#room_id_cart').val();
-          var payable = $('#pay').val();
-          var InDate = (checkInDate.toISOString());
-          var OutDate = (checkOutDate.toISOString());
-
-          // Check if all required values are set
-          if (roomId && payable && InDate && OutDate && totalRoom && adults) {
-            var bookingType = 'hotel';
-            var redirectUrl = 'ssl/sslpay.php?' +
-              'type=' + encodeURIComponent(bookingType) +
-              '&roomId=' + encodeURIComponent(roomId) +
-              '&checkInDate=' + encodeURIComponent(InDate) +
-              '&checkOutDate=' + encodeURIComponent(OutDate) +
-              '&totalRoom=' + encodeURIComponent(totalRoom) +
-              '&payable=' + encodeURIComponent(payable) +
-              '&adults=' + encodeURIComponent(adults);
-
-            // Redirect to the new URL
-            window.location.href = redirectUrl;
+        function updatePay(totalPay) {
+          if (totalPay > 0) {
+            $('#pay').val(totalPay);
+          } else {
+            $('#pay').val('');
           }
-        });
+        }
+      },
+      error: function () {
+        console.log('Error in AJAX request');
+      }
+    });
 
 
+    $('#continue').on('click', function (event) {
+      event.preventDefault();
+
+      var roomId = $('#room_id_cart').val();
+      var payable = $('#pay').val();
+      var InDate = (checkInDate.toISOString());
+      var OutDate = (checkOutDate.toISOString());
+
+      // Check if all required values are set
+      if (roomId && payable && InDate && OutDate && totalRoom && adults) {
+        var bookingType = 'hotel';
+        var redirectUrl = 'ssl/sslpay.php?' +
+          'type=' + encodeURIComponent(bookingType) +
+          '&roomId=' + encodeURIComponent(roomId) +
+          '&checkInDate=' + encodeURIComponent(InDate) +
+          '&checkOutDate=' + encodeURIComponent(OutDate) +
+          '&totalRoom=' + encodeURIComponent(totalRoom) +
+          '&payable=' + encodeURIComponent(payable) +
+          '&adults=' + encodeURIComponent(adults);
+
+        // Redirect to the new URL
+        window.location.href = redirectUrl;
       }
     });
 
 
   }
 });
+
+
 
 //index page
 $(document).ready(function () {
@@ -3018,7 +2882,6 @@ $(document).ready(function () {
           icon: "warning",
         });
       } else {
-
         $.ajax({
           url: './api/savepost.php', // Update with your PHP script URL
           type: 'POST',
@@ -3031,7 +2894,8 @@ $(document).ready(function () {
             $("#category_blogpost").val('').trigger("change");
             tinymce.get('content_blogpost').setContent('');
             $('#data_blogpost')[0].reset();
-            getblogposts();
+
+            getBlogPosts(1);
             Swal.fire({
               position: 'top-end',
               icon: 'success',

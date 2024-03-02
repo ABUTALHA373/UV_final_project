@@ -36,21 +36,6 @@ function get_blog_posts($post_id)
                 $row['total_comments'] = 0;
             }
 
-            // $allcomments= array();
-
-            // $sql3 = "SELECT bc.*, u.first_name, u.last_name
-            // FROM blog_comments bc
-            // left join users u  on bc.user_id = u.user_id
-            // WHERE post_id = ?";
-
-            // $stmt3 = $con->prepare($sql3);
-            // $stmt3->bind_param("i", $post_id);
-            // $stmt3->execute();
-            // $result3 = $stmt3->get_result();
-            // while($com = $result3->fetch_assoc()){
-            //     $allcomments = $com;
-            // }
-            // $row['all_comments'] = $allcomments;
             $blogposts[] = $row;
         }
         return $blogposts;

@@ -4,7 +4,7 @@ require '../config/db_con.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-    $sql = "SELECT h.hotel_name, h.location, h.location,h.star, h.hotel_id, MAX(ih.image_url) AS image_url
+    $sql = "SELECT h.hotel_name, h.location,h.image_url, h.location,h.star, h.hotel_id, MAX(ih.image_url) AS aimage_url
         FROM hotels h
         LEFT JOIN images_hotel ih ON h.hotel_id = ih.hotel_id
         GROUP BY h.hotel_id

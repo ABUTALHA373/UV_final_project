@@ -58,14 +58,10 @@
 <script src="<?php echo BASE_URL; ?>admin/js/include.js"></script>
 <script>
 $(document).ready(function() {
-    // Get the current page URL
     var currentPageUrl = window.location.href;
 
-    // Loop through each sidebar link and check if its href matches the current page URL
     $('.sidebar-link').each(function() {
         var linkUrl = $(this).attr('href');
-
-        // Compare the URLs and add the "active" class if they match
         if (currentPageUrl.includes(linkUrl)) {
             $(this).closest('.sidebar-item').addClass('active');
         }

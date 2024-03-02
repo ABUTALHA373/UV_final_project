@@ -4,7 +4,7 @@ require '../config/db_con.php';
 function fetchUserData($user_id)
 {
     global $con;
-    $sql = "SELECT email, phone_number, first_name, last_name, nid, dob, gender, marital_status, passport, status, is_verified, country, religion FROM users WHERE user_id = ?";
+    $sql = "SELECT email, phone_number, first_name, last_name, nid, dob, gender, marital_status, passport, status, is_verified, country, religion, profile_image_url FROM users WHERE user_id = ?";
     $stmt = $con->prepare($sql);
     $stmt->bind_param('i', $user_id);
 

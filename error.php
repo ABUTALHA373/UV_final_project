@@ -1,4 +1,18 @@
 <!DOCTYPE html>
+<?php 
+
+if(isset($_GET['type'])){
+    $type =$_GET['type'];
+}else{
+    $type = '';
+}
+if(isset($_GET['message'])){
+    $message =$_GET['message'];
+}else{
+    $message = '';
+}
+
+?>
 <html lang="en">
 
 <head>
@@ -32,13 +46,26 @@
     p {
         color: #333;
     }
+
+    a {
+        text-decoration: none;
+        padding: 1rem;
+    }
+
+    h4 {
+        padding: 0.5rem 0;
+        border-radius: 5px;
+    }
     </style>
 </head>
 
 <body>
-    <div class="error-container">
-        <h1>Error: <?php echo htmlspecialchars($_GET['type']); ?></h1>
-        <p><?php echo htmlspecialchars($_GET['message']); ?></p>
+    <div class="error-container" style="min-width: 400px; min-height:400px">
+        <h1>Error: <?php echo htmlspecialchars($type )?></h1>
+        <p><?php echo htmlspecialchars($message) ?></p>
+        <a href="index.php">
+            <h4 style="color: white; background-color:green">Home</h4>
+        </a>
     </div>
 </body>
 

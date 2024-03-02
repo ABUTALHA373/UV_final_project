@@ -38,6 +38,7 @@ require __DIR__ . '/../config/db_con.php';
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/owl.carousel.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/main.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/style.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>css/others.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
@@ -82,7 +83,7 @@ require __DIR__ . '/../config/db_con.php';
                     <ul class="nav-menu">
                         <li><a href="<?php echo BASE_URL; ?>flights.php">Flight</a></li>
                         <li><a href="<?php echo BASE_URL; ?>hotels.php">Hotel</a></li>
-                        <li><a href="<?php echo BASE_URL; ?>tours.html">Tour</a></li>
+                        <!-- <li><a href="<?php echo BASE_URL; ?>tours.html">Tour</a></li> -->
                         <li><a href="<?php echo BASE_URL; ?>blog/home.php">Blog</a></li>
                         <li><a href="<?php echo BASE_URL; ?>services.php">Services</a>
                             <!-- <ul>

@@ -1,4 +1,15 @@
 <?php
+require '../config/db_con.php';
+require '../config/status_admin.php';
+$adminloggedin = (isset($_SESSION['admin_id']) && isset($_SESSION['admin_name'])  && isset($_SESSION['admin_type']) && isset($_SESSION['admin_status']));
+
+if ($adminloggedin) {
+    $adminmaster = (!isset($_SESSION['admin_hotel_id']) && !isset($_SESSION['admin_air_id'])  && $_SESSION['admin_type'] === 'master' && $_SESSION['admin_status'] === 'active');
+    $adminhotel = (isset($_SESSION['admin_hotel_id']) && $_SESSION['admin_type'] === 'hotel' && $_SESSION['admin_status'] === 'active');
+    $adminairline = (isset($_SESSION['admin_air_id']) && $_SESSION['admin_type'] === 'airline' && $_SESSION['admin_status'] === 'active');
+}
+if($adminloggedin && $adminmaster){
+
 require '../include/c_header.php';
 ?>
 
@@ -7,40 +18,25 @@ require '../include/c_header.php';
 
         <h1 class="h3 mb-3"><strong>Users</strong></h1>
         <div class="row">
-            <!-- <div class="col-12 col-lg-4 col-xxl-3 d-flex">
-                <div class="card flex-fill w-100">
-                    <div class="card-header">
-
-                        <h5 class="card-title mb-0">Monthly Sales</h5>
-                    </div>
-                    <div class="card-body d-flex w-100">
-                        <div class="align-self-center chart chart-lg">
-                            <canvas id="chartjs-dashboard-bar"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <div class="col-12 d-flex">
                 <div class="card flex-fill">
-                    <!-- <div class="card-header">
-                        <h5 class="card-title mb-0 text-primary">Registered User:</h5>
-                    </div> -->
-                    <div class="p-3">
-                        <table class="table  display  nowrap" id="userDataTable">
+                    <div class="p-3 table_overflow">
+                        <table class="table display nowrap" id="userDataTable">
                             <thead>
-                                <tr>
-                                    <th class="d-none d-md-table-cell text-center">Action
-                                    </th>
-                                    <th class="d-none d-xl-table-cell">User ID</th>
-                                    <th class="d-none d-xl-table-cell">Email</th>
-                                    <th class="d-none d-xl-table-cell">Name</th>
-                                    <th class="d-none d-md-table-cell">Is Verified</th>
-                                    <th class="d-none d-md-table-cell">Status</th>
-                                    <th class="d-none d-md-table-cell">Last Update</th>
-                                </tr>
                             </thead>
                             <tbody>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
@@ -62,9 +58,13 @@ require '../include/c_header.php';
                         <div class="card mb-3">
 
                             <div class="card-body text-center">
-                                <img src="img/avatars/avatar-4.jpg" alt="Christina Mason"
-                                    class="img-fluid rounded-circle mb-2" width="128" height="128" />
-                                <h5 class="card-title mb-0">Christina Mason</h5>
+                                <div class="">
+                                    <div class="text-center  profile_image_card">
+                                        <img id="profile_image" alt="Profile Image"
+                                            class="img-fluid rounded-circle mb-2" />
+                                        <h5 class="text-dark card-title mt-2 mb-0" id="full_name"></h5>
+                                    </div>
+                                </div>
 
                             </div>
                             <hr class="my-0" />
@@ -144,3 +144,8 @@ require '../include/s_footer.php';
 </body>
 
 </html>
+<?php 
+}else{
+    header('Location: ./index.php');
+}
+?>

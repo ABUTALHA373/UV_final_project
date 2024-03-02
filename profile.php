@@ -54,10 +54,10 @@ require './include/nheader.php';
                                 <i class="fa fa-window-maximize col-1" aria-hidden="true"></i>
                                 <div class="col-auto text-left">My Blog</div>
                             </a>
-                            <a class="list-group-item list-group-item-action d-flex " id="list-home-list"
-                                data-toggle="list" href="#list-home" role="tab" aria-controls="home">
-                                <i class="fa fa-location-arrow col-1" aria-hidden="true"></i>
-                                <div class="col-auto text-left">Newsletter</div>
+                            <a class="list-group-item list-group-item-action d-flex " id="list-review-list"
+                                data-toggle="list" href="#list-review" role="tab" aria-controls="home">
+                                <i class="fa fa-commenting col-1" aria-hidden="true"></i>
+                                <div class="col-auto text-left">Add Review comment</div>
                             </a>
                             <a class="list-group-item list-group-item-action d-flex " id="change-password-list"
                                 data-toggle="list" href="#list-change-password" role="tab" aria-controls="home">
@@ -309,6 +309,48 @@ require './include/nheader.php';
                                 </div>
                             </div>
 
+                            <!-- change password -->
+                            <div class="tab-pane fade" id="list-review" role="tabpanel"
+                                aria-labelledby="list-review-list">
+                                <div class="card-header">
+                                    <h4 class="text-center">Add review</h4>
+                                </div>
+                                <div class="p-3">
+                                    <form action="" method="post" id="add_review">
+                                        <div class="px-lg-5">
+
+                                            <div class="mt-3">
+                                                <label class="mb-0">Your comment:</label>
+                                                <div class="relative">
+                                                    <textarea id="text_review"
+                                                        class="single-input single-input-primary border"
+                                                        style="width: 100%;"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <label class="mb-0">Review:</label>
+                                                <div>
+                                                    <select id="review_star" name="review_star" required class>
+                                                        <option value="" disabled selected>Select one</option>
+                                                        <option value="1">1 star</option>
+                                                        <option value="2">2 star</option>
+                                                        <option value="3">3 star</option>
+                                                        <option value="4">4 star</option>
+                                                        <option value="5">5 star</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-3">
+                                                <div class="col-lg-6 col-sm m-0 p-0 col-sm">
+                                                    <button id="update_review"
+                                                        class="genric-btn primary">Update</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                             <!-- change password -->
                             <div class="tab-pane fade" id="list-change-password" role="tabpanel"
                                 aria-labelledby="change-password-list">

@@ -1,10 +1,8 @@
 <?php
-// Include your database connection file
 require '../config/db_con.php';
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     
     $ctype = $_GET['ctype'];
-    // Fetch location data from the hotels table using a prepared statement
     $query = "SELECT DISTINCT $ctype FROM emergency_contacts";
     $stmt = $con->prepare($query);
 
@@ -15,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Create an array to store the locations
     $locations = array();
 
     while ($row = $result->fetch_assoc()) {

@@ -10,43 +10,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   $totalRoom = isset($_GET['totalRoom']) ? $_GET['totalRoom'] : '';
   $adults = isset($_GET['adults']) ? $_GET['adults'] : '';
 
-  // $query = "SELECT DISTINCT hotels.* 
-  //   FROM hotels 
-  //   JOIN rooms ON hotels.hotel_id = rooms.hotel_id 
-  //   WHERE hotels.location = ? 
-  //     AND rooms.capacity = ? 
-  //     AND rooms.available_rooms	 >= ? 
-  //     AND rooms.is_booked = 0 
-  //     AND NOT EXISTS (
-  //         SELECT 1 
-  //         FROM hotel_bookings 
-  //         WHERE rooms.room_id = hotel_bookings.room_id 
-  //           AND (
-  //             (? <= hotel_bookings.check_in_date AND ? >= hotel_bookings.check_out_date)
-  //             OR ( hotel_bookings.check_in_date BETWEEN ? AND ?)
-  //             OR ( hotel_bookings.check_out_date BETWEEN ? AND ?)
-  //           )
-  //   )";
-
-
-
-  // SELECT SUM(total_room) AS sum0frooms 
-  // FROM hotel_bookings
-  // WHERE room_id = 12
-  //   AND (
-  //       ('2024-02-12' <=check_in_date AND '2024-02-14' >=check_out_date)
-  //       OR (check_in_date  BETWEEN '2024-02-12' AND '2024-02-14')
-  //       OR (check_out_date  BETWEEN '2024-02-12' AND '2024-02-14')
-  //   )
-
+ 
 
   $query = "SELECT DISTINCT hotels.*
     FROM hotels
     JOIN rooms ON hotels.hotel_id = rooms.hotel_id
     WHERE hotels.location = ?
-      AND rooms.capacity >= ?
+      AND rooms.capacity = ?
       AND rooms.available_rooms >= ?
-      AND rooms.available_rooms - (
+      AND (rooms.available_rooms - (
         SELECT COALESCE(SUM(total_room), 0) AS total_booked_rooms
         FROM hotel_bookings
         WHERE rooms.room_id = hotel_bookings.room_id
@@ -56,13 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             OR hotel_bookings.check_in_date BETWEEN ? AND ?
             OR hotel_bookings.check_out_date BETWEEN ? AND ?
           )
-      ) >= ?";
-
-  // Assuming you have the appropriate parameters for the placeholders in your query.
-
-
-  // $stmt = $con->prepare($query);
-  // $stmt->bind_param('siissssss', $place, $adults,$totalRoom, $checkInDate, $checkOutDate, $checkInDate, $checkOutDate, $checkInDate, $checkOutDate);
+      ) )>= ?";
 
   $stmt = $con->prepare($query);
   $stmt->bind_param('siissssssi', $place, $adults, $totalRoom, $checkInDate, $checkOutDate, $checkInDate, $checkOutDate, $checkInDate, $checkOutDate, $totalRoom);
@@ -84,10 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
       $images[] = $imageRow;
     }
 
-    $row['images'] = $images; //will make images array into hotels details
-    //searching images 
-
-    //searching low prices 
+    $row['images'] = $images;
 
     $queryprice = "SELECT * FROM rooms WHERE hotel_id = ? AND available_rooms >= ? ORDER BY price_per_night ASC LIMIT 1";
     $stmtprice = $con->prepare($queryprice);

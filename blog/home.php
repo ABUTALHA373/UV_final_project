@@ -49,7 +49,13 @@ require '../include/header.php'
                                         <label class="ml-1 mb-0 inputarea">Category:</label>
                                         <select id="category_blogpost" name="category_blogpost" required>
                                             <option value="" selected disabled>Select a Category</option>
+                                            <option value="14">Adventure</option>
+                                            <option value="13">Architecture</option>
+                                            <option value="12">Art</option>
+                                            <option value="11">Fashion</option>
                                             <option value="1">Food</option>
+                                            <option value="10">Lifestyle</option>
+                                            <option value="9">Technology</option>
                                         </select>
                                     </div>
                                 </div>
@@ -163,43 +169,43 @@ require '../include/header.php'
                                 <li>
                                     <a class="d-flex justify-content-between">
                                         <p>Technology</p>
-                                        <p>37</p>
+
                                     </a>
                                 </li>
                                 <li>
                                     <a class="d-flex justify-content-between">
                                         <p>Lifestyle</p>
-                                        <p>24</p>
+
                                     </a>
                                 </li>
                                 <li>
                                     <a class="d-flex justify-content-between">
                                         <p>Fashion</p>
-                                        <p>59</p>
+
                                     </a>
                                 </li>
                                 <li>
                                     <a class="d-flex justify-content-between">
                                         <p>Art</p>
-                                        <p>29</p>
+
                                     </a>
                                 </li>
                                 <li>
                                     <a class="d-flex justify-content-between">
                                         <p>Food</p>
-                                        <p>15</p>
+
                                     </a>
                                 </li>
                                 <li>
                                     <a class="d-flex justify-content-between">
                                         <p>Architecture</p>
-                                        <p>09</p>
+
                                     </a>
                                 </li>
                                 <li>
                                     <a class="d-flex justify-content-between">
                                         <p>Adventure</p>
-                                        <p>44</p>
+
                                     </a>
                                 </li>
                             </ul>

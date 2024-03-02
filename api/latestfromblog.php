@@ -59,7 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     echo json_encode(['error' => 'Invalid request method']);
 }
 
-// Close database connection (not shown in prompt)
 $con->close(); // Replace with appropriate closing action based on connection handling approach
 
 

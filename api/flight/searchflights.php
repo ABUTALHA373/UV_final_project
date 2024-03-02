@@ -6,12 +6,10 @@ if ($con->connect_error) {
     die("con failed: " . $con->connect_error);
 }
 
-// Function to search for flights
 function searchFlights($departureCity, $arrivalCity, $person, $class, $flightDate)
 {
     global $con;
 
-    // Prepare the SQL statement
     $query = "SELECT * FROM flights
               WHERE departure_city = ? 
               AND arrival_city = ? 
@@ -21,27 +19,20 @@ function searchFlights($departureCity, $arrivalCity, $person, $class, $flightDat
 
     $statement = $con->prepare($query);
 
-    // Bind parameters
     $statement->bind_param("ssis", $departureCity, $arrivalCity, $person, $flightDate);
 
-    // Execute the statement
     $statement->execute();
 
-    // Get the result
     $result = $statement->get_result();
 
-    // Fetch the data
     $flights = $result->fetch_all(MYSQLI_ASSOC);
 
-    // Close the statement
     $statement->close();
 
     return $flights;
 }
 
-// Handle AJAX request
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Assuming you're sending parameters through POST
     $departureCity = $_POST['departureCity'];
     $arrivalCity = $_POST['arrivalCity'];
     $person = $_POST['person'];
