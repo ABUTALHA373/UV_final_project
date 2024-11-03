@@ -1,7 +1,6 @@
 ﻿# final_project_bootstrap
 
 login -- user 
-abutalha5896@gmail.com 
 ABc@1234
 
 Master Admin
